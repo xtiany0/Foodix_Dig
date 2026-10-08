@@ -39,7 +39,7 @@ Parcours principal : Lancement > Menu > fiche article > Ajouter > Panier > Valid
 3. **Sur chaque ligne du menu** :
    - pas dans le panier : un petit bouton rond « + » ;
    - dans le panier : une deuxième ligne apparaît avec un sélecteur « − n + » à droite (à 0, l'article sort du panier) et, à gauche, « + Ajouter une précision » (ou « Précision : … · Modifier ») qui ouvre un champ texte + OK sous l'article ;
-   - articles à variantes : le premier « + » ouvre la fiche pour choisir, ensuite + et − agissent sur le dernier choix fait.
+   - articles à variantes : « + » ouvre la fiche pour choisir et reste visible pour ajouter un autre choix ; chaque ligne du panier (choix + précision) a sa propre sous-ligne « − n + » sous l'article (ex. 1 shawarma bœuf à 1.000 F et 2 à 1.500 F).
 4. **Fiche article** (feuille qui monte du bas sur téléphone et tablette, fenêtre centrée sur ordinateur) : catégorie, nom, prix, mention 18+ si besoin, choix de variante, quantité, champ « Précision », bouton « Ajouter · prix ». **Pas de photo** (il n'y en a pas, comme sur le menu papier).
 5. **Panier** : lignes avec + / −, Retirer, précision modifiable, « Ajouter d'autres articles », sous-total, livraison « À confirmer sur WhatsApp », bouton « Valider ma commande ». Bouton Vider avec confirmation. **Panier vide** : toque, texte, Voir le menu, lien Recommander une commande passée.
 6. **Validation livraison** : sélecteur Livraison / À emporter, nom, téléphone, quartier, adresse ou repère, position GPS (facultative), note.

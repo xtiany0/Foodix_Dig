@@ -20,7 +20,7 @@ export interface CartLine {
   variant: string | null;
   note: string;
   qty: number;
-  /** Ordre du dernier ajout : la ligne la plus récente d'un article reçoit les + / − du menu. */
+  /** Ordre du dernier ajout (sert aussi à créer des identifiants de ligne uniques). */
   seq: number;
 }
 
@@ -85,11 +85,6 @@ export function commitNote(lines: CartLine[], key: string): CartLine[] {
 /** Lignes d'un article de la liste du menu. */
 export function linesFor(lines: CartLine[], itemId: string): CartLine[] {
   return lines.filter((l) => l.itemId === itemId);
-}
-
-/** Ligne qui reçoit les + / − de la ligne du menu : le dernier choix fait pour cet article. */
-export function lastLineFor(lines: CartLine[], itemId: string): CartLine | undefined {
-  return linesFor(lines, itemId).reduce<CartLine | undefined>((best, l) => (!best || l.seq > best.seq ? l : best), undefined);
 }
 
 export function qtyFor(lines: CartLine[], itemId: string): number {

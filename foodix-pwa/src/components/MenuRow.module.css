@@ -134,6 +134,12 @@
   color: var(--fx-text-muted);
 }
 
+/* Choix (format, garniture…) devant la précision, sur la sous-ligne du panier. */
+.choice {
+  color: var(--fx-text);
+  font-weight: 800;
+}
+
 .stepper {
   flex: none;
   display: flex;

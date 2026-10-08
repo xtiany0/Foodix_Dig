@@ -4,7 +4,7 @@ import {
   cartTotals,
   changeQty,
   commitNote,
-  lastLineFor,
+  linesFor,
   parseCart,
   qtyFor,
   removeLine,
@@ -80,12 +80,15 @@ describe('+ et − sur la bonne ligne', () => {
     expect(next.map((l) => l.qty)).toEqual([1, 1, 1]);
   });
 
-  it('les + / − du menu agissent sur le dernier choix fait', () => {
-    expect(lastLineFor(c, 'shawarma-poulet')!.key).toBe(d.key);
-    // un nouvel ajout identique à la première ligne en fait le dernier choix
-    const again = addLine(c, plain('shawarma-poulet', '', 1));
-    expect(again).toHaveLength(3);
-    expect(lastLineFor(again, 'shawarma-poulet')!.key).toBe(a.key);
+  it('le menu affiche une sous-ligne par ligne du panier (ex. 1 bœuf à 1.000 F, 2 à 1.500 F)', () => {
+    let c = addLine([], { itemId: 'shawarma-boeuf', variant: 'Shawarma viande de bœuf (1.000 F)', note: '', qty: 1 });
+    c = addLine(c, { itemId: 'shawarma-boeuf', variant: 'Shawarma viande de bœuf (1.500 F)', note: '', qty: 2 });
+    const own = linesFor(c, 'shawarma-boeuf');
+    expect(own.map((l) => l.qty)).toEqual([1, 2]);
+    // − sur la sous-ligne à 1.500 F ne touche pas celle à 1.000 F
+    const next = changeQty(c, own[1].key, -1);
+    expect(linesFor(next, 'shawarma-boeuf').map((l) => l.qty)).toEqual([1, 1]);
+    expect(resolveCart(index, next).map((r) => r.total)).toEqual([1000, 1500]);
   });
 
   it('à 0, la ligne sort du panier et les autres restent', () => {

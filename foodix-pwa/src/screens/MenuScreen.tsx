@@ -262,7 +262,7 @@ export default function MenuScreen() {
                     )}
                     <div className={styles.items}>
                       {items.map((it) => (
-                        <MenuRow key={it.id} item={it} editing={editing === it.id} onOpen={setSheetId} onToggleNote={setEditing} />
+                        <MenuRow key={it.id} item={it} editingKey={editing} onOpen={setSheetId} onToggleNote={setEditing} />
                       ))}
                     </div>
                   </div>
