@@ -28,6 +28,21 @@ body {
 
 #root {
   min-height: 100%;
+  /* Le contenu commence sous l'heure et la Dynamic Island (app installée sur iPhone). */
+  padding: var(--safe-top) var(--safe-right) 0 var(--safe-left);
+}
+
+/* Bande bleu nuit fixe derrière l'heure et la Dynamic Island : prolonge l'en-tête. */
+body::before {
+  content: '';
+  position: fixed;
+  z-index: 60;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--safe-top);
+  background: var(--fx-navy);
+  pointer-events: none;
 }
 
 button,

@@ -60,3 +60,10 @@
   --fx-on-navy-faint: #8F8CB5;          /* mention « Conception de l'application » sur bleu nuit */
   --fx-radio: #8A86A8;                  /* contour des boutons radio non cochés (Envoi) */
 }
+
+/* Zones sûres (iPhone avec encoche ou Dynamic Island, app installée) : 0 ailleurs. */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}

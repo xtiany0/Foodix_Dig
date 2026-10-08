@@ -1,7 +1,7 @@
 .screen {
   --pad: 16px;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: calc(100vh - var(--safe-top));
+  min-height: calc(100dvh - var(--safe-top));
   display: flex;
   flex-direction: column;
 }
@@ -14,7 +14,7 @@
 
 .header {
   position: sticky;
-  top: 0;
+  top: var(--safe-top);
   z-index: 5;
   flex: none;
   height: 60px;

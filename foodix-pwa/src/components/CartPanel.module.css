@@ -1,9 +1,9 @@
 .panel {
   position: sticky;
-  top: 0;
+  top: var(--safe-top);
   width: 290px;
-  height: 100vh;
-  height: 100dvh;
+  height: calc(100vh - var(--safe-top));
+  height: calc(100dvh - var(--safe-top));
   flex: none;
   display: flex;
   flex-direction: column;
@@ -13,10 +13,10 @@
 
 @media (min-width: 1180px) {
   .panel {
-    top: 76px;
+    top: calc(76px + var(--safe-top));
     width: 340px;
-    height: calc(100vh - 76px);
-    height: calc(100dvh - 76px);
+    height: calc(100vh - 76px - var(--safe-top));
+    height: calc(100dvh - 76px - var(--safe-top));
   }
 }
 

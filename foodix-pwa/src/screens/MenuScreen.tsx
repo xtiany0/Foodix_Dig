@@ -66,7 +66,12 @@ export default function MenuScreen() {
 
   // Onglet actif = dernière section dont le titre est passé sous les onglets.
   useEffect(() => {
-    const offset = ACTIVE_OFFSET[layout];
+    // Hauteur de la zone sous l'heure et la Dynamic Island (iPhone, app installée), 0 ailleurs.
+    const probe = document.createElement('div');
+    probe.style.cssText = 'position:fixed;visibility:hidden;height:var(--safe-top)';
+    document.body.appendChild(probe);
+    const offset = ACTIVE_OFFSET[layout] + probe.offsetHeight;
+    probe.remove();
     let frame = 0;
     const onScroll = () => {
       cancelAnimationFrame(frame);
