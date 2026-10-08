@@ -105,3 +105,53 @@
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+
+/* ---------- Tablette et ordinateur ---------- */
+
+@media (min-width: 768px) {
+  .screen {
+    --pad: 24px;
+  }
+}
+
+.headerWide {
+  height: 72px;
+  padding: 0 24px 0 16px;
+  gap: 8px;
+}
+
+.backWide {
+  height: var(--fx-tap);
+  min-width: 140px;
+  padding: 0 10px;
+  flex: none;
+  color: var(--fx-text);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.logoWrap {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  height: 38px;
+  width: auto;
+}
+
+.headerWide .step {
+  min-width: 140px;
+  text-align: right;
+}
+
+.pageTitle {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 900;
+}

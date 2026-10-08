@@ -28,3 +28,9 @@
 .toast svg {
   flex: none;
 }
+
+@media (min-width: 768px) {
+  .wrap {
+    bottom: 28px;
+  }
+}

@@ -33,8 +33,8 @@
 }
 
 .name {
+  /* largeur minimale = mot le plus long : le nom passe à la ligne sans chevaucher le prix */
   flex: 0 1 auto;
-  min-width: 0;
   font-size: var(--row-font, 16px);
   font-weight: 700;
   line-height: 1.3;
@@ -50,10 +50,18 @@
 
 .price {
   flex: none;
+  white-space: nowrap;
   font-size: var(--row-font, 16px);
   font-weight: 800;
-  white-space: nowrap;
   font-variant-numeric: tabular-nums;
+}
+
+/* Colonnes étroites (tablette) : un double prix « 1.000 / 1.500 F » passe sous le nom si besoin. */
+@media (min-width: 768px) {
+  .multi {
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
 }
 
 .out {

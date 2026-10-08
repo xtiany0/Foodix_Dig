@@ -4,7 +4,7 @@ import { FacebookIcon, InstagramIcon, PhoneIcon, TikTokIcon } from './icons';
 import styles from './Footer.module.css';
 
 /** Pied de page de l'accueil. Contact de la conception : jamais de nom. */
-export default function Footer() {
+export default function Footer({ wide = false }: { wide?: boolean }) {
   const { t } = useStore();
   const { social, phones, designer } = config;
   const networks = [
@@ -13,17 +13,40 @@ export default function Footer() {
     { name: 'Instagram', url: social.instagram, icon: <InstagramIcon size={20} /> },
   ];
 
+  const socialLinks = networks.map((n) => (
+    <a key={n.name} href={n.url} className={styles.social} aria-label={t.socialAria(n.name)} target="_blank" rel="noopener">
+      {n.icon}
+    </a>
+  ));
+  const credit = (
+    <a href={designer.url} className={styles.credit} target="_blank" rel="noopener">
+      {t.credit}
+      <span className={styles.creditNum}>{designer.display}</span>
+    </a>
+  );
+
+  // Tablette et ordinateur : pied de page compact sur une ligne.
+  if (wide) {
+    return (
+      <footer className={styles.wide}>
+        <div className={styles.wideText}>
+          <p className={styles.thanksWide}>{t.thanks}</p>
+          <span className={styles.phonesWide}>{phones.map((p) => p.display).join(' · ')}</span>
+        </div>
+        <div className={styles.wideSocials}>
+          <span className={styles.handleWide}>{social.handle}</span>
+          {socialLinks}
+        </div>
+        {credit}
+      </footer>
+    );
+  }
+
   return (
     <footer className={styles.footer}>
       <img src="/brand/foodix-logo-nuit.png" width={720} height={358} alt="Foodix, Manger bon, manger mobile" className={styles.logo} loading="lazy" />
       <p className={styles.thanks}>{t.thanks}</p>
-      <div className={styles.socials}>
-        {networks.map((n) => (
-          <a key={n.name} href={n.url} className={styles.social} aria-label={t.socialAria(n.name)} target="_blank" rel="noopener">
-            {n.icon}
-          </a>
-        ))}
-      </div>
+      <div className={styles.socials}>{socialLinks}</div>
       <span className={styles.handle}>{social.handle}</span>
       <div className={styles.phones}>
         {phones.map((p) => (
@@ -33,10 +56,7 @@ export default function Footer() {
           </a>
         ))}
       </div>
-      <a href={designer.url} className={styles.credit} target="_blank" rel="noopener">
-        {t.credit}
-        <span className={styles.creditNum}>{designer.display}</span>
-      </a>
+      {credit}
     </footer>
   );
 }

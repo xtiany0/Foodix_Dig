@@ -86,3 +86,61 @@
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+
+/* ---------- Tablette et ordinateur ---------- */
+
+.wide {
+  margin: 36px var(--pad-x, 20px) 0;
+  padding: 24px 0 32px;
+  border-top: 1px solid var(--fx-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.wideText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.thanksWide {
+  margin: 0;
+  font-family: var(--fx-font-display);
+  font-size: 21px;
+  line-height: 1.1;
+}
+
+.phonesWide {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--fx-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.wideSocials {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.handleWide {
+  font-size: 15px;
+  font-weight: 800;
+  padding-right: 6px;
+}
+
+.wide .social {
+  width: var(--fx-tap);
+  height: var(--fx-tap);
+  border-radius: 22px;
+}
+
+.wide .credit {
+  flex-basis: 100%;
+  justify-content: flex-start;
+  margin-top: 4px;
+  padding-top: 10px;
+}

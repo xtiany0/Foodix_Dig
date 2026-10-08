@@ -131,3 +131,9 @@
   line-height: 1.4;
   color: var(--fx-text-muted);
 }
+
+@media (min-width: 768px) {
+  .msg {
+    font-size: 14px;
+  }
+}

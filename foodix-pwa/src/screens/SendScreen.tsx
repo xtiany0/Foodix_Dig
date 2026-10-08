@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import BackLink from '../components/BackLink';
-import { BackIcon, WhatsAppIcon } from '../components/icons';
+import ScreenHeader, { PageTitle } from '../components/ScreenHeader';
+import { WhatsAppIcon } from '../components/icons';
 import { config } from '../config';
 import { draftErrors } from '../lib/checkout';
 import { PAYMENTS } from '../lib/orders';
@@ -11,7 +11,7 @@ import styles from './SendScreen.module.css';
 
 /** Envoi : paiement préféré, aperçu exact du message, bouton « Commander sur WhatsApp » (étape 2 sur 2). */
 export default function SendScreen() {
-  const { t, lang, draft, updateDraft, pending, confirmSend, lines, canOrder } = useStore();
+  const { t, lang, draft, updateDraft, pending, confirmSend, lines, canOrder, online } = useStore();
   const sending = useRef(false);
 
   // Arrivée sans panier ou sans coordonnées (lien direct, rechargement) : on revient à l'étape utile.
@@ -30,15 +30,10 @@ export default function SendScreen() {
 
   return (
     <div className={base.screen}>
-      <header className={base.header}>
-        <BackLink className={base.back} label={t.back}>
-          <BackIcon size={22} stroke={2.2} />
-        </BackLink>
-        <h1 className={base.title}>{t.send}</h1>
-        <span className={base.step}>{t.step2}</span>
-      </header>
+      <ScreenHeader title={t.send} backLabel={t.back} step={t.step2} />
 
       <main className={styles.content}>
+        <PageTitle>{t.sendTitle}</PageTitle>
         <section className={styles.section}>
           <h2 className={styles.h2} id="pay-title">
             {t.payTitle}
@@ -81,15 +76,17 @@ export default function SendScreen() {
 
       <div className={base.bar}>
         <div className={base.barInner}>
-          {canOrder ? (
+          {canOrder && online ? (
             <a href={pending.link} target="_blank" rel="noopener" className={styles.wa} onClick={send}>
               <WhatsAppIcon size={24} />
               {t.orderWhatsapp}
             </a>
           ) : (
-            <div className={base.blocked}>{t.blockedClosed}</div>
+            <div role="status" className={base.blocked}>
+              {canOrder ? t.blockedOffline : t.blockedClosed}
+            </div>
           )}
-          <span className={styles.hint}>{t.waHint}</span>
+          {canOrder && online && <span className={styles.hint}>{t.waHint}</span>}
         </div>
       </div>
     </div>

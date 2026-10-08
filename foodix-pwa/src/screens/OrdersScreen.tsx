@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import BackLink from '../components/BackLink';
 import ConfirmSheet from '../components/ConfirmSheet';
-import { BackIcon, TrashIcon, WarningIcon } from '../components/icons';
+import ScreenHeader, { PageTitle } from '../components/ScreenHeader';
+import { TrashIcon, WarningIcon } from '../components/icons';
 import { formatOrderDate } from '../lib/dates';
 import { planReorder, type Order } from '../lib/orders';
 import { formatPrice } from '../lib/price';
@@ -23,14 +24,10 @@ export default function OrdersScreen() {
 
   return (
     <div className={base.screen}>
-      <header className={base.header}>
-        <BackLink className={base.back} label={t.backToMenu}>
-          <BackIcon size={22} stroke={2.2} />
-        </BackLink>
-        <h1 className={base.title}>{t.myOrders}</h1>
-      </header>
+      <ScreenHeader title={t.myOrders} backLabel={t.backToMenu} />
 
       <main className={styles.content}>
+        <PageTitle>{t.myOrders}</PageTitle>
         <span className={styles.limit}>{t.ordersLimit}</span>
 
         {history.map((order) => {

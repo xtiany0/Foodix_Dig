@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef } from 'react';
-import { useRoute } from './lib/router';
+import { useLayout } from './lib/env';
+import { useRoute, type Route } from './lib/router';
 import CartScreen from './screens/CartScreen';
 import CheckoutScreen from './screens/CheckoutScreen';
 import ConfirmationScreen from './screens/ConfirmationScreen';
@@ -10,7 +11,10 @@ import { StoreProvider } from './state/store';
 import type { Menu } from './types/menu';
 
 function Screens() {
-  const route = useRoute();
+  const layout = useLayout();
+  const raw = useRoute();
+  // Tablette et ordinateur : le panier est le panneau de droite de l'accueil.
+  const route: Route = raw === 'panier' && layout !== 'phone' ? 'menu' : raw;
   const routeRef = useRef(route);
   routeRef.current = route;
   const menuScroll = useRef(0);

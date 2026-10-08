@@ -1,0 +1,32 @@
+.banner {
+  background: var(--fx-surface);
+  border: 1px solid var(--fx-line-2);
+  border-radius: var(--fx-radius-button);
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.banner svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.body {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--fx-text-muted);
+}

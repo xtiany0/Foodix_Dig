@@ -137,6 +137,7 @@ const fr = {
   msgText: (phone: string) => `Envoyé sur WhatsApp au ${phone}. Frais de livraison à confirmer avec Foodix.`,
   msgTextPickup: (phone: string) => `Envoyé sur WhatsApp au ${phone}.`,
   orderWhatsapp: 'Commander sur WhatsApp',
+  blockedOffline: 'Pas de connexion : envoi possible dès que le réseau revient',
   waHint: 'WhatsApp s’ouvre avec ce message, il ne reste qu’à l’envoyer.',
 
   // Confirmation
@@ -300,6 +301,7 @@ const en: Dict = {
   msgText: (phone: string) => `Sent on WhatsApp to ${phone}. Delivery fee confirmed with Foodix.`,
   msgTextPickup: (phone: string) => `Sent on WhatsApp to ${phone}.`,
   orderWhatsapp: 'Order on WhatsApp',
+  blockedOffline: 'No connection: you can send once the network is back',
   waHint: 'WhatsApp opens with this message, you just have to send it.',
 
   sent: 'Order sent',

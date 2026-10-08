@@ -1,0 +1,309 @@
+.panel {
+  position: sticky;
+  top: 0;
+  width: 290px;
+  height: 100vh;
+  height: 100dvh;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  background: var(--fx-panel);
+  border-left: 1px solid var(--fx-line);
+}
+
+@media (min-width: 1180px) {
+  .panel {
+    top: 76px;
+    width: 340px;
+    height: calc(100vh - 76px);
+    height: calc(100dvh - 76px);
+  }
+}
+
+.head {
+  padding: 18px 12px 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.headTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.count {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--fx-text-muted);
+}
+
+.clear {
+  min-height: var(--fx-tap);
+  padding: 0 8px;
+  background: transparent;
+  border: 0;
+  color: var(--fx-text-muted);
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 18px;
+}
+
+.line {
+  padding: 12px 0;
+  border-top: 1px solid var(--fx-line);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lineTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.lineText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.note {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fx-text-muted);
+}
+
+.lineTotal {
+  font-size: 15px;
+  font-weight: 800;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: -10px;
+}
+
+.step,
+.remove {
+  width: var(--fx-tap);
+  height: var(--fx-tap);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--fx-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepDot {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid var(--fx-line-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty {
+  min-width: 22px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.remove {
+  margin-right: -10px;
+  color: var(--fx-text-muted);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 56px 8px;
+}
+
+.toque {
+  width: 72px;
+  height: auto;
+  opacity: 0.85;
+}
+
+.emptyTitle {
+  font-size: 16px;
+  font-weight: 800;
+  margin-top: 6px;
+}
+
+.emptyText {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--fx-text-muted);
+}
+
+.foot {
+  padding: 14px 18px 18px;
+  border-top: 1px solid var(--fx-line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.delivery {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--fx-text-muted);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.totalLabel {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.totalValue {
+  font-size: 20px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.validate,
+.blocked {
+  margin-top: 6px;
+  min-height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.validate {
+  background: var(--fx-orange);
+  color: var(--fx-bg);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.blocked {
+  background: var(--fx-line);
+  color: var(--fx-text-muted);
+  padding: 8px 12px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* Confirmation « Vider le panier ? » dans le panneau */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: rgba(10, 9, 26, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.dialog {
+  width: 100%;
+  background: var(--fx-surface);
+  border: 1px solid var(--fx-line-2);
+  border-radius: var(--fx-radius-button);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dialogTitle {
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.dialogText {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--fx-text-muted);
+}
+
+.dialogActions {
+  display: flex;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.cancel,
+.confirm {
+  flex: 1;
+  height: 46px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.cancel {
+  border: 1px solid var(--fx-line-3);
+  background: transparent;
+  color: var(--fx-text);
+  font-weight: 800;
+}
+
+.confirm {
+  border: 0;
+  background: var(--fx-text);
+  color: var(--fx-bg);
+  font-weight: 900;
+}

@@ -11,7 +11,7 @@ import styles from './ConfirmationScreen.module.css';
 
 /** Commande envoyée : numéro, étapes suivantes, rouvrir WhatsApp. */
 export default function ConfirmationScreen() {
-  const { t, history } = useStore();
+  const { t, history, layout } = useStore();
   const order = history[0];
 
   useEffect(() => {
@@ -24,6 +24,13 @@ export default function ConfirmationScreen() {
 
   return (
     <div className={base.screen}>
+      {layout !== 'phone' && (
+        <header className={`${base.header} ${base.headerWide}`}>
+          <span className={base.logoWrap}>
+            <img src="/brand/foodix-logo-nuit-sans-slogan.png" width={640} height={314} alt="Foodix" className={base.logo} />
+          </span>
+        </header>
+      )}
       <main className={styles.content}>
         <div className={styles.hero}>
           <span className={styles.check}>

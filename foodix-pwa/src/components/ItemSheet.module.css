@@ -275,3 +275,30 @@
     opacity: 0.6;
   }
 }
+
+/* Tablette : feuille du bas plus étroite. Ordinateur : fenêtre centrée de 480 px. */
+@media (min-width: 768px) {
+  .sheet {
+    width: 560px;
+  }
+}
+
+@media (min-width: 1180px) {
+  .overlay {
+    justify-content: center;
+  }
+
+  .sheet {
+    width: 480px;
+    max-height: min(680px, 90%);
+    border-radius: var(--fx-radius-sheet);
+  }
+
+  .handle {
+    display: none;
+  }
+
+  .foot {
+    padding-bottom: 18px;
+  }
+}

@@ -26,6 +26,8 @@ import { addOrder, parseHistory, PAYMENTS, type Order } from '../lib/orders';
 import { readStored, removeStored, writeStored } from '../lib/storage';
 import { orderNumber, whatsappLink } from '../lib/whatsapp';
 import { config } from '../config';
+import { useLayout, useNow, useOnline, type Layout } from '../lib/env';
+import { isOpenAt } from '../lib/hours';
 import type { Lang, Menu } from '../types/menu';
 
 const CART_KEY = 'cart';
@@ -104,10 +106,13 @@ interface Store {
   history: Order[];
   removeOrder: (id: string) => void;
   clearHistory: () => void;
-  /** Foodix ouvert (horaires, à l'heure du Bénin). Branché à l'étape 4. */
+  /** Foodix ouvert (horaires de config.ts, à l'heure du Bénin). */
   isOpen: boolean;
-  /** Ajout au panier et envoi possibles. */
+  /** Ajout au panier et envoi possibles (Foodix ouvert). */
   canOrder: boolean;
+  /** Connexion disponible : sans réseau, le menu reste consultable mais l'envoi est bloqué. */
+  online: boolean;
+  layout: Layout;
 }
 
 const Ctx = createContext<Store | null>(null);
@@ -165,8 +170,11 @@ export function StoreProvider({ menu, children }: { menu: Menu; children: ReactN
     return order;
   };
 
-  const isOpen = true;
+  const now = useNow();
+  const isOpen = isOpenAt(now, config.openingHours, config.timeZone);
   const canOrder = isOpen;
+  const online = useOnline();
+  const layout = useLayout();
 
   const value: Store = {
     menu,
@@ -190,6 +198,8 @@ export function StoreProvider({ menu, children }: { menu: Menu; children: ReactN
     clearHistory: () => setHistory([]),
     isOpen,
     canOrder,
+    online,
+    layout,
   };
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import BackLink from '../components/BackLink';
-import { BackIcon, CloseIcon, PinIcon, RefreshIcon, WarningIcon } from '../components/icons';
+import ScreenHeader, { PageTitle } from '../components/ScreenHeader';
+import { CloseIcon, PinIcon, RefreshIcon, WarningIcon } from '../components/icons';
 import { draftErrors, type DraftError } from '../lib/checkout';
 import { formatPrice } from '../lib/price';
 import { navigate } from '../lib/router';
@@ -89,15 +89,10 @@ export default function CheckoutScreen() {
 
   return (
     <div className={base.screen}>
-      <header className={base.header}>
-        <BackLink className={base.back} label={t.backToCart}>
-          <BackIcon size={22} stroke={2.2} />
-        </BackLink>
-        <h1 className={base.title}>{t.myOrder}</h1>
-        <span className={base.step}>{t.step1}</span>
-      </header>
+      <ScreenHeader title={t.myOrder} backLabel={t.backToCart} step={t.step1} />
 
       <main className={styles.form}>
+        <PageTitle>{t.myOrder}</PageTitle>
         <div role="group" aria-label={t.modeGroup} className={styles.segment}>
           <button type="button" aria-pressed={livraison} className={segment(livraison)} onClick={() => updateDraft({ mode: 'livraison' })}>
             {t.modeLivraison}

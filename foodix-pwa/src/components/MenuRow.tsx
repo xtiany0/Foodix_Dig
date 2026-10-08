@@ -27,6 +27,7 @@ export default function MenuRow({ item, editing, onOpen, onToggleNote }: Props) 
   const note = last?.note ?? '';
   const hasNote = note.trim() !== '';
   const inputRef = useRef<HTMLInputElement>(null);
+  const price = listPriceLabel(item);
 
   useEffect(() => {
     if (editing) inputRef.current?.focus();
@@ -52,10 +53,10 @@ export default function MenuRow({ item, editing, onOpen, onToggleNote }: Props) 
     <div className={styles.row}>
       <div className={styles.main}>
         <button type="button" className={styles.open} onClick={() => onOpen(item.id)}>
-          <span className={styles.line}>
+          <span className={`${styles.line} ${price.includes('/') ? styles.multi : ''}`}>
             <span className={`${styles.name} ${out ? styles.out : ''}`}>{item.name}</span>
             <span className={styles.leader} aria-hidden="true" />
-            <span className={`${styles.price} ${out ? styles.out : ''}`}>{listPriceLabel(item)}</span>
+            <span className={`${styles.price} ${out ? styles.out : ''}`}>{price}</span>
           </span>
           {item.subtitle && <span className={styles.sub}>{item.subtitle[lang]}</span>}
         </button>
