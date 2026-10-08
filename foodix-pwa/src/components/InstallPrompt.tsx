@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { acceptInstall, dismissInstall, useInstallMethod } from '../lib/install';
 import { readStored, writeStored } from '../lib/storage';
 import { DownloadIcon } from './icons';
@@ -55,7 +56,9 @@ function AddIcon() {
 function IosSheet({ onClose }: { onClose: () => void }) {
   const { t } = useStore();
   const ref = useDialog<HTMLDivElement>(true, onClose);
-  return (
+  // Rendu à la racine de la page : ouvert depuis le pied de page bleu nuit, le guide
+  // n'hérite pas de son texte blanc (sinon titre et étapes blancs sur fond blanc).
+  return createPortal(
     <div className={styles.overlay}>
       <div ref={ref} role="dialog" aria-modal="true" aria-label={t.iosAria} className={styles.sheet}>
         <div className={styles.handle} aria-hidden="true" />
@@ -95,7 +98,8 @@ function IosSheet({ onClose }: { onClose: () => void }) {
           {t.gotIt}
         </button>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 

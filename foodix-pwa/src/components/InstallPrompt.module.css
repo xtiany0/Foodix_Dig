@@ -106,6 +106,7 @@
   width: 100%;
   max-width: 560px;
   background: var(--fx-surface);
+  color: var(--fx-text);
   border-radius: var(--fx-radius-sheet) var(--fx-radius-sheet) 0 0;
   padding: 8px 20px calc(20px + env(safe-area-inset-bottom));
   display: flex;
