@@ -22,52 +22,50 @@
 /* ---------- En-tête (téléphone, tablette) ---------- */
 
 .header {
-  padding: 14px 12px 12px 16px;
+  padding: 8px 8px 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.headRow {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 6px;
 }
 
-.logo {
-  width: 120px;
-  height: auto;
-}
-
-.actions {
-  display: flex;
+/* Colonnes latérales égales : le logo est centré dans la page, quelle que soit la largeur des boutons. */
+.headGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
+}
+
+.headLeft {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.headRight {
+  display: flex;
+  justify-content: flex-end;
   gap: 2px;
 }
 
-.lang {
-  display: flex;
-  background: var(--fx-surface);
-  border-radius: 22px;
-  margin-right: 6px;
+.logo {
+  width: 132px;
+  height: auto;
 }
 
-.langBtn {
-  width: var(--fx-tap);
+.langToggle {
   height: var(--fx-tap);
-  padding: 0;
-  border-radius: 22px;
+  min-width: var(--fx-tap);
+  padding: 0 10px;
   border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--fx-text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 13px;
   font-weight: 900;
-  background: transparent;
-  color: var(--fx-text-muted);
-}
-
-.langOn {
-  background: var(--fx-text);
-  color: var(--fx-bg);
 }
 
 .iconLink {
@@ -83,10 +81,9 @@
 .subRow {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  justify-content: center;
+  gap: 8px 14px;
   flex-wrap: wrap;
-  padding-right: 4px;
 }
 
 .slogan {
@@ -293,16 +290,13 @@
   }
 
   .header {
-    padding: 18px 16px 12px 20px;
-    gap: 12px;
+    padding: 12px;
+    align-items: stretch;
+    gap: 10px;
   }
 
   .logo {
-    width: 116px;
-  }
-
-  .subRow {
-    flex-wrap: nowrap;
+    width: 124px;
   }
 
   .header .search {

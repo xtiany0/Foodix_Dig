@@ -8,7 +8,7 @@ import ItemSheet from '../components/ItemSheet';
 import MenuRow from '../components/MenuRow';
 import StatusBanner from '../components/StatusBanner';
 import Toast from '../components/Toast';
-import { PhoneIcon, ReceiptIcon, SearchIcon } from '../components/icons';
+import { GlobeIcon, PhoneIcon, ReceiptIcon, SearchIcon } from '../components/icons';
 import { useInstallOffer } from '../lib/install';
 import { href, useOverlayHistory, useRoute } from '../lib/router';
 import { normalize, searchText } from '../lib/search';
@@ -115,21 +115,12 @@ export default function MenuScreen() {
 
   const phone = config.phones[0];
 
-  const langSwitch = (
-    <div role="group" aria-label={t.langGroup} className={styles.lang}>
-      {(['fr', 'en'] as const).map((l) => (
-        <button
-          key={l}
-          type="button"
-          lang={l}
-          aria-pressed={lang === l}
-          className={`${styles.langBtn} ${lang === l ? styles.langOn : ''}`}
-          onClick={() => setLang(l)}
-        >
-          {l.toUpperCase()}
-        </button>
-      ))}
-    </div>
+  // Un seul bouton langue : un appui bascule FR ↔ EN (choix mémorisé).
+  const langToggle = (
+    <button type="button" className={styles.langToggle} aria-label={t.langAria} onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}>
+      <GlobeIcon size={18} stroke={1.9} />
+      {lang === 'en' ? 'EN' : 'FR'}
+    </button>
   );
 
   const status = (
@@ -162,7 +153,7 @@ export default function MenuScreen() {
           {status}
           <div className={styles.topSearch}>{search}</div>
           <div className={styles.topActions}>
-            {langSwitch}
+            {langToggle}
             <a href={href('commandes')} className={styles.textLink}>
               <ReceiptIcon size={20} stroke={1.9} />
               {t.myOrders}
@@ -196,10 +187,11 @@ export default function MenuScreen() {
         <div className={styles.center}>
           {!desktop && (
             <header className={styles.header}>
-              <div className={styles.headRow}>
+              {/* 3 colonnes : les deux côtés ont la même largeur, le logo reste au centre de la page. */}
+              <div className={styles.headGrid}>
+                <div className={styles.headLeft}>{langToggle}</div>
                 <img src="/brand/foodix-logo-nuit-sans-slogan.webp" width={640} height={314} alt="Foodix" className={styles.logo} />
-                <div className={styles.actions}>
-                  {langSwitch}
+                <div className={styles.headRight}>
                   <a href={href('commandes')} className={styles.iconLink} aria-label={t.myOrders}>
                     <ReceiptIcon size={22} stroke={1.9} />
                   </a>

@@ -8,7 +8,7 @@ import { config } from '../config';
 const fr = {
   // Accueil / menu
   slogan: 'Manger bon, manger mobile',
-  langGroup: 'Langue',
+  langAria: 'Langue : français. Passer en anglais',
   myOrders: 'Mes commandes',
   call: 'Appeler Foodix',
   open: 'Ouvert',
@@ -198,7 +198,7 @@ export type Dict = typeof fr;
 
 const en: Dict = {
   slogan: 'Manger bon, manger mobile',
-  langGroup: 'Language',
+  langAria: 'Language: English. Switch to French',
   myOrders: 'My orders',
   call: 'Call Foodix',
   open: 'Open',
