@@ -2,26 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import ConfirmSheet from '../components/ConfirmSheet';
 import { BackIcon, MinusIcon, PlusIcon, TrashIcon } from '../components/icons';
 import { formatPrice } from '../lib/price';
-import { goBack, useOverlayHistory } from '../lib/router';
+import { href, useOverlayHistory } from '../lib/router';
+import BackLink from '../components/BackLink';
 import { useStore } from '../state/store';
 import styles from './CartScreen.module.css';
-
-/** Lien qui revient à l'écran précédent (le menu) sans empiler une nouvelle entrée d'historique. */
-function BackLink({ className, label, children }: { className: string; label?: string; children: React.ReactNode }) {
-  return (
-    <a
-      href="#/"
-      className={className}
-      aria-label={label}
-      onClick={(e) => {
-        e.preventDefault();
-        goBack();
-      }}
-    >
-      {children}
-    </a>
-  );
-}
 
 export default function CartScreen() {
   const { t, lines, count, total, dispatch, canOrder } = useStore();
@@ -169,7 +153,7 @@ export default function CartScreen() {
 
           <div className={styles.bar}>
             {canOrder ? (
-              <a href="#/commande" className={styles.validate}>
+              <a href={href('commande')} className={styles.validate}>
                 <span>{t.validate}</span>
                 <span className={styles.num}>{formatPrice(total)}</span>
               </a>
@@ -184,7 +168,7 @@ export default function CartScreen() {
           <h2 className={styles.emptyTitle}>{t.cartEmptyTitle}</h2>
           <p className={styles.emptyText}>{t.cartEmptyText}</p>
           <BackLink className={styles.seeMenu}>{t.seeMenu}</BackLink>
-          <a href="#/commandes" className={styles.reorder}>
+          <a href={href('commandes')} className={styles.reorder}>
             {t.reorderPast}
           </a>
         </main>

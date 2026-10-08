@@ -1,0 +1,271 @@
+.form {
+  flex: 1;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 18px var(--pad) 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.segment {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  background: var(--fx-surface);
+  border-radius: var(--fx-radius-button);
+  padding: 4px;
+}
+
+.segBtn {
+  height: 48px;
+  border-radius: 11px;
+  border: 0;
+  background: transparent;
+  color: var(--fx-text-muted);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.segSmall {
+  height: auto;
+  min-height: 48px;
+  font-size: 14px;
+  padding: 4px 8px;
+}
+
+.segOn {
+  background: var(--fx-text);
+  color: var(--fx-bg);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--fx-text-muted);
+}
+
+.optional {
+  font-weight: 600;
+}
+
+.input,
+.textarea {
+  border-radius: var(--fx-radius-field);
+  border: 1px solid var(--fx-line-2);
+  background: var(--fx-surface);
+  color: var(--fx-text);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.input {
+  height: 50px;
+  padding: 0 14px;
+}
+
+.light {
+  font-weight: 600;
+}
+
+.textarea {
+  min-height: 72px;
+  padding: 12px 14px;
+  resize: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--fx-text-faint);
+  opacity: 1;
+}
+
+.input[aria-invalid='true'],
+.time[aria-invalid='true'] {
+  border-color: var(--fx-red);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.error {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fx-red);
+}
+
+.help {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--fx-text-muted);
+}
+
+/* ---------- Position GPS ---------- */
+
+.geo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scroll-margin: 76px 0 96px;
+}
+
+.shareGeo {
+  height: 50px;
+  border-radius: var(--fx-radius-field);
+  border: 1px solid var(--fx-line-3);
+  background: transparent;
+  color: var(--fx-text);
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.shareGeo:disabled {
+  color: var(--fx-text-muted);
+  cursor: progress;
+}
+
+.geoOk {
+  background: var(--fx-surface);
+  border-radius: var(--fx-radius-field);
+  padding: 4px 4px 4px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.geoOkText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 8px 0;
+}
+
+.geoOkTitle {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.iconBtn {
+  width: var(--fx-tap);
+  height: var(--fx-tap);
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--fx-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.geoAlert {
+  background: var(--fx-surface);
+  border-radius: var(--fx-radius-field);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.geoAlertRow {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.geoAlertRow svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.geoAlertText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.retry {
+  align-self: flex-start;
+  height: var(--fx-tap);
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid var(--fx-line-3);
+  background: transparent;
+  color: var(--fx-text);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* ---------- À emporter ---------- */
+
+.pickup {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend {
+  padding: 0;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--fx-text-muted);
+}
+
+.timeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.timeLabel {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.time {
+  width: 140px;
+  height: 50px;
+  border-radius: var(--fx-radius-field);
+  border: 1px solid var(--fx-line-2);
+  background: var(--fx-surface);
+  color: var(--fx-text);
+  font-size: 18px;
+  font-weight: 800;
+  padding: 0 14px;
+  color-scheme: dark;
+  font-variant-numeric: tabular-nums;
+}
+
+.kept {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--fx-text-faint);
+}
+
+.barMeta {
+  font-weight: 800;
+}

@@ -5,15 +5,20 @@
  * Bouton retour Android : chaque écran et chaque fenêtre (fiche, confirmation…)
  * occupe une entrée de l'historique. Le retour ferme la fenêtre ouverte ou revient
  * à l'écran précédent ; il ne quitte jamais l'app d'un coup.
+ * Chaque entrée garde sa profondeur (d) : le menu est à 0.
  */
 
 import { useEffect, useRef, useSyncExternalStore } from 'react';
 
-export type Route = 'menu' | 'panier';
+export type Route = 'menu' | 'panier' | 'commande' | 'envoi' | 'confirmation' | 'commandes';
 
 const PATHS: Record<Route, string> = {
   menu: '#/',
   panier: '#/panier',
+  commande: '#/commande',
+  envoi: '#/envoi',
+  confirmation: '#/confirmation',
+  commandes: '#/commandes',
 };
 
 export function parseHash(hash: string): Route {
@@ -24,6 +29,19 @@ export function parseHash(hash: string): Route {
 
 export const href = (route: Route) => PATHS[route];
 
+let depth = 0;
+
+/** Note la profondeur de l'entrée courante ; une entrée créée par un lien reçoit celle d'avant + 1. */
+function syncDepth() {
+  const s = history.state as { d?: number } | null;
+  if (s && typeof s.d === 'number') {
+    depth = s.d;
+  } else {
+    depth = parseHash(location.hash) === 'menu' ? 0 : depth + 1;
+    history.replaceState({ ...(s ?? {}), d: depth }, '');
+  }
+}
+
 /**
  * Au démarrage : si l'app s'ouvre directement sur un écran autre que le menu,
  * on glisse le menu dessous, pour que « retour » y mène au lieu de quitter l'app.
@@ -32,12 +50,14 @@ export const href = (route: Route) => PATHS[route];
 export function initHistory(): void {
   const route = parseHash(location.hash);
   const base = location.pathname + location.search;
+  history.replaceState({ d: 0 }, '', base + PATHS.menu);
+  depth = 0;
   if (route !== 'menu') {
-    history.replaceState(null, '', base + PATHS.menu);
-    history.pushState(null, '', base + PATHS[route]);
-  } else if (location.hash !== PATHS.menu) {
-    history.replaceState(null, '', base + PATHS.menu);
+    history.pushState({ d: 1 }, '', base + PATHS[route]);
+    depth = 1;
   }
+  window.addEventListener('popstate', syncDepth);
+  window.addEventListener('hashchange', syncDepth);
 }
 
 function subscribe(cb: () => void) {
@@ -55,17 +75,35 @@ export function useRoute(): Route {
 
 /** Retour à l'écran précédent (le menu est toujours dessous, voir initHistory). */
 export function goBack(): void {
-  history.back();
+  if (depth > 0) history.back();
+  else navigate('menu', true);
 }
 
 /** Va à un écran ; replace = remplace l'écran courant dans l'historique. */
 export function navigate(route: Route, replace = false): void {
   if (replace) {
-    history.replaceState(null, '', PATHS[route]);
+    history.replaceState({ d: route === 'menu' ? 0 : depth }, '', PATHS[route]);
     window.dispatchEvent(new HashChangeEvent('hashchange'));
   } else {
     location.hash = PATHS[route];
   }
+}
+
+/**
+ * Revient au menu dans l'historique puis ouvre `route` par-dessus.
+ * Après l'envoi : « retour » depuis la confirmation mène au menu, pas au panier vidé.
+ */
+export function restartAt(route: Route): void {
+  if (depth <= 0) {
+    navigate(route);
+    return;
+  }
+  const onPop = () => {
+    window.removeEventListener('popstate', onPop);
+    navigate(route);
+  };
+  window.addEventListener('popstate', onPop);
+  history.go(-depth);
 }
 
 /**
@@ -78,7 +116,8 @@ export function useOverlayHistory(open: boolean, onClose: () => void): void {
 
   useEffect(() => {
     if (!open) return;
-    history.pushState({ fxOverlay: true }, '');
+    history.pushState({ fxOverlay: true, d: depth + 1 }, '');
+    depth += 1;
     let popped = false;
     const onPop = () => {
       popped = true;

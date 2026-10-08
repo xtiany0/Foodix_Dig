@@ -1,0 +1,190 @@
+.content {
+  flex: 1;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 48px 20px calc(28px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.check {
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  background: var(--fx-surface);
+  border: 1px solid var(--fx-line-2);
+  color: var(--fx-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  margin: 8px 0 0;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.recap {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fx-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.number {
+  color: var(--fx-text);
+  font-weight: 900;
+}
+
+.next {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.band {
+  margin: 0 0 10px;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--fx-orange);
+  color: var(--fx-bg);
+  font-family: var(--fx-font-display);
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 1;
+  padding: 6px 12px 4px 14px;
+  border-radius: 3px 14px 3px 3px;
+}
+
+.bandTick {
+  width: 2px;
+  height: 10px;
+  background: var(--fx-bg);
+  align-self: flex-end;
+}
+
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.stepItem {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--fx-line);
+}
+
+.stepItem:last-child {
+  border-bottom: 0;
+}
+
+.stepNum {
+  width: 18px;
+  flex: none;
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--fx-orange-text);
+}
+
+.stepText {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reopen,
+.toMenu {
+  height: 54px;
+  border-radius: var(--fx-radius-button);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.reopen {
+  border: 1px solid var(--fx-line-3);
+  color: var(--fx-text);
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.small {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--fx-text-muted);
+}
+
+.toMenu {
+  margin-top: 8px;
+  background: var(--fx-orange);
+  color: var(--fx-bg);
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.orders {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fx-text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.faint {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fx-text-faint);
+}
+
+.call {
+  min-height: var(--fx-tap);
+  display: flex;
+  align-items: center;
+  color: var(--fx-text-muted);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+}

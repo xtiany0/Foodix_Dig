@@ -6,7 +6,7 @@ import ItemSheet from '../components/ItemSheet';
 import MenuRow from '../components/MenuRow';
 import Toast from '../components/Toast';
 import { PhoneIcon, ReceiptIcon, SearchIcon } from '../components/icons';
-import { useOverlayHistory } from '../lib/router';
+import { href, useOverlayHistory } from '../lib/router';
 import { normalize, searchText } from '../lib/search';
 import { useStore } from '../state/store';
 import type { Category, MenuGroup, MenuItem } from '../types/menu';
@@ -115,7 +115,7 @@ export default function MenuScreen() {
                 </button>
               ))}
             </div>
-            <a href="#/commandes" className={styles.iconLink} aria-label={t.myOrders}>
+            <a href={href('commandes')} className={styles.iconLink} aria-label={t.myOrders}>
               <ReceiptIcon size={22} stroke={1.9} />
             </a>
             <a href={`tel:${phone.tel}`} className={styles.iconLink} aria-label={t.call}>

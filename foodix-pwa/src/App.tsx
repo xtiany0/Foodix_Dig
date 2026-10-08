@@ -1,7 +1,11 @@
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { useRoute } from './lib/router';
 import CartScreen from './screens/CartScreen';
+import CheckoutScreen from './screens/CheckoutScreen';
+import ConfirmationScreen from './screens/ConfirmationScreen';
 import MenuScreen from './screens/MenuScreen';
+import OrdersScreen from './screens/OrdersScreen';
+import SendScreen from './screens/SendScreen';
 import { StoreProvider } from './state/store';
 import type { Menu } from './types/menu';
 
@@ -31,6 +35,10 @@ function Screens() {
         <MenuScreen />
       </div>
       {route === 'panier' && <CartScreen />}
+      {route === 'commande' && <CheckoutScreen />}
+      {route === 'envoi' && <SendScreen />}
+      {route === 'confirmation' && <ConfirmationScreen />}
+      {route === 'commandes' && <OrdersScreen />}
     </>
   );
 }

@@ -1,0 +1,107 @@
+/* Éléments communs aux écrans Validation, Envoi, Confirmation et Mes commandes. */
+
+.screen {
+  --pad: 16px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 370px) {
+  .screen {
+    --pad: 14px;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  flex: none;
+  height: 60px;
+  padding: 0 var(--pad) 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--fx-bg);
+  border-bottom: 1px solid var(--fx-line);
+}
+
+.back {
+  width: var(--fx-tap);
+  height: var(--fx-tap);
+  flex: none;
+  color: var(--fx-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.title {
+  margin: 0;
+  flex: 1;
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.step {
+  flex: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fx-text-muted);
+}
+
+.bar {
+  position: sticky;
+  bottom: 0;
+  flex: none;
+  border-top: 1px solid var(--fx-line);
+  background: var(--fx-bg);
+}
+
+.barInner {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 12px var(--pad) calc(16px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.primary {
+  height: 56px;
+  width: 100%;
+  border-radius: var(--fx-radius-button);
+  border: 0;
+  background: var(--fx-orange);
+  color: var(--fx-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 20px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.blocked {
+  min-height: 56px;
+  border-radius: var(--fx-radius-button);
+  background: var(--fx-line);
+  color: var(--fx-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
