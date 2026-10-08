@@ -192,6 +192,9 @@ const fr = {
   ios3b: 'Ajouter',
   ios3c: ', en haut à droite',
   gotIt: 'J’ai compris',
+  installApp: 'Installer l’app',
+  orderInstallTitle: 'Installez Foodix',
+  orderInstallText: 'Commandez plus vite la prochaine fois : Foodix sur votre écran d’accueil, rapide même avec un réseau faible.',
 };
 
 export type Dict = typeof fr;
@@ -370,6 +373,9 @@ const en: Dict = {
   ios3b: 'Add',
   ios3c: ', top right',
   gotIt: 'Got it',
+  installApp: 'Install the app',
+  orderInstallTitle: 'Install Foodix',
+  orderInstallText: 'Order faster next time: Foodix on your home screen, fast even on a weak network.',
 };
 
 export const dictionaries: Record<'fr' | 'en', Dict> = { fr, en };

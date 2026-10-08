@@ -4,7 +4,8 @@
  * Android (Chrome) : le navigateur envoie « beforeinstallprompt » ; on garde l'événement
  * et on affiche notre bannière (Plus tard / Installer).
  * iPhone (Safari) : pas d'installation automatique, on affiche un petit guide.
- * Après « Plus tard » ou un refus : rien pendant config.installSnoozeDays jours.
+ * Après « Plus tard » ou un refus : pas de proposition d'office pendant config.installSnoozeDays jours ;
+ * le bouton « Installer l'app » du pied de page et la carte après commande restent disponibles.
  * Déjà installée (ouverte depuis l'écran d'accueil) : rien.
  */
 
@@ -65,28 +66,41 @@ function snooze() {
 
 export type InstallOffer = 'android' | 'ios' | null;
 
-function currentOffer(): InstallOffer {
-  if (installed || isStandalone() || !canOffer(readSnooze(), Date.now())) return null;
+/** Installation possible maintenant, sans tenir compte du délai après « Plus tard » (bouton permanent). */
+function currentMethod(): InstallOffer {
+  if (installed || isStandalone()) return null;
   if (deferred) return 'android';
   if (isIosSafari()) return 'ios';
   return null;
 }
 
-let cached: InstallOffer = null;
-function snapshot(): InstallOffer {
-  cached = currentOffer();
-  return cached;
+/** Proposition automatique (bannière, guide iPhone) : seulement hors du délai après un refus. */
+function currentOffer(): InstallOffer {
+  return canOffer(readSnooze(), Date.now()) ? currentMethod() : null;
 }
 
+let cached: InstallOffer = null;
+let cachedMethod: InstallOffer = null;
+function snapshot() {
+  cached = currentOffer();
+  cachedMethod = currentMethod();
+}
+
+const subscribe = (cb: () => void) => {
+  listeners.add(cb);
+  return () => {
+    listeners.delete(cb);
+  };
+};
+
+/** Bannière Android ou guide iPhone à proposer d'office (null pendant le délai après un refus). */
 export function useInstallOffer(): InstallOffer {
-  return useSyncExternalStore(
-    (cb) => {
-      listeners.add(cb);
-      return () => listeners.delete(cb);
-    },
-    () => cached,
-    () => null,
-  );
+  return useSyncExternalStore(subscribe, () => cached, () => null);
+}
+
+/** Installation possible (bouton « Installer l'app » toujours visible tant que l'app n'est pas installée). */
+export function useInstallMethod(): InstallOffer {
+  return useSyncExternalStore(subscribe, () => cachedMethod, () => null);
 }
 
 // Calcul initial (lecture du stockage une fois, puis à chaque changement).

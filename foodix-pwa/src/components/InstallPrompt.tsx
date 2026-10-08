@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { acceptInstall, dismissInstall } from '../lib/install';
+import { acceptInstall, dismissInstall, useInstallMethod } from '../lib/install';
+import { readStored, writeStored } from '../lib/storage';
+import { DownloadIcon } from './icons';
 import { useOverlayHistory } from '../lib/router';
 import { useDialog } from '../lib/useDialog';
 import { useStore } from '../state/store';
@@ -116,4 +118,65 @@ export function IosGuide({ blocked }: { blocked: boolean }) {
   }, [blocked, open]);
 
   return open ? <IosSheet onClose={close} /> : null;
+}
+
+/** Lance l'installation : fenêtre de Chrome (Android) ou guide (iPhone). */
+function useInstallAction() {
+  const method = useInstallMethod();
+  const [guide, setGuide] = useState(false);
+  useOverlayHistory(guide, () => setGuide(false));
+  const run = () => (method === 'android' ? void acceptInstall() : setGuide(true));
+  const sheet = guide ? <IosSheet onClose={() => setGuide(false)} /> : null;
+  return { method, run, sheet };
+}
+
+/**
+ * Bouton « Installer l'app » du pied de page : toujours là tant que l'app n'est pas installée
+ * et que le navigateur le permet, même après « Plus tard ».
+ */
+export function InstallButton() {
+  const { t } = useStore();
+  const { method, run, sheet } = useInstallAction();
+  if (!method) return null;
+  return (
+    <>
+      <button type="button" className={styles.footerBtn} onClick={run}>
+        <DownloadIcon size={18} stroke={2.2} color="var(--fx-orange-text)" />
+        {t.installApp}
+      </button>
+      {sheet}
+    </>
+  );
+}
+
+const ORDER_CARD_KEY = 'installOrderCard';
+
+/** Après la première commande envoyée : une seule proposition d'installation, sur la confirmation. */
+export function OrderInstallCard() {
+  const { t } = useStore();
+  const { method, run, sheet } = useInstallAction();
+  const [firstTime] = useState(() => !readStored(ORDER_CARD_KEY, 1, (d) => (d === true ? true : null), false));
+  useEffect(() => {
+    if (firstTime && method) writeStored(ORDER_CARD_KEY, 1, true);
+  }, [firstTime, method]);
+  if (!firstTime || !method) return null;
+  return (
+    <div className={styles.banner}>
+      <div className={styles.bannerRow}>
+        <span className={styles.appIcon}>
+          <img src="/brand/foodix-toque.webp" width={240} height={132} alt="" />
+        </span>
+        <div className={styles.bannerText}>
+          <strong className={styles.title}>{t.orderInstallTitle}</strong>
+          <span className={styles.text}>{t.orderInstallText}</span>
+        </div>
+      </div>
+      <div className={styles.bannerActions}>
+        <button type="button" className={styles.install} onClick={run}>
+          {t.install}
+        </button>
+      </div>
+      {sheet}
+    </div>
+  );
 }

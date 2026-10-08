@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import BackLink from '../components/BackLink';
 import { CheckIcon, WhatsAppIcon } from '../components/icons';
+import { OrderInstallCard } from '../components/InstallPrompt';
 import { config } from '../config';
 import { formatPrice } from '../lib/price';
 import { href, navigate } from '../lib/router';
@@ -75,6 +76,8 @@ export default function ConfirmationScreen() {
             {t.seeOrders}
           </a>
         </div>
+
+        <OrderInstallCard />
 
         <div className={styles.foot}>
           <span className={styles.faint}>{t.cartCleared}</span>

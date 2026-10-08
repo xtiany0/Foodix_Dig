@@ -131,7 +131,7 @@ openingHours: {
 
 Un jour absent = fermé. Hors horaires, le menu reste consultable mais l'ajout au panier et l'envoi sont bloqués.
 
-Autres réglages : numéros de téléphone, numéro WhatsApp des commandes, nombre de commandes gardées dans « Mes commandes » (30), délai avant de reproposer l'installation (7 jours), durée minimale de l'écran de lancement.
+Autres réglages : numéros de téléphone, numéro WhatsApp des commandes, nombre de commandes gardées dans « Mes commandes » (30), délai avant de reproposer l'installation d'office (3 jours), durée minimale de l'écran de lancement.
 
 ---
 

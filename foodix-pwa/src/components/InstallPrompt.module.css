@@ -184,3 +184,19 @@
   font-size: 16px;
   font-weight: 900;
 }
+
+/* ---------- Bouton permanent du pied de page ---------- */
+
+.footerBtn {
+  min-height: var(--fx-tap);
+  padding: 0 16px;
+  border-radius: 22px;
+  border: 1px solid var(--fx-line-3);
+  background: transparent;
+  color: var(--fx-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 800;
+}

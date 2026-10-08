@@ -1,6 +1,7 @@
 import { config } from '../config';
 import { useStore } from '../state/store';
 import { FacebookIcon, InstagramIcon, PhoneIcon, TikTokIcon } from './icons';
+import { InstallButton } from './InstallPrompt';
 import styles from './Footer.module.css';
 
 /** Pied de page de l'accueil. Contact de la conception : jamais de nom. */
@@ -37,6 +38,7 @@ export default function Footer({ wide = false }: { wide?: boolean }) {
           <span className={styles.handleWide}>{social.handle}</span>
           {socialLinks}
         </div>
+        <InstallButton />
         {credit}
       </footer>
     );
@@ -56,6 +58,7 @@ export default function Footer({ wide = false }: { wide?: boolean }) {
           </a>
         ))}
       </div>
+      <InstallButton />
       {credit}
     </footer>
   );

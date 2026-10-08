@@ -7,17 +7,17 @@ describe('proposition d’installation', () => {
   const now = Date.UTC(2026, 9, 8);
 
   it('est proposée si l’utilisateur n’a jamais refusé', () => {
-    expect(canOffer(null, now, 7)).toBe(true);
+    expect(canOffer(null, now, 3)).toBe(true);
   });
 
-  it('n’est pas reproposée pendant 7 jours après un refus', () => {
-    expect(canOffer(now - 1 * DAY, now, 7)).toBe(false);
-    expect(canOffer(now - 6.9 * DAY, now, 7)).toBe(false);
-    expect(canOffer(now - 7 * DAY, now, 7)).toBe(true);
+  it('n’est pas reproposée pendant 3 jours après un refus', () => {
+    expect(canOffer(now - 1 * DAY, now, 3)).toBe(false);
+    expect(canOffer(now - 2.9 * DAY, now, 3)).toBe(false);
+    expect(canOffer(now - 3 * DAY, now, 3)).toBe(true);
   });
 
   it('ignore une date de refus dans le futur (horloge du téléphone changée)', () => {
-    expect(canOffer(now + 3 * DAY, now, 7)).toBe(true);
+    expect(canOffer(now + 3 * DAY, now, 3)).toBe(true);
   });
 });
 

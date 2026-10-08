@@ -107,5 +107,5 @@ export const config = {
   historyLimit: 30,
 
   /** Jours sans nouvelle proposition d'installation après « Plus tard ». */
-  installSnoozeDays: 7,
+  installSnoozeDays: 3,
 };

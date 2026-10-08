@@ -69,6 +69,12 @@ export const GlobeIcon = (p: P) => (
   </Svg>
 );
 
+export const DownloadIcon = (p: P) => (
+  <Svg {...p}>
+    <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />
+  </Svg>
+);
+
 export const SearchIcon = (p: P) => (
   <Svg {...p}>
     <circle cx="11" cy="11" r="7" />
