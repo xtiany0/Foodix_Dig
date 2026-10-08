@@ -67,7 +67,7 @@ export default defineConfig({
         id: '/',
         name: 'Foodix · Menu et commande',
         short_name: 'Foodix',
-        description: 'Menu Foodix, food truck à Cotonou. Commandez en livraison ou à emporter sur WhatsApp.',
+        description: 'Menu Foodix, food truck à Parakou. Commandez en livraison ou à emporter sur WhatsApp.',
         lang: 'fr',
         dir: 'ltr',
         start_url: '/',

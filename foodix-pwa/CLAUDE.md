@@ -1,6 +1,6 @@
 # Foodix · Menu digital PWA
 
-Application de menu et de commande pour **Foodix**, food truck à Cotonou (Bénin). Slogan : « Manger bon, manger mobile ».
+Application de menu et de commande pour **Foodix**, food truck à Parakou (Bénin). Slogan : « Manger bon, manger mobile ».
 Le client scanne un QR code, consulte le menu, compose son panier et envoie sa commande **sur WhatsApp**. Pas de serveur, pas de compte, pas de paiement en ligne.
 
 Maquette validée par le client. Le cahier des charges complet est dans `docs/cahier-des-charges-v2.pdf`, il fait foi en cas de doute.
@@ -100,8 +100,8 @@ Paiement : MTN Mobile Money
 
 Nom : Koffi
 Tél : 01 97 00 00 00
-Adresse : Fidjrossè, près de la pharmacie
-Position : https://maps.google.com/?q=6.3541,2.3725
+Adresse : Banikanni, près de la pharmacie
+Position : https://maps.google.com/?q=9.3372,2.6303
 Note : appeler en arrivant
 ```
 - Points de conduite pour aligner les prix sur 30 caractères avant le prix.

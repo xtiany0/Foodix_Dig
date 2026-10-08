@@ -25,7 +25,7 @@ function message(d: Partial<Draft>, cart = exampleCart()) {
 const koffi: Partial<Draft> = {
   name: 'Koffi',
   phone: '01 97 00 00 00',
-  quartier: 'Fidjrossè',
+  quartier: 'Banikanni',
   adresse: 'près de la pharmacie',
   note: 'appeler en arrivant',
   payment: 'mtn',
@@ -33,7 +33,7 @@ const koffi: Partial<Draft> = {
 
 describe('message WhatsApp', () => {
   it('livraison : reproduit exactement l’exemple du cahier des charges', () => {
-    const msg = message({ ...koffi, mode: 'livraison', geo: { lat: 6.3541, lng: 2.3725, accuracy: 15 } });
+    const msg = message({ ...koffi, mode: 'livraison', geo: { lat: 9.3372, lng: 2.6303, accuracy: 15 } });
     expect(msg).toBe(
       [
         'Commande FOODIX #A7K2',
@@ -49,8 +49,8 @@ describe('message WhatsApp', () => {
         '',
         'Nom : Koffi',
         'Tél : 01 97 00 00 00',
-        'Adresse : Fidjrossè, près de la pharmacie',
-        'Position : https://maps.google.com/?q=6.354100,2.372500',
+        'Adresse : Banikanni, près de la pharmacie',
+        'Position : https://maps.google.com/?q=9.337200,2.630300',
         'Note : appeler en arrivant',
       ].join('\n'),
     );
@@ -91,10 +91,10 @@ describe('message WhatsApp', () => {
   });
 
   it('omet les champs vides ou facultatifs', () => {
-    const msg = message({ mode: 'livraison', name: 'Koffi', phone: '0197000000', quartier: 'Akpakpa', payment: 'cash' });
+    const msg = message({ mode: 'livraison', name: 'Koffi', phone: '0197000000', quartier: 'Albarika', payment: 'cash' });
     expect(msg).not.toContain('Position');
     expect(msg).not.toContain('Note');
-    expect(msg.endsWith('Adresse : Akpakpa')).toBe(true);
+    expect(msg.endsWith('Adresse : Albarika')).toBe(true);
     expect(msg).not.toMatch(/\n\n\n/);
     expect(buildMessage({ number: '#AAAA', mode: 'emporter', lines: [], total: 0, payment: 'Espèces' })).toBe(
       'Commande FOODIX #AAAA\nMode : À emporter\n\nTotal : 0 F\nPaiement : Espèces',

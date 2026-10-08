@@ -67,10 +67,10 @@ export const config = {
     en: '[OPENING HOURS TO CONFIRM]',
   } satisfies Localized,
 
-  /** À CONFIRMER : emplacement habituel du food truck (pas encore affiché dans la maquette). */
+  /** Ville du food truck ; emplacement exact À CONFIRMER (pas encore affiché dans la maquette). */
   location: {
-    fr: '[EMPLACEMENT À CONFIRMER]',
-    en: '[LOCATION TO CONFIRM]',
+    fr: 'Parakou · [EMPLACEMENT EXACT À CONFIRMER]',
+    en: 'Parakou · [EXACT LOCATION TO CONFIRM]',
   } satisfies Localized,
 
   /**

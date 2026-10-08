@@ -1,6 +1,6 @@
 # Foodix · Menu digital
 
-Application web installable (PWA) du food truck **Foodix**, à Cotonou. Le client scanne le QR code, consulte le menu, compose son panier et envoie sa commande sur WhatsApp, en livraison ou à emporter.
+Application web installable (PWA) du food truck **Foodix**, à Parakou. Le client scanne le QR code, consulte le menu, compose son panier et envoie sa commande sur WhatsApp, en livraison ou à emporter.
 
 Pas de serveur, pas de base de données, pas de compte client :
 
