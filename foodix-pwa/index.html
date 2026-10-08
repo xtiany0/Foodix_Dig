@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#15132D" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="description" content="Menu Foodix, food truck à Cotonou. Commandez en livraison ou à emporter sur WhatsApp." />
+    <title>Foodix · Manger bon, manger mobile</title>
+    <style>
+      /* Écran de lancement : visible avant le chargement du JavaScript, même en 3G. */
+      html, body { margin: 0; height: 100%; background: #15132D; }
+      .fx-launch {
+        min-height: 100vh; min-height: 100dvh; box-sizing: border-box;
+        display: flex; flex-direction: column; color: #FFFFFF;
+        font-family: Nunito, 'Trebuchet MS', sans-serif;
+      }
+      .fx-launch__brand {
+        flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        gap: 22px; padding: 32px;
+      }
+      .fx-launch__brand img { width: 270px; max-width: 100%; height: auto; display: block; }
+      .fx-launch__foot { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0 32px 56px; }
+      .fx-launch__track { width: 120px; height: 3px; border-radius: 2px; background: #24214A; overflow: hidden; }
+      .fx-launch__bar {
+        width: 62%; height: 3px; border-radius: 2px; background: #F28A22;
+        transform-origin: left; animation: fx-load 4s cubic-bezier(0.1, 0.6, 0.2, 1) both;
+      }
+      .fx-launch__text { font-size: 14px; font-weight: 700; color: #BEBBDB; }
+      @keyframes fx-load { from { transform: scaleX(0.15); } to { transform: scaleX(1.45); } }
+      @media (prefers-reduced-motion: reduce) { .fx-launch__bar { animation: none; } }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="fx-launch" role="status" aria-live="polite">
+        <div class="fx-launch__brand">
+          <img src="/brand/foodix-logo-nuit.png" width="720" height="358" alt="Foodix, Manger bon, manger mobile" />
+          <svg width="132" height="16" viewBox="0 0 132 16" fill="none" aria-hidden="true">
+            <path d="M2 11 C 40 5, 80 4, 118 7 L 104 13" stroke="#F28A22" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="fx-launch__foot">
+          <div class="fx-launch__track"><div class="fx-launch__bar"></div></div>
+          <span class="fx-launch__text">Chargement du menu…</span>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

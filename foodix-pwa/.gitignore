@@ -1,0 +1,8 @@
+node_modules/
+dist/
+dev-dist/
+*.local
+.DS_Store
+
+# Maquette : référence de conception, conservée hors du dépôt
+design/maquette/

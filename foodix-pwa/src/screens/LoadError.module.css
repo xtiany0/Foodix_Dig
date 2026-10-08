@@ -1,0 +1,47 @@
+.screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 32px;
+  text-align: center;
+}
+
+.logo {
+  width: 220px;
+  height: auto;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 320px;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.text {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--fx-text-muted);
+}
+
+.retry {
+  min-height: 52px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: var(--fx-radius-button);
+  border: 0;
+  background: var(--fx-orange);
+  color: var(--fx-bg);
+  font-size: 16px;
+  font-weight: 900;
+}

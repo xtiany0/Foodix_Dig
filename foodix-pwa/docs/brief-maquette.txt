@@ -1,0 +1,45 @@
+Je dois construire la maquette finale de l'application de Foodix, un food truck à Cotonou. Le client a validé le projet. Le cahier des charges est joint (PDF), avec les photos de son menu papier. Suis le PDF : écrans, parcours, contenu et limites.
+
+Identité : reprends exactement celle du menu papier joint.
+- Fond bleu nuit, accents orange, texte blanc sur les fonds sombres
+- Titres de catégories dans le même esprit que le menu papier : une police d'affichage marquée, posée dans un bandeau orange
+- Logo Foodix (toque et fourchette) et slogan « Manger bon, manger mobile »
+- Le rendu doit faire penser à street food, food truck et nuit en ville, pas à une appli de livraison générique
+
+Contenu réel, rien d'inventé :
+- Tous les articles et prix du menu papier, avec les mêmes catégories : plats principaux, bols et plats chauds, crêpes, gaufres et desserts, bubble tea, cocktails, jus naturels, desserts glacés, chaudes et lactées, boissons, chichas
+- Les variantes listées dans la section 7 du PDF (shawarma bœuf 1.000 / 1.500 F, spaghetti au choix, donuts 1.500 / 3.500 F, parfums de bubble tea, option « Changement » des chichas...)
+- Prix au format « 2.000 F »
+- Mention « réservé aux majeurs » sur les cocktails alcoolisés et les chichas
+- Numéro WhatsApp des commandes : 01 95 94 51 51. Réseaux : @foodix
+- Pas de photo pour un plat ? Mets un emplacement sobre « Photo à venir », jamais une fausse photo
+
+Ce qui n'existe pas dans cette app, donc à ne pas dessiner :
+- pas de mode « sur place » : seulement livraison et à emporter
+- pas de bouton FR / EN : l'app est en français
+- pas de compte client, pas de fidélité, pas de paiement en ligne, pas d'espace admin
+- les frais de livraison sont toujours « à confirmer sur WhatsApp »
+
+Écrans à construire :
+1. Lancement
+2. Accueil / Menu : logo, slogan, statut Ouvert / Fermé, catégories collantes qui défilent horizontalement, recherche, liste des articles, bouton panier flottant avec compteur
+3. Fiche article : variante, quantité, champ « Précision », bouton Ajouter
+4. Panier, et panier vide
+5. Validation en livraison : nom, téléphone, quartier et adresse, « Partager ma position » avec la précision affichée, note
+6. Validation à emporter : nom, téléphone, heure de retrait
+7. Envoi : choix du paiement préféré (espèces, MTN Mobile Money, Moov Money), aperçu du message WhatsApp exactement comme dans la section 5 du PDF, gros bouton « Commander sur WhatsApp »
+8. Confirmation : commande envoyée, étapes suivantes, bouton pour rouvrir WhatsApp
+9. Mes commandes : historique sur le téléphone, bouton « Recommander », et l'alerte quand un article est épuisé ou que son prix a changé
+10. Installation : bannière Android, et petit guide iPhone « Partager > Sur l'écran d'accueil »
+11. États : food truck fermé (menu consultable, commande bloquée), pas de connexion, localisation refusée
+
+L'app doit être totalement responsive. Elle est surtout utilisée sur téléphone, mais doit être aussi soignée sur tablette et ordinateur. Même identité, mêmes textes et mêmes parcours partout, seule la mise en page s'adapte.
+- Téléphone, 390 × 844 : tous les écrans. Le panier est un bouton flottant, la fiche article monte du bas de l'écran
+- Petit téléphone, 360 × 740 : accueil / menu, fiche article, panier et envoi. Rien ne déborde, les prix et le bouton panier restent visibles
+- Tablette, 768 × 1024 : accueil / menu, fiche article, panier et envoi. Plats en 2 colonnes, panier en panneau fixe sur le côté
+- Ordinateur, 1280 × 800 : accueil / menu, fiche article, envoi et confirmation. Catégories en colonne à gauche, plats en grille au centre, panier toujours visible à droite. La fiche article devient une fenêtre centrée. Les formulaires ne dépassent pas 560 px de large et restent centrés
+Sur grand écran, pas de lignes de texte trop longues.
+
+Contraintes réelles : téléphones Android d'entrée de gamme, réseau 3G, usage d'une main, souvent en plein soleil. Zones cliquables de 44 px minimum sur tous les formats, contraste fort (attention au texte gris sur bleu nuit), peu d'animations. Vrais textes en français partout, jamais de lorem ipsum.
+
+Relie le parcours cliquable sur téléphone : Accueil > fiche article > ajouter > panier > validation livraison > envoi > confirmation. Puis Mes commandes > Recommander > panier.

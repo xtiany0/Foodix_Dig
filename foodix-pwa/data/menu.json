@@ -1,0 +1,1301 @@
+{
+  "version": 1,
+  "currency": "XOF",
+  "priceFormat": "2.000 F (séparateur des milliers : point)",
+  "whatsapp": "2290195945151",
+  "phones": [
+    "01 95 94 51 51",
+    "01 90 56 89 89"
+  ],
+  "social": {
+    "handle": "@foodix",
+    "facebook": "https://www.facebook.com/foodix",
+    "tiktok": "https://www.tiktok.com/@foodix",
+    "instagram": "https://www.instagram.com/foodix"
+  },
+  "categories": [
+    {
+      "id": "plats",
+      "title": {
+        "fr": "Plats principaux",
+        "en": "Main dishes"
+      },
+      "tab": {
+        "fr": "Plats",
+        "en": "Mains"
+      },
+      "groups": [
+        {
+          "label": null,
+          "adultsOnly": false,
+          "items": [
+            {
+              "id": "shawarma-poulet",
+              "name": "Shawarma poulet",
+              "price": 2000,
+              "available": true
+            },
+            {
+              "id": "shawarma-boeuf",
+              "name": "Shawarma viande de bœuf",
+              "price": 1000,
+              "available": true,
+              "variants": {
+                "label": {
+                  "fr": "Format",
+                  "en": "Size"
+                },
+                "options": [
+                  {
+                    "label": "Format à 1.000 F",
+                    "price": 1000,
+                    "cartName": "Shawarma viande de bœuf (1.000 F)"
+                  },
+                  {
+                    "label": "Format à 1.500 F",
+                    "price": 1500,
+                    "cartName": "Shawarma viande de bœuf (1.500 F)"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "nuggets",
+              "name": "Nuggets crispy",
+              "price": 3500,
+              "available": true
+            },
+            {
+              "id": "wagashi",
+              "name": "Wagashi spicy",
+              "price": 2000,
+              "available": true
+            },
+            {
+              "id": "wings",
+              "name": "Chicken wings",
+              "price": 2500,
+              "available": true
+            },
+            {
+              "id": "wedges",
+              "name": "Potato wedges",
+              "price": 2500,
+              "available": true
+            },
+            {
+              "id": "filet-burger",
+              "name": "Chicken filet burger",
+              "price": 2000,
+              "available": true
+            },
+            {
+              "id": "hamburger",
+              "name": "Hamburger",
+              "price": 1500,
+              "available": true
+            },
+            {
+              "id": "smash",
+              "name": "Smash burger",
+              "price": 3500,
+              "available": true
+            },
+            {
+              "id": "kebab-poulet",
+              "name": "Kebab poulet",
+              "price": 3000,
+              "available": true
+            },
+            {
+              "id": "kebab-boeuf",
+              "name": "Kebab viande de bœuf",
+              "price": 2500,
+              "available": true
+            },
+            {
+              "id": "panini",
+              "name": "Panini",
+              "price": 2000,
+              "available": true
+            },
+            {
+              "id": "tacos",
+              "name": "Tacos",
+              "price": 3500,
+              "available": true
+            },
+            {
+              "id": "hotdog",
+              "name": "Hot dog (Dirty dog)",
+              "price": 1500,
+              "available": true
+            },
+            {
+              "id": "tayibat",
+              "name": "Al Tayibat",
+              "price": 2500,
+              "available": true
+            },
+            {
+              "id": "portion",
+              "name": "Portion frites / Alloco",
+              "price": 1000,
+              "available": true,
+              "variants": {
+                "label": {
+                  "fr": "Au choix",
+                  "en": "Your choice"
+                },
+                "options": [
+                  {
+                    "label": "Frites",
+                    "price": 1000,
+                    "cartName": "Portion de frites"
+                  },
+                  {
+                    "label": "Alloco",
+                    "price": 1000,
+                    "cartName": "Portion d’alloco"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "pastel",
+              "name": "Pastel",
+              "price": 500,
+              "available": true
+            },
+            {
+              "id": "pizza",
+              "name": "Pizza Foodix",
+              "price": 5000,
+              "available": true
+            },
+            {
+              "id": "poulet-kfc",
+              "name": "Poulet Kfc",
+              "price": 5000,
+              "available": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bols",
+      "title": {
+        "fr": "Bols et plats chauds",
+        "en": "Bowls and hot dishes"
+      },
+      "tab": {
+        "fr": "Bols chauds",
+        "en": "Hot bowls"
+      },
+      "groups": [
+        {
+          "label": null,
+          "adultsOnly": false,
+          "items": [
+            {
+              "id": "spaghetti",
+              "name": "Spaghetti",
+              "price": 1500,
+              "available": true,
+              "subtitle": {
+                "fr": "Viande hachée, viande coupée, sardine, omelette ou saucisse",
+                "en": "Minced meat, sliced meat, sardine, omelette or sausage"
+              },
+              "variants": {
+                "label": {
+                  "fr": "Au choix",
+                  "en": "Your choice"
+                },
+                "options": [
+                  {
+                    "label": "Viande hachée",
+                    "price": 1500,
+                    "cartName": "Spaghetti viande hachée"
+                  },
+                  {
+                    "label": "Viande coupée",
+                    "price": 1500,
+                    "cartName": "Spaghetti viande coupée"
+                  },
+                  {
+                    "label": "Sardine",
+                    "price": 1500,
+                    "cartName": "Spaghetti sardine"
+                  },
+                  {
+                    "label": "Omelette",
+                    "price": 1500,
+                    "cartName": "Spaghetti omelette"
+                  },
+                  {
+                    "label": "Saucisse",
+                    "price": 1500,
+                    "cartName": "Spaghetti saucisse"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "mac",
+              "name": "Mac and cheese",
+              "price": 3500,
+              "available": true
+            },
+            {
+              "id": "mac-frites",
+              "name": "Mac and cheese avec frites",
+              "price": 5000,
+              "available": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crepes",
+      "title": {
+        "fr": "Crêpes, gaufres et desserts",
+        "en": "Crêpes, waffles and desserts"
+      },
+      "tab": {
+        "fr": "Crêpes et desserts",
+        "en": "Crêpes & desserts"
+      },
+      "groups": [
+        {
+          "label": null,
+          "adultsOnly": false,
+          "items": [
+            {
+              "id": "crepe",
+              "name": "Crêpe sucrée / salée",
+              "price": 1000,
+              "available": true,
+              "variants": {
+                "label": {
+                  "fr": "Au choix",
+                  "en": "Your choice"
+                },
+                "options": [
+                  {
+                    "label": "Sucrée",
+                    "price": 1000,
+                    "cartName": "Crêpe sucrée"
+                  },
+                  {
+                    "label": "Salée",
+                    "price": 1000,
+                    "cartName": "Crêpe salée"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "crepe-jf",
+              "name": "Crêpe jambon-fromage",
+              "price": 1500,
+              "available": true
+            },
+            {
+              "id": "crepe-choco",
+              "name": "Crêpe chocolat",
+              "price": 1500,
+              "available": true
+            },
+            {
+              "id": "gaufre",
+              "name": "Gaufre",
+              "price": 1500,
+              "available": true
+            },
+            {
+              "id": "pancakes",
+              "name": "Pancakes soufflés",
+              "price": 1500,
+              "available": true
+            },
+            {
+              "id": "donuts",
+              "name": "Donuts",
+              "price": 1500,
+              "available": true,
+              "variants": {
+                "label": {
+                  "fr": "Format",
+                  "en": "Size"
+                },
+                "options": [
+                  {
+                    "label": "Format à 1.500 F",
+                    "price": 1500,
+                    "cartName": "Donuts (1.500 F)"
+                  },
+                  {
+                    "label": "Format à 3.500 F",
+                    "price": 3500,
+                    "cartName": "Donuts (3.500 F)"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "churros",
+              "name": "Churros",
+              "price": 1000,
+              "available": true
+            },
+            {
+              "id": "boules",
+              "name": "Boules de neige",
+              "price": 1500,
+              "available": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bubble",
+      "title": {
+        "fr": "Bubble tea",
+        "en": "Bubble tea"
+      },
+      "tab": {
+        "fr": "Bubble tea",
+        "en": "Bubble tea"
+      },
+      "groups": [
+        {
+          "label": null,
+          "adultsOnly": false,
+          "items": [
+            {
+              "id": "bt-mangue",
+              "name": "Mangue",
+              "price": 1500,
+              "available": true,
+              "sheetTitle": "Bubble tea",
+              "variants": {
+                "label": {
+                  "fr": "Parfum",
+                  "en": "Flavour"
+                },
+                "options": [
+                  {
+                    "label": "Mangue",
+                    "price": 1500,
+                    "cartName": "Bubble tea Mangue",
+                    "itemId": "bt-mangue"
+                  },
+                  {
+                    "label": "Fraise",
+                    "price": 1500,
+                    "cartName": "Bubble tea Fraise",
+                    "itemId": "bt-fraise"
+                  },
+                  {
+                    "label": "Chocolat Café",
+                    "price": 1500,
+                    "cartName": "Bubble tea Chocolat Café",
+                    "itemId": "bt-chocolat-cafe"
+                  },
+                  {
+                    "label": "Tropical",
+                    "price": 1500,
+                    "cartName": "Bubble tea Tropical",
+                    "itemId": "bt-tropical"
+                  },
+                  {
+                    "label": "Oreo",
+                    "price": 1500,
+                    "cartName": "Bubble tea Oreo",
+                    "itemId": "bt-oreo"
+                  },
+                  {
+                    "label": "Menthe",
+                    "price": 1500,
+                    "cartName": "Bubble tea Menthe",
+                    "itemId": "bt-menthe"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "bt-fraise",
+              "name": "Fraise",
+              "price": 1500,
+              "available": true,
+              "sheetTitle": "Bubble tea",
+              "variants": {
+                "label": {
+                  "fr": "Parfum",
+                  "en": "Flavour"
+                },
+                "options": [
+                  {
+                    "label": "Mangue",
+                    "price": 1500,
+                    "cartName": "Bubble tea Mangue",
+                    "itemId": "bt-mangue"
+                  },
+                  {
+                    "label": "Fraise",
+                    "price": 1500,
+                    "cartName": "Bubble tea Fraise",
+                    "itemId": "bt-fraise"
+                  },
+                  {
+                    "label": "Chocolat Café",
+                    "price": 1500,
+                    "cartName": "Bubble tea Chocolat Café",
+                    "itemId": "bt-chocolat-cafe"
+                  },
+                  {
+                    "label": "Tropical",
+                    "price": 1500,
+                    "cartName": "Bubble tea Tropical",
+                    "itemId": "bt-tropical"
+                  },
+                  {
+                    "label": "Oreo",
+                    "price": 1500,
+                    "cartName": "Bubble tea Oreo",
+                    "itemId": "bt-oreo"
+                  },
+                  {
+                    "label": "Menthe",
+                    "price": 1500,
+                    "cartName": "Bubble tea Menthe",
+                    "itemId": "bt-menthe"
+                  }
+                ]
+              },
+              "defaultVariant": 1
+            },
+            {
+              "id": "bt-chocolat-cafe",
+              "name": "Chocolat Café",
+              "price": 1500,
+              "available": true,
+              "sheetTitle": "Bubble tea",
+              "variants": {
+                "label": {
+                  "fr": "Parfum",
+                  "en": "Flavour"
+                },
+                "options": [
+                  {
+                    "label": "Mangue",
+                    "price": 1500,
+                    "cartName": "Bubble tea Mangue",
+                    "itemId": "bt-mangue"
+                  },
+                  {
+                    "label": "Fraise",
+                    "price": 1500,
+                    "cartName": "Bubble tea Fraise",
+                    "itemId": "bt-fraise"
+                  },
+                  {
+                    "label": "Chocolat Café",
+                    "price": 1500,
+                    "cartName": "Bubble tea Chocolat Café",
+                    "itemId": "bt-chocolat-cafe"
+                  },
+                  {
+                    "label": "Tropical",
+                    "price": 1500,
+                    "cartName": "Bubble tea Tropical",
+                    "itemId": "bt-tropical"
+                  },
+                  {
+                    "label": "Oreo",
+                    "price": 1500,
+                    "cartName": "Bubble tea Oreo",
+                    "itemId": "bt-oreo"
+                  },
+                  {
+                    "label": "Menthe",
+                    "price": 1500,
+                    "cartName": "Bubble tea Menthe",
+                    "itemId": "bt-menthe"
+                  }
+                ]
+              },
+              "defaultVariant": 2
+            },
+            {
+              "id": "bt-tropical",
+              "name": "Tropical",
+              "price": 1500,
+              "available": true,
+              "sheetTitle": "Bubble tea",
+              "variants": {
+                "label": {
+                  "fr": "Parfum",
+                  "en": "Flavour"
+                },
+                "options": [
+                  {
+                    "label": "Mangue",
+                    "price": 1500,
+                    "cartName": "Bubble tea Mangue",
+                    "itemId": "bt-mangue"
+                  },
+                  {
+                    "label": "Fraise",
+                    "price": 1500,
+                    "cartName": "Bubble tea Fraise",
+                    "itemId": "bt-fraise"
+                  },
+                  {
+                    "label": "Chocolat Café",
+                    "price": 1500,
+                    "cartName": "Bubble tea Chocolat Café",
+                    "itemId": "bt-chocolat-cafe"
+                  },
+                  {
+                    "label": "Tropical",
+                    "price": 1500,
+                    "cartName": "Bubble tea Tropical",
+                    "itemId": "bt-tropical"
+                  },
+                  {
+                    "label": "Oreo",
+                    "price": 1500,
+                    "cartName": "Bubble tea Oreo",
+                    "itemId": "bt-oreo"
+                  },
+                  {
+                    "label": "Menthe",
+                    "price": 1500,
+                    "cartName": "Bubble tea Menthe",
+                    "itemId": "bt-menthe"
+                  }
+                ]
+              },
+              "defaultVariant": 3
+            },
+            {
+              "id": "bt-oreo",
+              "name": "Oreo",
+              "price": 1500,
+              "available": true,
+              "sheetTitle": "Bubble tea",
+              "variants": {
+                "label": {
+                  "fr": "Parfum",
+                  "en": "Flavour"
+                },
+                "options": [
+                  {
+                    "label": "Mangue",
+                    "price": 1500,
+                    "cartName": "Bubble tea Mangue",
+                    "itemId": "bt-mangue"
+                  },
+                  {
+                    "label": "Fraise",
+                    "price": 1500,
+                    "cartName": "Bubble tea Fraise",
+                    "itemId": "bt-fraise"
+                  },
+                  {
+                    "label": "Chocolat Café",
+                    "price": 1500,
+                    "cartName": "Bubble tea Chocolat Café",
+                    "itemId": "bt-chocolat-cafe"
+                  },
+                  {
+                    "label": "Tropical",
+                    "price": 1500,
+                    "cartName": "Bubble tea Tropical",
+                    "itemId": "bt-tropical"
+                  },
+                  {
+                    "label": "Oreo",
+                    "price": 1500,
+                    "cartName": "Bubble tea Oreo",
+                    "itemId": "bt-oreo"
+                  },
+                  {
+                    "label": "Menthe",
+                    "price": 1500,
+                    "cartName": "Bubble tea Menthe",
+                    "itemId": "bt-menthe"
+                  }
+                ]
+              },
+              "defaultVariant": 4
+            },
+            {
+              "id": "bt-menthe",
+              "name": "Menthe",
+              "price": 1500,
+              "available": true,
+              "sheetTitle": "Bubble tea",
+              "variants": {
+                "label": {
+                  "fr": "Parfum",
+                  "en": "Flavour"
+                },
+                "options": [
+                  {
+                    "label": "Mangue",
+                    "price": 1500,
+                    "cartName": "Bubble tea Mangue",
+                    "itemId": "bt-mangue"
+                  },
+                  {
+                    "label": "Fraise",
+                    "price": 1500,
+                    "cartName": "Bubble tea Fraise",
+                    "itemId": "bt-fraise"
+                  },
+                  {
+                    "label": "Chocolat Café",
+                    "price": 1500,
+                    "cartName": "Bubble tea Chocolat Café",
+                    "itemId": "bt-chocolat-cafe"
+                  },
+                  {
+                    "label": "Tropical",
+                    "price": 1500,
+                    "cartName": "Bubble tea Tropical",
+                    "itemId": "bt-tropical"
+                  },
+                  {
+                    "label": "Oreo",
+                    "price": 1500,
+                    "cartName": "Bubble tea Oreo",
+                    "itemId": "bt-oreo"
+                  },
+                  {
+                    "label": "Menthe",
+                    "price": 1500,
+                    "cartName": "Bubble tea Menthe",
+                    "itemId": "bt-menthe"
+                  }
+                ]
+              },
+              "defaultVariant": 5
+            },
+            {
+              "id": "bt-premium",
+              "name": "Bubble tea Premium",
+              "price": 3000,
+              "available": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cocktails",
+      "title": {
+        "fr": "Cocktails",
+        "en": "Cocktails"
+      },
+      "tab": {
+        "fr": "Cocktails",
+        "en": "Cocktails"
+      },
+      "groups": [
+        {
+          "label": {
+            "fr": "Alcoolisés",
+            "en": "With alcohol"
+          },
+          "adultsOnly": true,
+          "items": [
+            {
+              "id": "pina",
+              "name": "Pina Colada",
+              "price": 2000,
+              "available": true
+            },
+            {
+              "id": "bob",
+              "name": "Bob Marley",
+              "price": 2000,
+              "available": true
+            }
+          ]
+        },
+        {
+          "label": {
+            "fr": "Sans alcool",
+            "en": "Alcohol-free"
+          },
+          "adultsOnly": false,
+          "items": [
+            {
+              "id": "florida",
+              "name": "Florida",
+              "price": 1500,
+              "available": true
+            },
+            {
+              "id": "natura",
+              "name": "Natura",
+              "price": 1500,
+              "available": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jus",
+      "title": {
+        "fr": "Jus naturels",
+        "en": "Fresh juices"
+      },
+      "tab": {
+        "fr": "Jus naturels",
+        "en": "Juices"
+      },
+      "groups": [
+        {
+          "label": null,
+          "adultsOnly": false,
+          "items": [
+            {
+              "id": "jus-ananas",
+              "name": "Ananas",
+              "price": 1000,
+              "available": true,
+              "cartName": "Jus d’ananas"
+            },
+            {
+              "id": "jus-pasteque",
+              "name": "Pastèque",
+              "price": 1000,
+              "available": true,
+              "cartName": "Jus de pastèque"
+            },
+            {
+              "id": "bissap",
+              "name": "Bissap",
+              "price": 1000,
+              "available": true
+            },
+            {
+              "id": "afro",
+              "name": "Afro Ginger",
+              "price": 1000,
+              "available": true,
+              "subtitle": {
+                "fr": "Ananas ou orange",
+                "en": "Pineapple or orange"
+              },
+              "variants": {
+                "label": {
+                  "fr": "Au choix",
+                  "en": "Your choice"
+                },
+                "options": [
+                  {
+                    "label": "Ananas",
+                    "price": 1000,
+                    "cartName": "Afro Ginger ananas"
+                  },
+                  {
+                    "label": "Orange",
+                    "price": 1000,
+                    "cartName": "Afro Ginger orange"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "glaces",
+      "title": {
+        "fr": "Desserts glacés",
+        "en": "Frozen desserts"
+      },
+      "tab": {
+        "fr": "Desserts glacés",
+        "en": "Frozen desserts"
+      },
+      "groups": [
+        {
+          "label": null,
+          "adultsOnly": false,
+          "items": [
+            {
+              "id": "creme-glacee",
+              "name": "Crème glacée",
+              "price": 1000,
+              "available": true,
+              "subtitle": {
+                "fr": "Vanille, chocolat ou fraise",
+                "en": "Vanilla, chocolate or strawberry"
+              },
+              "variants": {
+                "label": {
+                  "fr": "Parfum",
+                  "en": "Flavour"
+                },
+                "options": [
+                  {
+                    "label": "Vanille",
+                    "price": 1000,
+                    "cartName": "Crème glacée vanille"
+                  },
+                  {
+                    "label": "Chocolat",
+                    "price": 1000,
+                    "cartName": "Crème glacée chocolat"
+                  },
+                  {
+                    "label": "Fraise",
+                    "price": 1000,
+                    "cartName": "Crème glacée fraise"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "barbe",
+              "name": "Barbe à papa",
+              "price": 500,
+              "available": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chaudes",
+      "title": {
+        "fr": "Chaudes et lactées",
+        "en": "Hot and milky drinks"
+      },
+      "tab": {
+        "fr": "Chaudes et lactées",
+        "en": "Hot drinks"
+      },
+      "groups": [
+        {
+          "label": null,
+          "adultsOnly": false,
+          "items": [
+            {
+              "id": "cappuccino",
+              "name": "Cappuccino",
+              "price": 1000,
+              "available": true
+            },
+            {
+              "id": "choco-chaud",
+              "name": "Chocolat chaud",
+              "price": 1000,
+              "available": true
+            },
+            {
+              "id": "banane-lait",
+              "name": "Banane au lait",
+              "price": 1000,
+              "available": true
+            },
+            {
+              "id": "lait-caille",
+              "name": "Lait caillé / Dégué",
+              "price": 1000,
+              "available": true,
+              "variants": {
+                "label": {
+                  "fr": "Au choix",
+                  "en": "Your choice"
+                },
+                "options": [
+                  {
+                    "label": "Lait caillé",
+                    "price": 1000,
+                    "cartName": "Lait caillé"
+                  },
+                  {
+                    "label": "Dégué",
+                    "price": 1000,
+                    "cartName": "Dégué"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "fruits-parfaits",
+              "name": "Fruits parfaits",
+              "price": 1500,
+              "available": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "boissons",
+      "title": {
+        "fr": "Boissons",
+        "en": "Drinks"
+      },
+      "tab": {
+        "fr": "Boissons",
+        "en": "Drinks"
+      },
+      "groups": [
+        {
+          "label": {
+            "fr": "Sucreries",
+            "en": "Soft drinks"
+          },
+          "adultsOnly": false,
+          "items": [
+            {
+              "id": "fanta",
+              "name": "Fanta",
+              "price": 500,
+              "available": true
+            },
+            {
+              "id": "coca",
+              "name": "Coca",
+              "price": 500,
+              "available": true
+            },
+            {
+              "id": "sprite",
+              "name": "Sprite",
+              "price": 500,
+              "available": true
+            }
+          ]
+        },
+        {
+          "label": {
+            "fr": "Énergétiques",
+            "en": "Energy drinks"
+          },
+          "adultsOnly": false,
+          "items": [
+            {
+              "id": "monster",
+              "name": "Monster",
+              "price": 1000,
+              "available": true
+            },
+            {
+              "id": "rox",
+              "name": "Rox",
+              "price": 2000,
+              "available": true
+            },
+            {
+              "id": "trois-x",
+              "name": "3x",
+              "price": 1000,
+              "available": true,
+              "variants": {
+                "label": {
+                  "fr": "Format",
+                  "en": "Size"
+                },
+                "options": [
+                  {
+                    "label": "Format à 1.000 F",
+                    "price": 1000,
+                    "cartName": "3x (1.000 F)"
+                  },
+                  {
+                    "label": "Format à 2.000 F",
+                    "price": 2000,
+                    "cartName": "3x (2.000 F)"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": {
+            "fr": "Eaux",
+            "en": "Water"
+          },
+          "adultsOnly": false,
+          "items": [
+            {
+              "id": "eau",
+              "name": "Eau minérale",
+              "price": 500,
+              "available": true,
+              "subtitle": {
+                "fr": "Fifa, Posso, gazeuse ou Comtesse citron",
+                "en": "Fifa, Posso, sparkling or Comtesse lemon"
+              },
+              "variants": {
+                "label": {
+                  "fr": "Au choix",
+                  "en": "Your choice"
+                },
+                "options": [
+                  {
+                    "label": "Fifa",
+                    "price": 500,
+                    "cartName": "Eau Fifa"
+                  },
+                  {
+                    "label": "Posso",
+                    "price": 500,
+                    "cartName": "Eau Posso"
+                  },
+                  {
+                    "label": "Gazeuse",
+                    "price": 500,
+                    "cartName": "Eau gazeuse"
+                  },
+                  {
+                    "label": "Comtesse citron",
+                    "price": 500,
+                    "cartName": "Eau Comtesse citron"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chichas",
+      "title": {
+        "fr": "Chichas",
+        "en": "Shisha"
+      },
+      "tab": {
+        "fr": "Chichas",
+        "en": "Shisha"
+      },
+      "groups": [
+        {
+          "label": null,
+          "adultsOnly": true,
+          "items": [
+            {
+              "id": "chicha-love",
+              "name": "Pose Love",
+              "price": 3000,
+              "available": true,
+              "subtitle": {
+                "fr": "Changement : 1.000 F",
+                "en": "Refill: 1.000 F"
+              },
+              "variants": {
+                "label": {
+                  "fr": "Formule",
+                  "en": "Option"
+                },
+                "options": [
+                  {
+                    "label": "Pose · 3.000 F",
+                    "price": 3000,
+                    "cartName": "Pose Love"
+                  },
+                  {
+                    "label": "Changement · 1.000 F",
+                    "price": 1000,
+                    "cartName": "Pose Love (changement)"
+                  }
+                ]
+              },
+              "listPrice": "base"
+            },
+            {
+              "id": "chicha-hawai",
+              "name": "Pose Hawaï",
+              "price": 3000,
+              "available": true,
+              "subtitle": {
+                "fr": "Changement : 1.000 F",
+                "en": "Refill: 1.000 F"
+              },
+              "variants": {
+                "label": {
+                  "fr": "Formule",
+                  "en": "Option"
+                },
+                "options": [
+                  {
+                    "label": "Pose · 3.000 F",
+                    "price": 3000,
+                    "cartName": "Pose Hawaï"
+                  },
+                  {
+                    "label": "Changement · 1.000 F",
+                    "price": 1000,
+                    "cartName": "Pose Hawaï (changement)"
+                  }
+                ]
+              },
+              "listPrice": "base"
+            },
+            {
+              "id": "chicha-lady",
+              "name": "Pose Lady Killer",
+              "price": 3000,
+              "available": true,
+              "subtitle": {
+                "fr": "Changement : 1.000 F",
+                "en": "Refill: 1.000 F"
+              },
+              "variants": {
+                "label": {
+                  "fr": "Formule",
+                  "en": "Option"
+                },
+                "options": [
+                  {
+                    "label": "Pose · 3.000 F",
+                    "price": 3000,
+                    "cartName": "Pose Lady Killer"
+                  },
+                  {
+                    "label": "Changement · 1.000 F",
+                    "price": 1000,
+                    "cartName": "Pose Lady Killer (changement)"
+                  }
+                ]
+              },
+              "listPrice": "base"
+            },
+            {
+              "id": "chicha-menthe",
+              "name": "Pose Menthe",
+              "price": 2500,
+              "available": true,
+              "subtitle": {
+                "fr": "Changement : 1.000 F",
+                "en": "Refill: 1.000 F"
+              },
+              "variants": {
+                "label": {
+                  "fr": "Formule",
+                  "en": "Option"
+                },
+                "options": [
+                  {
+                    "label": "Pose · 2.500 F",
+                    "price": 2500,
+                    "cartName": "Pose Menthe"
+                  },
+                  {
+                    "label": "Changement · 1.000 F",
+                    "price": 1000,
+                    "cartName": "Pose Menthe (changement)"
+                  }
+                ]
+              },
+              "listPrice": "base"
+            },
+            {
+              "id": "chicha-pomme",
+              "name": "Pose Pomme",
+              "price": 3000,
+              "available": true,
+              "subtitle": {
+                "fr": "Changement : 1.000 F",
+                "en": "Refill: 1.000 F"
+              },
+              "variants": {
+                "label": {
+                  "fr": "Formule",
+                  "en": "Option"
+                },
+                "options": [
+                  {
+                    "label": "Pose · 3.000 F",
+                    "price": 3000,
+                    "cartName": "Pose Pomme"
+                  },
+                  {
+                    "label": "Changement · 1.000 F",
+                    "price": 1000,
+                    "cartName": "Pose Pomme (changement)"
+                  }
+                ]
+              },
+              "listPrice": "base"
+            },
+            {
+              "id": "chicha-amor",
+              "name": "Pose Mi Amor",
+              "price": 3000,
+              "available": true,
+              "subtitle": {
+                "fr": "Changement : 1.000 F",
+                "en": "Refill: 1.000 F"
+              },
+              "variants": {
+                "label": {
+                  "fr": "Formule",
+                  "en": "Option"
+                },
+                "options": [
+                  {
+                    "label": "Pose · 3.000 F",
+                    "price": 3000,
+                    "cartName": "Pose Mi Amor"
+                  },
+                  {
+                    "label": "Changement · 1.000 F",
+                    "price": 1000,
+                    "cartName": "Pose Mi Amor (changement)"
+                  }
+                ]
+              },
+              "listPrice": "base"
+            },
+            {
+              "id": "chicha-ananas",
+              "name": "Pose Ananas",
+              "price": 6000,
+              "available": true,
+              "subtitle": {
+                "fr": "Changement : 3.000 F",
+                "en": "Refill: 3.000 F"
+              },
+              "variants": {
+                "label": {
+                  "fr": "Formule",
+                  "en": "Option"
+                },
+                "options": [
+                  {
+                    "label": "Pose · 6.000 F",
+                    "price": 6000,
+                    "cartName": "Pose Ananas"
+                  },
+                  {
+                    "label": "Changement · 3.000 F",
+                    "price": 3000,
+                    "cartName": "Pose Ananas (changement)"
+                  }
+                ]
+              },
+              "listPrice": "base"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

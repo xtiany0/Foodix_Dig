@@ -1,0 +1,42 @@
+/* Foodix, identité visuelle de la maquette validée.
+   Reprendre ces valeurs telles quelles dans l'application. */
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Squada+One&display=swap");
+
+:root {
+  /* Fonds */
+  --fx-bg: #15132D;          /* bleu nuit, fond principal */
+  --fx-bg-deep: #110F26;     /* pied de page */
+  --fx-surface: #1E1B40;     /* champs, cartes, fiche article */
+  --fx-surface-2: #28254F;   /* boutons ronds +/-, puces */
+  --fx-panel: #1A1838;       /* panneau panier tablette / ordinateur */
+
+  /* Traits */
+  --fx-line: #24214A;        /* séparateurs */
+  --fx-line-2: #2A2752;      /* bordures de champs */
+  --fx-line-3: #3A3766;      /* boutons contour */
+  --fx-leader: rgba(255, 255, 255, 0.2); /* pointillés nom ... prix */
+
+  /* Texte */
+  --fx-text: #FFFFFF;
+  --fx-text-muted: #BEBBDB;  /* texte secondaire, contraste > 9:1 sur le fond */
+  --fx-text-faint: #8F8CB5;  /* mentions, article épuisé, contraste > 5:1 */
+
+  /* Accents (à utiliser avec parcimonie) */
+  --fx-orange: #F28A22;      /* bandeaux de catégorie + bouton principal, texte en --fx-bg dessus */
+  --fx-orange-text: #F7A04B; /* orange pour du texte sur fond nuit */
+  --fx-green: #4ADE80;       /* statut Ouvert, confirmations */
+  --fx-red: #FF8A80;         /* statut Fermé */
+
+  /* Typo */
+  --fx-font: "Nunito", "Trebuchet MS", sans-serif;
+  --fx-font-display: "Squada One", Impact, sans-serif; /* uniquement bandeaux de catégorie et sous-groupes */
+
+  /* Rayons */
+  --fx-radius-field: 12px;
+  --fx-radius-button: 14px;
+  --fx-radius-sheet: 20px;
+
+  /* Accessibilité */
+  --fx-tap: 44px;            /* zone cliquable minimum, partout */
+}
