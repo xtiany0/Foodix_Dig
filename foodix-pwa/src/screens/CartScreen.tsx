@@ -133,19 +133,10 @@ export default function CartScreen() {
               {t.addMore}
             </BackLink>
 
+            {/* Livraison ou à emporter n'est choisi qu'à l'étape suivante : pas encore de ligne Livraison. */}
             <div className={styles.summary}>
-              <div className={styles.sumRow}>
-                <span>{t.subtotal}</span>
-                <span className={styles.num}>{formatPrice(total)}</span>
-              </div>
-              <div className={styles.sumRow}>
-                <span>{t.delivery}</span>
-                <span className={styles.right}>{t.tbc}</span>
-              </div>
               <div className={styles.totalRow}>
-                <span className={styles.totalLabel}>
-                  {t.total} <span className={styles.exDelivery}>{t.exDelivery}</span>
-                </span>
+                <span className={styles.totalLabel}>{t.total}</span>
                 <span className={styles.totalValue}>{formatPrice(total)}</span>
               </div>
             </div>

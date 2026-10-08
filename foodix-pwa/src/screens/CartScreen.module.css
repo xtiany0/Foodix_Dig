@@ -236,19 +236,6 @@
   gap: 10px;
 }
 
-.sumRow {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--fx-text-muted);
-}
-
-.right {
-  text-align: right;
-}
-
 .num {
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -259,19 +246,11 @@
   justify-content: space-between;
   align-items: baseline;
   gap: 8px;
-  padding-top: 10px;
-  border-top: 1px solid var(--fx-line-2);
 }
 
 .totalLabel {
   font-size: 16px;
   font-weight: 900;
-}
-
-.exDelivery {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--fx-text-muted);
 }
 
 .totalValue {

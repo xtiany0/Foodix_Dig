@@ -92,10 +92,6 @@ export default function CartPanel() {
       </div>
 
       <div className={styles.foot}>
-        <div className={styles.delivery}>
-          <span>{t.delivery}</span>
-          <span>{t.tbc}</span>
-        </div>
         <div className={styles.totalRow}>
           <span className={styles.totalLabel}>{t.total}</span>
           <span className={styles.totalValue}>{formatPrice(total)}</span>

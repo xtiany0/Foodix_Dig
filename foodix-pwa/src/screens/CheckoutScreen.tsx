@@ -262,6 +262,28 @@ export default function CheckoutScreen() {
           </div>
         )}
 
+        {/* Récapitulatif : les frais de livraison n'apparaissent qu'une fois « Livraison » choisi. */}
+        <div className={styles.summary}>
+          {livraison && (
+            <>
+              <div className={styles.sumRow}>
+                <span>{t.subtotal}</span>
+                <span className={styles.num}>{formatPrice(total)}</span>
+              </div>
+              <div className={styles.sumRow}>
+                <span>{t.delivery}</span>
+                <span className={styles.sumRight}>{t.tbc}</span>
+              </div>
+            </>
+          )}
+          <div className={`${styles.totalRow} ${livraison ? styles.totalSplit : ''}`}>
+            <span className={styles.totalLabel}>
+              {t.total} {livraison && <span className={styles.exDelivery}>{t.exDelivery}</span>}
+            </span>
+            <span className={styles.totalValue}>{formatPrice(total)}</span>
+          </div>
+        </div>
+
         <span className={styles.kept}>{t.keptOnPhone}</span>
       </main>
 
