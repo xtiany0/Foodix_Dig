@@ -1,0 +1,187 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #201d44;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.open {
+  flex: 1;
+  min-width: 0;
+  min-height: 52px;
+  padding: 8px 0;
+  background: transparent;
+  border: 0;
+  color: var(--fx-text);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.line {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  width: 100%;
+}
+
+.name {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--row-font, 16px);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.leader {
+  flex: 1 1 10px;
+  min-width: 10px;
+  border-bottom: 2px dotted var(--fx-leader);
+  position: relative;
+  top: -4px;
+}
+
+.price {
+  flex: none;
+  font-size: var(--row-font, 16px);
+  font-weight: 800;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.out {
+  color: var(--fx-text-faint);
+}
+
+.sub {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--fx-text-muted);
+}
+
+.add {
+  flex: none;
+  width: var(--fx-tap);
+  height: var(--fx-tap);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--fx-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addDot {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  background: var(--fx-surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outTag {
+  flex: none;
+  width: var(--fx-tap);
+  text-align: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--fx-text-muted);
+}
+
+.cartRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 6px;
+}
+
+.noteBtn {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--fx-tap);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--fx-orange-text);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.noteSet {
+  color: var(--fx-text-muted);
+}
+
+.stepper {
+  flex: none;
+  display: flex;
+  align-items: center;
+  background: var(--fx-surface-2);
+  border-radius: 22px;
+}
+
+.stepBtn {
+  width: var(--fx-tap);
+  height: var(--fx-tap);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--fx-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty {
+  min-width: 20px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.noteForm {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 12px;
+  margin: 0;
+}
+
+.noteInput {
+  flex: 1;
+  min-width: 0;
+  height: var(--fx-tap);
+  border-radius: 10px;
+  border: 1px solid var(--fx-line-3);
+  background: var(--fx-surface);
+  color: var(--fx-text);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0 12px;
+}
+
+.noteOk {
+  flex: none;
+  height: var(--fx-tap);
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 0;
+  background: var(--fx-text);
+  color: var(--fx-bg);
+  font-size: 14px;
+  font-weight: 900;
+}

@@ -1,0 +1,383 @@
+.screen {
+  --pad: 16px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 370px) {
+  .screen {
+    --pad: 14px;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  flex: none;
+  height: 60px;
+  padding: 0 10px 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--fx-bg);
+  border-bottom: 1px solid var(--fx-line);
+}
+
+.back {
+  width: var(--fx-tap);
+  height: var(--fx-tap);
+  flex: none;
+  color: var(--fx-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  margin: 0;
+  flex: 1;
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.clear {
+  min-height: var(--fx-tap);
+  padding: 0 8px;
+  background: transparent;
+  border: 0;
+  color: var(--fx-text-muted);
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Lignes ---------- */
+
+.content {
+  flex: 1;
+  padding: 4px var(--pad) 20px;
+}
+
+.line {
+  padding: 16px 0 10px;
+  border-bottom: 1px solid var(--fx-line);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lineTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lineText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.unit {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fx-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.noteBtn {
+  align-self: flex-start;
+  max-width: 100%;
+  min-height: var(--fx-tap);
+  margin: -6px 0 -10px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--fx-orange-text);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.noteSet {
+  color: var(--fx-text-muted);
+}
+
+.lineTotal {
+  font-size: 16px;
+  font-weight: 800;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: -10px;
+}
+
+.step {
+  width: var(--fx-tap);
+  height: var(--fx-tap);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--fx-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepDot {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  border: 1px solid var(--fx-line-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty {
+  min-width: 24px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.remove {
+  min-height: var(--fx-tap);
+  padding: 0 0 0 10px;
+  border: 0;
+  background: transparent;
+  color: var(--fx-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.noteForm {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 6px;
+  margin: 0;
+}
+
+.noteInput {
+  flex: 1;
+  min-width: 0;
+  height: var(--fx-tap);
+  border-radius: 10px;
+  border: 1px solid var(--fx-line-3);
+  background: var(--fx-surface);
+  color: var(--fx-text);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0 12px;
+}
+
+.noteOk {
+  flex: none;
+  height: var(--fx-tap);
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 0;
+  background: var(--fx-text);
+  color: var(--fx-bg);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.addMore {
+  margin-top: 8px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fx-text);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* ---------- Récapitulatif ---------- */
+
+.summary {
+  margin-top: 12px;
+  background: var(--fx-surface);
+  border-radius: var(--fx-radius-button);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sumRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--fx-text-muted);
+}
+
+.right {
+  text-align: right;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--fx-line-2);
+}
+
+.totalLabel {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.exDelivery {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fx-text-muted);
+}
+
+.totalValue {
+  font-size: 21px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ---------- Barre du bas ---------- */
+
+.bar {
+  position: sticky;
+  bottom: 0;
+  flex: none;
+  padding: 12px var(--pad) calc(16px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--fx-line);
+  background: var(--fx-bg);
+}
+
+.validate {
+  height: 56px;
+  border-radius: var(--fx-radius-button);
+  background: var(--fx-orange);
+  color: var(--fx-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 20px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.blocked {
+  min-height: 56px;
+  border-radius: var(--fx-radius-button);
+  background: var(--fx-line);
+  color: var(--fx-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* ---------- Panier vide ---------- */
+
+.empty {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.toque {
+  width: 104px;
+  height: auto;
+  opacity: 0.9;
+}
+
+.emptyTitle {
+  margin: 14px 0 0;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.emptyText {
+  margin: 0;
+  max-width: 270px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--fx-text-muted);
+}
+
+.seeMenu {
+  margin-top: 14px;
+  width: 100%;
+  max-width: 300px;
+  height: 54px;
+  border-radius: var(--fx-radius-button);
+  background: var(--fx-orange);
+  color: var(--fx-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.reorder {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  color: var(--fx-text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: 15px;
+  font-weight: 700;
+}

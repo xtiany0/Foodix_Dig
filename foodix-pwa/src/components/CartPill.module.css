@@ -1,0 +1,83 @@
+.pill,
+.empty {
+  position: fixed;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 20;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.pill {
+  left: 16px;
+  right: 16px;
+}
+
+.full {
+  height: 56px;
+  border-radius: var(--fx-radius-button);
+  background: var(--fx-orange);
+  color: var(--fx-bg);
+  gap: 12px;
+  padding: 0 18px;
+}
+
+.count {
+  min-width: 26px;
+  height: 26px;
+  padding: 0 7px;
+  border-radius: 13px;
+  background: var(--fx-bg);
+  color: var(--fx-text);
+  font-size: 14px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.total {
+  font-size: 16px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.empty {
+  right: 16px;
+  height: 52px;
+  border-radius: 26px;
+  background: var(--fx-surface-2);
+  border: 1px solid var(--fx-line-3);
+  color: var(--fx-text);
+  gap: 10px;
+  padding: 0 18px 0 14px;
+}
+
+.emptyText {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.closed {
+  min-height: 52px;
+  border-radius: var(--fx-radius-button);
+  background: var(--fx-surface-2);
+  border: 1px solid var(--fx-line-3);
+  color: var(--fx-text);
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 16px;
+}
+
+.closedText {
+  font-size: 15px;
+  font-weight: 800;
+}

@@ -1,0 +1,58 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(10, 9, 26, 0.72);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.box {
+  background: var(--fx-surface);
+  border-radius: var(--fx-radius-sheet) var(--fx-radius-sheet) 0 0;
+  padding: 22px 16px calc(18px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.text {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--fx-text-muted);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.cancel,
+.confirm {
+  flex: 1;
+  height: 50px;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.cancel {
+  border: 1px solid var(--fx-line-3);
+  background: transparent;
+  color: var(--fx-text);
+  font-weight: 800;
+}
+
+.confirm {
+  border: 0;
+  background: var(--fx-text);
+  color: var(--fx-bg);
+  font-weight: 900;
+}
