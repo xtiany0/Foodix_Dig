@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { findOption, linesFor, type CartLine } from '../lib/cart';
-import { listPriceLabel } from '../lib/price';
+import { formatPrice, listPriceLabel } from '../lib/price';
 import { useStore } from '../state/store';
 import type { MenuItem } from '../types/menu';
 import { MinusIcon, PlusIcon } from './icons';
@@ -106,28 +106,35 @@ function CartSubRow({ item, line, showChoice, editing, onToggleNote }: SubProps)
     onToggleNote(null);
   };
 
+  const noteButton = (label: string) => (
+    <button
+      type="button"
+      className={`${styles.noteBtn} ${note ? styles.noteSet : ''}`}
+      aria-expanded={editing}
+      aria-label={`${note ? `${t.notePrefix}${note}, ${t.edit}` : t.addNote} : ${cartName}`}
+      onClick={() => onToggleNote(editing ? null : line.key)}
+    >
+      {label}
+    </button>
+  );
+
   return (
     <>
       <div className={styles.cartRow}>
-        <button
-          type="button"
-          className={`${styles.noteBtn} ${note ? styles.noteSet : ''}`}
-          aria-expanded={editing}
-          aria-label={`${note ? `${t.notePrefix}${note}, ${t.edit}` : t.addNote} : ${cartName}`}
-          onClick={() => onToggleNote(editing ? null : line.key)}
-        >
-          {showChoice && option ? (
-            // Choix affiché devant : texte court pour tenir sur un petit téléphone.
-            <>
-              <span className={styles.choice}>{option.label} · </span>
-              {note ? `${note} · ${t.edit}` : t.addNoteShort}
-            </>
-          ) : note ? (
-            `${t.notePrefix}${note} · ${t.edit}`
-          ) : (
-            t.addNote
-          )}
-        </button>
+        {showChoice && option ? (
+          // Article à choix : « 2 × Format à 1.500 F = 3.000 F », puis la précision en dessous.
+          <div className={styles.choiceCol}>
+            <span className={styles.choiceLine}>
+              <strong className={styles.choice}>
+                {line.qty} × {option.label}
+              </strong>{' '}
+              = {formatPrice(option.price * line.qty)}
+            </span>
+            {noteButton(note ? `${note} · ${t.edit}` : t.addNoteShort)}
+          </div>
+        ) : (
+          noteButton(note ? `${t.notePrefix}${note} · ${t.edit}` : t.addNote)
+        )}
         <div className={styles.stepper}>
           <button type="button" className={styles.stepBtn} aria-label={t.decLine(cartName)} onClick={() => step(-1)}>
             <MinusIcon size={15} stroke={3} />
