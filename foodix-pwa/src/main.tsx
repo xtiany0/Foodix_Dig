@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './styles/global.css';
 import App from './App';
 import LoadError from './screens/LoadError';
+import { dropLaunch, finishLaunch } from './lib/launch';
 import { loadMenu } from './lib/menu';
 import { initHistory } from './lib/router';
 
@@ -10,7 +11,7 @@ const container = document.getElementById('root')!;
 
 initHistory();
 
-// L'écran de lancement de index.html reste affiché jusqu'à ce que le menu soit chargé.
+// L'écran de lancement de index.html recouvre l'app jusqu'au chargement du menu (durée minimale : config.launchMinMs).
 loadMenu()
   .then((menu) => {
     createRoot(container).render(
@@ -18,8 +19,10 @@ loadMenu()
         <App menu={menu} />
       </StrictMode>,
     );
+    void finishLaunch();
   })
   .catch((err: unknown) => {
     console.error(err);
+    dropLaunch();
     createRoot(container).render(<LoadError />);
   });

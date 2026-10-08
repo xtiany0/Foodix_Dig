@@ -97,6 +97,12 @@ export const config = {
   /** Jeton Cloudflare Web Analytics. Vide = pas de statistiques. Voir aussi VITE_CF_BEACON_TOKEN. */
   analyticsToken: '',
 
+  /**
+   * Durée minimale de l'écran de lancement, comptée depuis l'ouverture de la page
+   * (un chargement plus lent n'est jamais rallongé). Une seule fois par visite.
+   */
+  launchMinMs: 1300,
+
   /** Nombre de commandes gardées dans « Mes commandes ». */
   historyLimit: 30,
 
