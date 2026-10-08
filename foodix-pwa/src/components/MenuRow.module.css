@@ -1,7 +1,7 @@
 .row {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #201d44;
+  border-bottom: 1px solid var(--fx-line-soft);
 }
 
 .main {
@@ -25,43 +25,18 @@
   gap: 2px;
 }
 
-.line {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  width: 100%;
-}
-
 .name {
-  /* largeur minimale = mot le plus long : le nom passe à la ligne sans chevaucher le prix */
-  flex: 0 1 auto;
   font-size: var(--row-font, 16px);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.3;
-}
-
-.leader {
-  flex: 1 1 10px;
-  min-width: 10px;
-  border-bottom: 2px dotted var(--fx-leader);
-  position: relative;
-  top: -4px;
+  color: var(--fx-text);
 }
 
 .price {
-  flex: none;
-  white-space: nowrap;
-  font-size: var(--row-font, 16px);
+  font-size: var(--price-font, 15px);
   font-weight: 800;
+  color: var(--fx-price);
   font-variant-numeric: tabular-nums;
-}
-
-/* Colonnes étroites (tablette) : un double prix « 1.000 / 1.500 F » passe sous le nom si besoin. */
-@media (min-width: 768px) {
-  .multi {
-    flex-wrap: wrap;
-    row-gap: 0;
-  }
 }
 
 .out {
@@ -82,17 +57,18 @@
   padding: 0;
   border: 0;
   background: transparent;
-  color: var(--fx-text);
+  color: var(--fx-on-navy);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .addDot {
-  width: 32px;
-  height: 32px;
-  border-radius: 16px;
-  background: var(--fx-surface-2);
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,7 +97,7 @@
   padding: 0;
   background: transparent;
   border: 0;
-  color: var(--fx-orange-text);
+  color: var(--fx-price);
   font-size: 13px;
   font-weight: 700;
   text-align: left;
@@ -163,11 +139,13 @@
   font-weight: 800;
 }
 
+/* Compteur « − n + » bleu nuit */
 .stepper {
   flex: none;
   display: flex;
   align-items: center;
-  background: var(--fx-surface-2);
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
   border-radius: 22px;
 }
 
@@ -177,7 +155,7 @@
   padding: 0;
   border: 0;
   background: transparent;
-  color: var(--fx-text);
+  color: var(--fx-on-navy);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -217,8 +195,8 @@
   padding: 0 16px;
   border-radius: 10px;
   border: 0;
-  background: var(--fx-text);
-  color: var(--fx-bg);
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
   font-size: 14px;
   font-weight: 900;
 }

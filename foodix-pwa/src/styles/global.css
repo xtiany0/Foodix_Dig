@@ -52,8 +52,13 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid var(--fx-orange-text);
+  outline: 3px solid var(--fx-navy);
   outline-offset: 2px;
+}
+
+/* Éléments posés sur une zone bleu nuit (en-tête, barre du haut, pied de page) : contour de focus blanc. */
+[data-navy] :focus-visible {
+  outline-color: var(--fx-on-navy);
 }
 
 .visually-hidden {

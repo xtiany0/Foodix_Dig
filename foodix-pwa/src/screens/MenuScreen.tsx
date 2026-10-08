@@ -23,7 +23,7 @@ interface Section {
 
 const TOAST_MS = 2400;
 /** Une section est « active » quand son titre passe sous les onglets (ou sous la barre du haut sur ordinateur). */
-const ACTIVE_OFFSET = { phone: 60, tablet: 60, desktop: 100 };
+const ACTIVE_OFFSET = { phone: 72, tablet: 72, desktop: 100 };
 
 export default function MenuScreen() {
   const { menu, lang, setLang, t, isOpen, online, layout } = useStore();
@@ -125,14 +125,14 @@ export default function MenuScreen() {
 
   const status = (
     <span className={styles.status}>
-      <span className={styles.dot} style={{ background: isOpen ? 'var(--fx-green)' : 'var(--fx-red)' }} aria-hidden="true" />
+      <span className={styles.dot} style={{ background: isOpen ? 'var(--fx-green-on-navy)' : 'var(--fx-red-on-navy)' }} aria-hidden="true" />
       {isOpen ? t.open : t.closed}
     </span>
   );
 
   const search = (
     <div className={styles.search}>
-      <SearchIcon size={19} color="var(--fx-text-muted)" />
+      <SearchIcon size={19} color="var(--fx-placeholder)" />
       <input
         type="search"
         className={styles.searchInput}
@@ -148,7 +148,7 @@ export default function MenuScreen() {
   return (
     <div className={styles.screen} data-layout={layout}>
       {desktop && (
-        <header className={styles.topbar}>
+        <header className={styles.topbar} data-navy>
           <img src="/brand/foodix-logo-nuit-sans-slogan.webp" width={640} height={314} alt="Foodix" className={styles.topLogo} />
           {status}
           <div className={styles.topSearch}>{search}</div>
@@ -186,7 +186,7 @@ export default function MenuScreen() {
 
         <div className={styles.center}>
           {!desktop && (
-            <header className={styles.header}>
+            <header className={styles.header} data-navy>
               {/* 3 colonnes : les deux côtés ont la même largeur, le logo reste au centre de la page. */}
               <div className={styles.headGrid}>
                 <div className={styles.headLeft}>{langToggle}</div>
@@ -204,7 +204,7 @@ export default function MenuScreen() {
                 <span className={styles.slogan}>{t.slogan}</span>
                 {status}
               </div>
-              {wide && search}
+              <div className={styles.headSearch}>{search}</div>
             </header>
           )}
 
@@ -215,8 +215,6 @@ export default function MenuScreen() {
               {showInstall && <InstallBanner />}
             </div>
           )}
-
-          {!wide && <div className={styles.searchBlock}>{search}</div>}
 
           {!desktop && (
             <nav aria-label={t.catsAria} className={styles.tabs}>

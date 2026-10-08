@@ -165,8 +165,8 @@
   min-height: 46px;
   border-radius: 12px;
   border: 0;
-  background: var(--fx-text);
-  color: var(--fx-bg);
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -231,7 +231,7 @@
   height: 52px;
   border-radius: var(--fx-radius-button);
   background: var(--fx-orange);
-  color: var(--fx-bg);
+  color: var(--fx-navy);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,4 +1,7 @@
 .screen {
+  /* Comme l'écran de lancement : bleu nuit avec le logo. */
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -31,7 +34,7 @@
   font-size: 15px;
   font-weight: 600;
   line-height: 1.45;
-  color: var(--fx-text-muted);
+  color: var(--fx-on-navy-muted);
 }
 
 .retry {
@@ -41,7 +44,7 @@
   border-radius: var(--fx-radius-button);
   border: 0;
   background: var(--fx-orange);
-  color: var(--fx-bg);
+  color: var(--fx-navy);
   font-size: 16px;
   font-weight: 900;
 }

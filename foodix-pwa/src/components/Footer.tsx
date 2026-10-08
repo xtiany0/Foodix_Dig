@@ -45,7 +45,7 @@ export default function Footer({ wide = false }: { wide?: boolean }) {
   }
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} data-navy>
       <img src="/brand/foodix-logo-nuit.webp" width={720} height={358} alt="Foodix, Manger bon, manger mobile" className={styles.logo} loading="lazy" />
       <p className={styles.thanks}>{t.thanks}</p>
       <div className={styles.socials}>{socialLinks}</div>
@@ -53,12 +53,12 @@ export default function Footer({ wide = false }: { wide?: boolean }) {
       <div className={styles.phones}>
         {phones.map((p) => (
           <a key={p.tel} href={`tel:${p.tel}`} className={styles.phone}>
-            <PhoneIcon size={18} color="var(--fx-orange-text)" />
+            <PhoneIcon size={18} color="var(--fx-orange-on-navy)" />
             {p.display}
           </a>
         ))}
       </div>
-      <InstallButton />
+      <InstallButton onNavy />
       {credit}
     </footer>
   );

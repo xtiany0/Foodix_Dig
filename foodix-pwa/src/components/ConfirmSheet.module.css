@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 50;
-  background: rgba(10, 9, 26, 0.72);
+  background: var(--fx-overlay);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -52,7 +52,7 @@
 
 .confirm {
   border: 0;
-  background: var(--fx-text);
-  color: var(--fx-bg);
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
   font-weight: 900;
 }

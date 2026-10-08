@@ -6,7 +6,8 @@
   align-items: center;
   gap: 16px;
   text-align: center;
-  background: var(--fx-bg-deep);
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
 }
 
 .logo {
@@ -31,9 +32,9 @@
   width: 46px;
   height: 46px;
   border-radius: 23px;
-  background: var(--fx-surface);
-  border: 1px solid var(--fx-line-2);
-  color: var(--fx-text);
+  background: var(--fx-navy-2);
+  border: 1px solid var(--fx-navy-line);
+  color: var(--fx-on-navy);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,7 +57,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--fx-text);
+  color: var(--fx-on-navy);
   text-decoration: none;
   font-size: 15px;
   font-weight: 800;
@@ -68,7 +69,7 @@
   justify-content: center;
   margin-top: 12px;
   padding-top: 14px;
-  border-top: 1px solid var(--fx-line);
+  border-top: 1px solid var(--fx-navy-2);
   min-height: var(--fx-tap);
   display: flex;
   align-items: center;
@@ -77,12 +78,12 @@
   text-decoration: none;
   font-size: 12px;
   font-weight: 600;
-  color: var(--fx-text-faint);
+  color: var(--fx-on-navy-faint);
 }
 
 .creditNum {
   font-weight: 800;
-  color: var(--fx-text-muted);
+  color: var(--fx-on-navy-muted);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -136,6 +137,9 @@
   width: var(--fx-tap);
   height: var(--fx-tap);
   border-radius: 22px;
+  background: var(--fx-surface);
+  border-color: var(--fx-line-2);
+  color: var(--fx-text);
 }
 
 .wide .credit {
@@ -143,4 +147,10 @@
   justify-content: flex-start;
   margin-top: 4px;
   padding-top: 10px;
+  border-top-color: var(--fx-line);
+  color: var(--fx-text-faint);
+}
+
+.wide .creditNum {
+  color: var(--fx-text-muted);
 }

@@ -7,7 +7,7 @@
   flex: none;
   display: flex;
   flex-direction: column;
-  background: var(--fx-panel);
+  background: var(--fx-surface);
   border-left: 1px solid var(--fx-line);
 }
 
@@ -230,7 +230,7 @@
 
 .validate {
   background: var(--fx-orange);
-  color: var(--fx-bg);
+  color: var(--fx-navy);
   text-decoration: none;
   font-size: 16px;
   font-weight: 900;
@@ -250,7 +250,7 @@
   position: absolute;
   inset: 0;
   z-index: 10;
-  background: rgba(10, 9, 26, 0.8);
+  background: var(--fx-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -303,7 +303,7 @@
 
 .confirm {
   border: 0;
-  background: var(--fx-text);
-  color: var(--fx-bg);
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
   font-weight: 900;
 }

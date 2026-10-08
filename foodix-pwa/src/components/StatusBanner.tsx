@@ -8,7 +8,7 @@ export default function StatusBanner({ kind }: { kind: 'closed' | 'offline' }) {
   const closed = kind === 'closed';
   return (
     <div role="status" className={styles.banner}>
-      {closed ? <ClockIcon size={22} color="var(--fx-red)" /> : <OfflineIcon size={22} color="var(--fx-orange-text)" />}
+      {closed ? <ClockIcon size={22} color="var(--fx-red)" /> : <OfflineIcon size={22} color="var(--fx-price)" />}
       <div className={styles.text}>
         <strong className={styles.title}>{closed ? t.closedTitle : t.offlineTitle}</strong>
         <span className={styles.body}>{closed ? t.closedText : t.offlineText}</span>

@@ -129,7 +129,7 @@ export default function CartScreen() {
             })}
 
             <BackLink className={styles.addMore}>
-              <PlusIcon size={18} stroke={2.6} color="var(--fx-orange-text)" />
+              <PlusIcon size={18} stroke={2.6} color="var(--fx-price)" />
               {t.addMore}
             </BackLink>
 

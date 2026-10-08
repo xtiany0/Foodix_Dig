@@ -1,41 +1,62 @@
-/* Foodix, identité visuelle de la maquette validée (copie de design/tokens.css).
+/* Foodix, style « Plein jour » validé par le client (copie de design/tokens.css).
    Polices auto-hébergées : voir fonts.css, pas d’import Google Fonts. */
 
 
 :root {
   /* Fonds */
-  --fx-bg: #15132D;          /* bleu nuit, fond principal */
-  --fx-bg-deep: #110F26;     /* pied de page */
-  --fx-surface: #1E1B40;     /* champs, cartes, fiche article */
-  --fx-surface-2: #28254F;   /* boutons ronds +/-, puces */
-  --fx-panel: #1A1838;       /* panneau panier tablette / ordinateur */
+  --fx-bg: #F5F0E8;          /* crème, fond général */
+  --fx-surface: #FFFFFF;     /* cartes d'articles, fiche article, champs, panier */
+  --fx-surface-2: #F0EAE0;   /* petits fonds secondaires (bouton fermer, blocs désactivés) */
+  --fx-navy: #15132D;        /* en-tête, barre du haut, pied de page, barre panier, boutons + et compteurs, sélection */
 
   /* Traits */
-  --fx-line: #24214A;        /* séparateurs */
-  --fx-line-2: #2A2752;      /* bordures de champs */
-  --fx-line-3: #3A3766;      /* boutons contour */
-  --fx-leader: rgba(255, 255, 255, 0.2); /* pointillés nom ... prix */
+  --fx-line: #E9E1D4;        /* séparateurs principaux */
+  --fx-line-2: #E4DCCF;      /* bordures de champs, pastilles non actives */
+  --fx-line-soft: #EFE8DC;   /* séparateurs entre articles */
+  --fx-line-3: #DDD4C6;      /* boutons contour */
 
   /* Texte */
-  --fx-text: #FFFFFF;
-  --fx-text-muted: #BEBBDB;  /* texte secondaire, contraste > 9:1 sur le fond */
-  --fx-text-faint: #8F8CB5;  /* mentions, article épuisé, contraste > 5:1 */
+  --fx-text: #15132D;        /* texte principal */
+  --fx-text-muted: #5C5980;  /* texte secondaire (contraste > 5:1 sur crème) */
+  --fx-text-faint: #67638A;  /* mentions, article épuisé */
+  --fx-price: #A84B05;       /* prix et liens « + Ajouter une précision » */
+  --fx-on-navy: #FFFFFF;     /* texte sur bleu nuit */
+  --fx-on-navy-muted: #BEBBDB; /* texte secondaire sur bleu nuit (slogan, pied de page) */
 
-  /* Accents (à utiliser avec parcimonie) */
-  --fx-orange: #F28A22;      /* bandeaux de catégorie + bouton principal, texte en --fx-bg dessus */
-  --fx-orange-text: #F7A04B; /* orange pour du texte sur fond nuit */
-  --fx-green: #4ADE80;       /* statut Ouvert, confirmations */
-  --fx-red: #FF8A80;         /* statut Fermé */
+  /* Accents */
+  --fx-orange: #F28A22;      /* bandeaux de catégorie + boutons principaux, texte bleu nuit dessus */
+  --fx-green: #15803D;       /* confirmations sur fond clair */
+  --fx-green-on-navy: #4ADE80; /* pastille « Ouvert » dans l'en-tête */
+  --fx-red: #C62828;         /* fermé, alertes sur fond clair */
 
   /* Typo */
   --fx-font: "Nunito", "Trebuchet MS", sans-serif;
-  --fx-font-display: "Squada One", Impact, sans-serif; /* uniquement bandeaux de catégorie et sous-groupes */
+  --fx-font-display: "Squada One", Impact, sans-serif; /* bandeaux de catégorie uniquement */
 
-  /* Rayons */
+  /* Rayons et ombres */
+  --fx-radius-header: 28px;  /* coins bas de l'en-tête */
+  --fx-radius-card: 18px;
   --fx-radius-field: 12px;
   --fx-radius-button: 14px;
   --fx-radius-sheet: 20px;
+  --fx-shadow-bar: 0 10px 24px rgba(21, 19, 45, 0.28);
 
   /* Accessibilité */
   --fx-tap: 44px;            /* zone cliquable minimum, partout */
+}
+
+/* Compléments de la maquette « Plein jour », non nommés dans design/tokens.css. */
+:root {
+  --fx-red-on-navy: #FF8A80;            /* pastille « Fermé » dans l'en-tête bleu nuit */
+  --fx-navy-2: #24214A;                 /* pastilles des réseaux, sur le pied de page bleu nuit */
+  --fx-navy-line: #34315F;              /* bordures sur bleu nuit */
+  --fx-placeholder: #6B6890;            /* icône loupe et textes indicatifs des champs */
+  --fx-overlay: rgba(21, 19, 45, 0.5);  /* fond sous les fenêtres */
+  --fx-shadow-soft: 0 8px 24px rgba(21, 19, 45, 0.22);
+}
+
+:root {
+  --fx-orange-on-navy: #F7A04B;         /* icônes orange sur le pied de page bleu nuit */
+  --fx-on-navy-faint: #8F8CB5;          /* mention « Conception de l'application » sur bleu nuit */
+  --fx-radio: #8A86A8;                  /* contour des boutons radio non cochés (Envoi) */
 }

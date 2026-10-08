@@ -11,15 +11,15 @@
 
 .toast {
   max-width: 420px;
-  background: #2c2957;
-  border: 1px solid var(--fx-line-3);
-  color: var(--fx-text);
+  background: var(--fx-navy);
+  border: 1px solid var(--fx-navy-line);
+  color: var(--fx-on-navy);
   border-radius: 12px;
   padding: 11px 14px;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.3;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--fx-shadow-soft);
   display: flex;
   gap: 8px;
   align-items: center;

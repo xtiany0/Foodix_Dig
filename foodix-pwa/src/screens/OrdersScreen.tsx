@@ -59,7 +59,7 @@ export default function OrdersScreen() {
                 <div role="note" className={styles.alerts}>
                   {[...plan.lines.filter((l) => l.status === 'out'), ...plan.lines.filter((l) => l.status === 'price')].map(({ line, status, unit }, i) => (
                       <div key={i} className={styles.alert}>
-                        <WarningIcon size={17} stroke={2.2} color="var(--fx-orange-text)" />
+                        <WarningIcon size={17} stroke={2.2} color="var(--fx-price)" />
                         <span>
                           <strong className={styles.alertTag}>{status === 'out' ? t.outTag : t.priceTag} :</strong>{' '}
                           {status === 'out'

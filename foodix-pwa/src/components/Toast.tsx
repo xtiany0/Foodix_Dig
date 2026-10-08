@@ -7,7 +7,7 @@ export default function Toast({ text }: { text: string }) {
     <div role="status" className={styles.wrap}>
       {text && (
         <span className={styles.toast}>
-          <CheckIcon size={18} stroke={3} color="var(--fx-green)" />
+          <CheckIcon size={18} stroke={3} color="var(--fx-green-on-navy)" />
           {text}
         </span>
       )}

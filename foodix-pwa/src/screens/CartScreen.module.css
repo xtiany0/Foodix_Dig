@@ -106,7 +106,7 @@
   padding: 0;
   background: transparent;
   border: 0;
-  color: var(--fx-orange-text);
+  color: var(--fx-price);
   font-size: 13px;
   font-weight: 700;
   text-align: left;
@@ -206,8 +206,8 @@
   padding: 0 16px;
   border-radius: 10px;
   border: 0;
-  background: var(--fx-text);
-  color: var(--fx-bg);
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
   font-size: 14px;
   font-weight: 900;
 }
@@ -296,7 +296,7 @@
   height: 56px;
   border-radius: var(--fx-radius-button);
   background: var(--fx-orange);
-  color: var(--fx-bg);
+  color: var(--fx-navy);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -362,7 +362,7 @@
   height: 54px;
   border-radius: var(--fx-radius-button);
   background: var(--fx-orange);
-  color: var(--fx-bg);
+  color: var(--fx-navy);
   display: flex;
   align-items: center;
   justify-content: center;

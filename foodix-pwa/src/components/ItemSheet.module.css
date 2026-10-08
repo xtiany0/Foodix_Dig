@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 40;
-  background: rgba(10, 9, 26, 0.72);
+  background: var(--fx-overlay);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -28,7 +28,7 @@
   flex-direction: column;
   background: var(--fx-surface);
   border-radius: var(--fx-radius-sheet) var(--fx-radius-sheet) 0 0;
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 -10px 40px rgba(21, 19, 45, 0.25);
   overflow: hidden;
   animation: rise 0.22s ease-out;
 }
@@ -71,7 +71,7 @@
 .category {
   font-family: var(--fx-font-display);
   font-size: 18px;
-  color: var(--fx-orange-text);
+  color: var(--fx-price);
   letter-spacing: 0.3px;
 }
 
@@ -276,7 +276,7 @@
   border-radius: var(--fx-radius-button);
   border: 0;
   background: var(--fx-orange);
-  color: var(--fx-bg);
+  color: var(--fx-navy);
   font-size: 17px;
   font-weight: 900;
   font-variant-numeric: tabular-nums;

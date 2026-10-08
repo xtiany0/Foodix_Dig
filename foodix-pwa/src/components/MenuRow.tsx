@@ -15,7 +15,7 @@ interface Props {
 }
 
 /**
- * Ligne « nom ........ prix » du menu.
+ * Article du menu : nom en gras, prix orange foncé dessous (style « Plein jour »).
  * Pas dans le panier : bouton « + ».
  * Dans le panier : une sous-ligne par ligne du panier (choix + précision), chacune avec son « − n + ».
  * Ex. 1 shawarma bœuf à 1.000 F et 2 à 1.500 F = deux sous-lignes.
@@ -40,11 +40,8 @@ export default function MenuRow({ item, editingKey, onOpen, onToggleNote }: Prop
     <div className={styles.row}>
       <div className={styles.main}>
         <button type="button" className={styles.open} onClick={() => onOpen(item.id)}>
-          <span className={`${styles.line} ${price.includes('/') ? styles.multi : ''}`}>
-            <span className={`${styles.name} ${out ? styles.out : ''}`}>{item.name}</span>
-            <span className={styles.leader} aria-hidden="true" />
-            <span className={`${styles.price} ${out ? styles.out : ''}`}>{price}</span>
-          </span>
+          <span className={`${styles.name} ${out ? styles.out : ''}`}>{item.name}</span>
+          <span className={`${styles.price} ${out ? styles.out : ''}`}>{price}</span>
           {item.subtitle && <span className={styles.sub}>{item.subtitle[lang]}</span>}
         </button>
         {showAdd && (

@@ -61,3 +61,24 @@ await icon('favicon-32.png', 32, 0.86, 7);
 await webp('foodix-logo-nuit', 540); // lancement : 270 px
 await webp('foodix-logo-nuit-sans-slogan', 240); // en-tête : 120 px
 await webp('foodix-toque', 240); // panier vide : 104 px
+
+// Logo « jour » pour les en-têtes crème (style Plein jour) : lettres blanches du logo nuit passées en bleu nuit.
+{
+  const { data, info } = await sharp(root('public/brand/foodix-logo-nuit-sans-slogan.png'))
+    .resize({ width: 240 })
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const [r0, g0, b0] = [0x15, 0x13, 0x2d];
+  for (let i = 0; i < data.length; i += 4) {
+    const [r, g, b] = [data[i], data[i + 1], data[i + 2]];
+    // Blanc ou gris très clair (lettres « FOOD ») : on garde l'opacité, on change la couleur.
+    if (Math.min(r, g, b) > 150 && Math.max(r, g, b) - Math.min(r, g, b) < 40) {
+      data[i] = r0;
+      data[i + 1] = g0;
+      data[i + 2] = b0;
+    }
+  }
+  await sharp(data, { raw: info }).webp({ quality: 90, alphaQuality: 100, effort: 6 }).toFile(root('public/brand/foodix-logo-jour-sans-slogan.webp'));
+  console.log('brand/foodix-logo-jour-sans-slogan.webp');
+}

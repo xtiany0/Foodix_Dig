@@ -27,7 +27,7 @@ Maquette validée par le client. Le cahier des charges complet est dans `docs/ca
 
 - Téléphones Android d'entrée de gamme, réseau 3G, usage d'une main, souvent en plein soleil.
 - Bundle léger, peu d'animations, polices limitées (Nunito + Squada One).
-- **Zones cliquables de 44 px minimum** partout, contraste fort (texte secondaire `#BEBBDB` minimum sur le fond nuit).
+- **Zones cliquables de 44 px minimum** partout, contraste fort : fond clair crème, texte bleu nuit, texte secondaire `#5C5980` minimum, prix en orange foncé `#A84B05` (jamais l'orange vif en texte sur fond clair).
 - Tout le texte est réel, en français par défaut. Jamais de lorem ipsum.
 
 ## Écrans et parcours
@@ -35,20 +35,29 @@ Maquette validée par le client. Le cahier des charges complet est dans `docs/ca
 Parcours principal : Lancement > Menu > fiche article > Ajouter > Panier > Validation (livraison ou à emporter) > Envoi > Confirmation. Puis Mes commandes > Recommander > Panier.
 
 1. **Lancement** : logo fond nuit, barre de chargement fine.
-2. **Accueil / Menu** : en-tête avec bouton langue (globe + FR ou EN) à gauche, logo centré, Mes commandes et appel à droite ; dessous, slogan et statut Ouvert / Fermé centrés. Recherche. Onglets de catégories collants à défilement horizontal (trait orange sous l'onglet actif). Liste façon menu papier : bandeau orange avec le nom de la catégorie, puis lignes « nom ........ prix » en blanc.
+2. **Accueil / Menu** (style « Plein jour ») : fond crème. En-tête en bloc bleu nuit aux coins bas arrondis (28 px) avec bouton langue (globe + FR ou EN) à gauche, logo centré, Mes commandes et appel à droite ; dessous, slogan et statut Ouvert / Fermé centrés, puis la barre de recherche blanche dans le bloc. Onglets de catégories collants en pastilles (active : bleu nuit texte blanc ; autres : blanches bordure beige). Pour chaque catégorie : bandeau orange avec le nom (police Squada One), puis une carte blanche arrondie (18 px) qui contient les articles : nom en gras bleu nuit, prix en orange foncé dessous, séparateurs fins beiges.
 3. **Sur chaque ligne du menu** :
-   - pas dans le panier : un petit bouton rond « + » ;
+   - pas dans le panier : un bouton rond bleu nuit « + » (36 px visible, 44 px cliquable) ;
    - dans le panier : une deuxième ligne apparaît avec un sélecteur « − n + » à droite (à 0, l'article sort du panier) et, à gauche, « + Ajouter une précision » (ou « Précision : … · Modifier ») qui ouvre un champ texte + OK sous l'article ;
    - articles à variantes : le premier « + » ouvre la fiche pour choisir, ensuite + et − agissent sur le dernier choix fait.
-4. **Fiche article** (feuille qui monte du bas sur téléphone et tablette, fenêtre centrée sur ordinateur) : catégorie, nom, prix, mention 18+ si besoin, quantité et champ « Précision » (à 0 par défaut), bouton « Ajouter · prix » (inactif tant que la quantité est à 0). Article à choix : une ligne par choix, chacune avec sa quantité et sa précision, pour prendre plusieurs choix en une fois (ex. 1 × 1.000 F et 2 × 1.500 F). **Pas de photo** (il n'y en a pas, comme sur le menu papier).
+4. **Fiche article** (feuille qui monte du bas sur téléphone et tablette, fenêtre centrée sur ordinateur) : catégorie, nom, prix, mention 18+ si besoin, choix de variante, quantité, champ « Précision », bouton « Ajouter · prix ». **Pas de photo** (il n'y en a pas, comme sur le menu papier).
 5. **Panier** : lignes avec + / −, Retirer, précision modifiable, « Ajouter d'autres articles », sous-total, livraison « À confirmer sur WhatsApp », bouton « Valider ma commande ». Bouton Vider avec confirmation. **Panier vide** : toque, texte, Voir le menu, lien Recommander une commande passée.
 6. **Validation livraison** : sélecteur Livraison / À emporter, nom, téléphone, quartier, adresse ou repère, position GPS (facultative), note.
 7. **Validation à emporter** : nom, téléphone, heure de retrait (Dès que possible / À une heure précise).
 8. **Envoi** : paiement préféré (Espèces, MTN Mobile Money, Moov Money), aperçu exact du message WhatsApp, gros bouton orange « Commander sur WhatsApp » avec le logo WhatsApp.
 9. **Confirmation** : Commande envoyée, numéro, 3 étapes suivantes, Rouvrir la discussion WhatsApp, Retour au menu, Mes commandes.
 10. **Mes commandes** : historique local, Recommander, suppression d'une commande ou de tout l'historique.
-11. **Installation** : bannière Android (`beforeinstallprompt`, boutons Plus tard / Installer), guide iPhone (Partager > Sur l'écran d'accueil > Ajouter). Après refus : pas de nouvelle proposition d'office pendant 3 jours, mais un bouton « Installer l'app » reste toujours disponible dans le pied de page, et une carte d'installation est proposée une fois sur la Confirmation après la première commande. Déjà installée : rien.
+11. **Installation** : bannière Android (`beforeinstallprompt`, boutons Plus tard / Installer), guide iPhone (Partager > Sur l'écran d'accueil > Ajouter). Après refus : pas de nouvelle proposition pendant 7 jours. Déjà installée : rien.
 12. **États** : food truck fermé (menu consultable, commande bloquée, bandeau + barre « Commandes fermées »), pas de connexion (menu en cache, bandeau), localisation refusée (aide + champ pour coller un lien de position).
+
+## Style visuel validé : « Plein jour »
+
+- Fond général crème `#F5F0E8`, cartes et feuilles blanches, texte bleu nuit `#15132D`.
+- Le bleu nuit est réservé aux zones fortes : en-tête, barre du haut sur ordinateur, pied de page, barre panier, boutons + et compteurs − n +, choix sélectionnés (pastilles, variantes, Livraison / À emporter).
+- L'orange `#F28A22` sert aux bandeaux de catégorie et aux boutons principaux (Ajouter, Valider ma commande, Commander sur WhatsApp), toujours avec du texte bleu nuit dessus.
+- Fiche article : feuille blanche, sélecteur de quantité sur fond crème, champ Précision crème, bouton orange « Ajouter · prix ».
+- Écran de lancement : reste en bleu nuit avec le logo.
+- Toutes les valeurs sont dans `design/tokens.css`. La version précédente (fond nuit) n'est plus à suivre.
 
 ## Responsive
 
@@ -57,9 +66,9 @@ Mêmes textes, même identité et mêmes parcours partout. Seule la mise en page
 | Format | Mise en page |
 |---|---|
 | Petit téléphone 360 px | Rien ne déborde, prix et bouton panier toujours visibles |
-| Téléphone 390 px | Panier en bouton flottant orange en bas (compteur + total), fiche qui monte du bas |
+| Téléphone 390 px | Panier en barre flottante bleu nuit en bas (pastille orange avec le nombre d'articles, texte et total en blanc), fiche blanche qui monte du bas |
 | Tablette 768 px | Articles en 2 colonnes, panier en panneau fixe à droite (290 px) |
-| Ordinateur 1280 px | Barre du haut (logo, statut, recherche, Mes commandes, téléphone), catégories en colonne à gauche, articles en 2 colonnes au centre, panier fixe à droite (340 px), fiche en fenêtre centrée de 480 px, formulaires limités à 560 px et centrés |
+| Ordinateur 1280 px | Barre du haut bleu nuit (logo, statut, recherche blanche, Mes commandes, téléphone), catégories en colonne à gauche, articles en 2 colonnes au centre, panier fixe à droite (340 px), fiche en fenêtre centrée de 480 px, formulaires limités à 560 px et centrés |
 
 ## Règles métier
 
@@ -123,7 +132,7 @@ Note : appeler en arrivant
 - La maquette traduit l'accueil et la fiche ; reprendre les mêmes clés pour Panier, Validation, Envoi, Confirmation et Mes commandes.
 
 ### Pied de page de l'accueil
-- « Merci de faire route avec nous ! », icônes rondes Facebook, TikTok, Instagram (fichiers dans `public/brand/icons/`, en blanc), `@foodix`, numéros 01 95 94 51 51 et 01 90 56 89 89 en liens `tel:`.
+- « Merci de faire route avec nous ! », dans un pied de page bleu nuit : icônes rondes Facebook, TikTok, Instagram (fichiers dans `public/brand/icons/`, en blanc), `@foodix`, numéros 01 95 94 51 51 et 01 90 56 89 89 en liens `tel:`.
 - Tout en bas, séparé par un trait fin, en petit gris : « Conception de l'application : +229 01 41 90 08 35 » (en anglais « App design: »), lien `https://wa.me/2290141900835`. **Ne jamais afficher de nom à cet endroit.**
 
 ## Hors périmètre (ne pas construire)

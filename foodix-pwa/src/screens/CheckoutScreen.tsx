@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import ScreenHeader, { PageTitle } from '../components/ScreenHeader';
-import { CloseIcon, PinIcon, RefreshIcon, WarningIcon } from '../components/icons';
+import { CheckIcon, CloseIcon, PinIcon, RefreshIcon, WarningIcon } from '../components/icons';
 import { draftErrors, type DraftError } from '../lib/checkout';
 import { formatPrice } from '../lib/price';
 import { navigate } from '../lib/router';
@@ -155,6 +155,7 @@ export default function CheckoutScreen() {
 
               {draft.geo ? (
                 <div className={styles.geoOk}>
+                  <CheckIcon size={20} stroke={2.6} color="var(--fx-green)" />
                   <div className={styles.geoOkText}>
                     <strong className={styles.geoOkTitle}>{t.geoOk}</strong>
                     <span className={styles.help}>{t.geoAccuracy(draft.geo.accuracy)}</span>
@@ -170,7 +171,7 @@ export default function CheckoutScreen() {
                 <>
                   <div role="alert" className={styles.geoAlert}>
                     <div className={styles.geoAlertRow}>
-                      <WarningIcon size={20} stroke={2.2} color="var(--fx-orange-text)" />
+                      <WarningIcon size={20} stroke={2.2} color="var(--fx-price)" />
                       <div className={styles.geoAlertText}>
                         <strong className={styles.geoOkTitle}>{geoStatus === 'refused' ? t.geoRefused : t.geoFailed}</strong>
                         <span className={styles.help}>{t.geoRefusedText}</span>
@@ -199,7 +200,7 @@ export default function CheckoutScreen() {
               ) : (
                 <>
                   <button type="button" className={styles.shareGeo} onClick={locate} disabled={geoStatus === 'loading'}>
-                    <PinIcon size={20} color="var(--fx-orange-text)" />
+                    <PinIcon size={20} color="var(--fx-price)" />
                     {geoStatus === 'loading' ? t.geoLoading : t.shareGeo}
                   </button>
                   <span className={styles.help}>{t.geoHelp}</span>

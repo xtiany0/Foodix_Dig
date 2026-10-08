@@ -36,8 +36,8 @@
 }
 
 .segOn {
-  background: var(--fx-text);
-  color: var(--fx-bg);
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
 }
 
 .field {
@@ -255,7 +255,7 @@
   font-size: 18px;
   font-weight: 800;
   padding: 0 14px;
-  color-scheme: dark;
+  color-scheme: light;
   font-variant-numeric: tabular-nums;
 }
 
@@ -268,4 +268,8 @@
 
 .barMeta {
   font-weight: 800;
+}
+
+.geoOk > svg {
+  flex: none;
 }

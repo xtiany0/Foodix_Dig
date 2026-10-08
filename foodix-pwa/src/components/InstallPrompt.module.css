@@ -85,7 +85,7 @@
 .install {
   padding: 0 20px;
   background: var(--fx-orange);
-  color: var(--fx-bg);
+  color: var(--fx-navy);
   font-weight: 900;
 }
 
@@ -95,7 +95,7 @@
   position: fixed;
   inset: 0;
   z-index: 45;
-  background: rgba(10, 9, 26, 0.72);
+  background: var(--fx-overlay);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -161,7 +161,7 @@
   flex: none;
   font-size: 15px;
   font-weight: 900;
-  color: var(--fx-orange-text);
+  color: var(--fx-price);
 }
 
 .stepText {
@@ -179,8 +179,8 @@
   height: 52px;
   border-radius: var(--fx-radius-button);
   border: 0;
-  background: var(--fx-text);
-  color: var(--fx-bg);
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
   font-size: 16px;
   font-weight: 900;
 }
@@ -199,4 +199,9 @@
   gap: 8px;
   font-size: 15px;
   font-weight: 800;
+}
+
+.footerBtnNavy {
+  border-color: var(--fx-navy-line);
+  color: var(--fx-on-navy);
 }

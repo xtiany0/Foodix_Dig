@@ -1,4 +1,4 @@
-/* Accueil / menu. Téléphone d'abord ; tablette (768 px) et ordinateur (1180 px) plus bas. */
+/* Accueil / menu, style « Plein jour ». Téléphone d'abord ; tablette (768 px) et ordinateur (1180 px) plus bas. */
 
 .screen {
   min-height: 100vh;
@@ -19,14 +19,18 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* ---------- En-tête (téléphone, tablette) ---------- */
+/* ---------- En-tête bleu nuit (téléphone, tablette) ---------- */
 
 .header {
-  padding: 8px 8px 14px;
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
+  border-radius: 0 0 var(--fx-radius-header) var(--fx-radius-header);
+  margin-bottom: 4px;
+  padding: 8px 8px 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 /* Colonnes latérales égales : le logo est centré dans la page, quelle que soit la largeur des boutons. */
@@ -60,7 +64,7 @@
   border: 0;
   border-radius: 12px;
   background: transparent;
-  color: var(--fx-text);
+  color: var(--fx-on-navy);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -72,7 +76,7 @@
   width: var(--fx-tap);
   height: var(--fx-tap);
   border-radius: 12px;
-  color: var(--fx-text);
+  color: var(--fx-on-navy);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,7 +93,7 @@
 .slogan {
   font-size: 14px;
   font-weight: 700;
-  color: var(--fx-text-muted);
+  color: var(--fx-on-navy-muted);
 }
 
 .status {
@@ -99,6 +103,7 @@
   gap: 7px;
   font-size: 14px;
   font-weight: 800;
+  color: var(--fx-on-navy);
 }
 
 .dot {
@@ -107,17 +112,11 @@
   border-radius: 4px;
 }
 
-.banners {
-  margin: 0 16px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+/* Recherche blanche dans l'en-tête */
 
-/* ---------- Recherche ---------- */
-
-.searchBlock {
-  padding: 0 16px 6px;
+.headSearch {
+  width: 100%;
+  padding: 4px 8px 0;
 }
 
 .search {
@@ -127,15 +126,15 @@
 .search svg {
   position: absolute;
   left: 14px;
-  top: 14px;
+  top: 15px;
   pointer-events: none;
 }
 
 .searchInput {
   width: 100%;
-  height: 48px;
-  border-radius: var(--fx-radius-field);
-  border: 1px solid var(--fx-line-2);
+  height: 50px;
+  border-radius: var(--fx-radius-button);
+  border: 0;
   background: var(--fx-surface);
   color: var(--fx-text);
   font-size: 16px;
@@ -144,25 +143,32 @@
 }
 
 .searchInput::placeholder {
-  color: var(--fx-text-muted);
+  color: var(--fx-placeholder);
   opacity: 1;
 }
 
-/* ---------- Onglets de catégories ---------- */
+.banners {
+  margin: 0 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ---------- Catégories en pastilles ---------- */
 
 .tabs {
   position: sticky;
   top: 0;
   z-index: 5;
   background: var(--fx-bg);
-  border-bottom: 1px solid var(--fx-line);
+  padding: 12px 0 10px;
 }
 
 .tabsScroll {
   display: flex;
-  gap: 4px;
+  gap: 8px;
   overflow-x: auto;
-  padding: 0 8px;
+  padding: 0 16px;
   scrollbar-width: none;
 }
 
@@ -172,45 +178,46 @@
 
 .tab {
   flex: none;
-  height: 48px;
+  height: var(--fx-tap);
   display: flex;
   align-items: center;
-  padding: 0 10px;
-  border: 0;
-  border-bottom: 3px solid transparent;
-  background: transparent;
-  color: var(--fx-text-muted);
+  padding: 0 16px;
+  border-radius: 22px;
+  border: 1px solid var(--fx-line-2);
+  background: var(--fx-surface);
+  color: var(--fx-text);
   font-size: 15px;
   font-weight: 800;
   white-space: nowrap;
 }
 
 .tabOn {
-  border-bottom-color: var(--fx-orange);
-  color: var(--fx-text);
+  border-color: var(--fx-navy);
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
 }
 
 /* ---------- Sections ---------- */
 
 .section {
-  scroll-margin-top: 56px;
-  padding: 26px 0 4px;
+  scroll-margin-top: 72px;
+  padding: 18px 0 4px;
 }
 
 .band {
-  margin: 0;
+  margin: 0 0 0 16px;
   display: inline-flex;
   align-items: center;
   gap: 12px;
   background: var(--fx-orange);
-  color: var(--fx-bg);
+  color: var(--fx-navy);
   font-family: var(--fx-font-display);
   font-weight: 400;
   font-size: 23px;
   line-height: 1;
   letter-spacing: 0.3px;
-  padding: 7px 12px 5px 16px;
-  border-radius: 0 14px 3px 0;
+  padding: 7px 14px 5px;
+  border-radius: 4px 16px 4px 4px;
 }
 
 .bandTick {
@@ -231,7 +238,7 @@
 .groupLabel {
   font-family: var(--fx-font-display);
   font-size: 19px;
-  color: var(--fx-orange-text);
+  color: var(--fx-price);
   letter-spacing: 0.3px;
 }
 
@@ -244,8 +251,13 @@
   padding: 2px 7px;
 }
 
+/* Carte blanche qui contient les articles d'un groupe */
 .items {
-  padding: 6px 8px 0 16px;
+  margin: 10px 16px 0;
+  padding: 0 12px 0 16px;
+  background: var(--fx-surface);
+  border-radius: var(--fx-radius-card);
+  box-shadow: 0 1px 0 var(--fx-line);
 }
 
 /* ---------- Aucun résultat ---------- */
@@ -290,25 +302,31 @@
   }
 
   .header {
-    padding: 12px;
+    padding: 10px 12px 18px;
     align-items: stretch;
     gap: 10px;
+    margin-bottom: 0;
   }
 
   .logo {
     width: 124px;
   }
 
-  .header .search {
-    margin-right: 4px;
+  .headSearch {
+    padding: 0 4px 0 0;
+  }
+
+  .searchInput {
+    height: 48px;
+    border-radius: var(--fx-radius-field);
+  }
+
+  .search svg {
+    top: 14px;
   }
 
   .banners {
-    margin: 0 var(--pad-x) 12px;
-  }
-
-  .tabsScroll {
-    padding: 0 10px;
+    margin: 12px var(--pad-x) 0;
   }
 
   .main {
@@ -316,12 +334,12 @@
   }
 
   .section {
-    scroll-margin-top: 60px;
-    padding: 26px 0 0;
+    padding: 22px 0 0;
   }
 
   .band {
-    padding-left: 14px;
+    margin-left: 0;
+    padding: 7px 12px 5px 14px;
     border-radius: 3px 14px 3px 3px;
   }
 
@@ -331,10 +349,12 @@
 
   .items {
     --row-font: 15px;
+    --price-font: 14px;
+    margin: 10px 0 0;
+    padding: 0 16px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 28px;
-    padding: 6px 0 0;
   }
 
   .noResults {
@@ -355,7 +375,7 @@
     scroll-margin-top: 96px;
   }
 
-  /* Barre du haut */
+  /* Barre du haut bleu nuit */
   .topbar {
     position: sticky;
     top: 0;
@@ -365,8 +385,8 @@
     align-items: center;
     gap: 24px;
     padding: 0 24px;
-    background: var(--fx-bg);
-    border-bottom: 1px solid var(--fx-line);
+    background: var(--fx-navy);
+    color: var(--fx-on-navy);
   }
 
   .topLogo {
@@ -379,6 +399,15 @@
     flex: 1;
     max-width: 420px;
     margin-left: auto;
+  }
+
+  .topSearch .searchInput {
+    height: 48px;
+    border-radius: var(--fx-radius-field);
+  }
+
+  .topSearch .search svg {
+    top: 14px;
   }
 
   .topActions {
@@ -395,7 +424,7 @@
     align-items: center;
     gap: 8px;
     border-radius: 10px;
-    color: var(--fx-text);
+    color: var(--fx-on-navy);
     text-decoration: none;
     font-size: 15px;
     font-weight: 800;
@@ -426,7 +455,7 @@
     border: 0;
     border-radius: 10px;
     background: transparent;
-    color: var(--fx-text-muted);
+    color: var(--fx-text);
     text-align: left;
     font-size: 15px;
     font-weight: 800;
@@ -441,8 +470,8 @@
   }
 
   .sideOn {
-    background: var(--fx-line);
-    color: var(--fx-text);
+    background: var(--fx-navy);
+    color: var(--fx-on-navy);
   }
 
   .sideOn .sideDot {
