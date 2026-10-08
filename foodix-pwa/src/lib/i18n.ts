@@ -57,6 +57,7 @@ const fr = {
   optional: '(facultatif)',
   notePh: 'Ex. sans piment, sans oignon',
   add: 'Ajouter · ',
+  chooseQty: 'Choisissez une quantité',
   sheetClosed: 'Foodix est fermé : commande indisponible pour le moment',
   sheetOut: 'Épuisé aujourd’hui',
 
@@ -243,6 +244,7 @@ const en: Dict = {
   optional: '(optional)',
   notePh: 'E.g. no chili, no onion',
   add: 'Add · ',
+  chooseQty: 'Choose a quantity',
   sheetClosed: 'Foodix is closed: ordering unavailable right now',
   sheetOut: 'Sold out today',
 

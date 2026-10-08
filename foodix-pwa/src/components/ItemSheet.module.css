@@ -144,27 +144,55 @@
   color: var(--fx-text-muted);
 }
 
-.options {
+.choices {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 8px;
 }
 
-.option {
-  min-height: var(--fx-tap);
-  padding: 0 14px;
-  border-radius: 22px;
+/* Un choix : libellé, prix, « − n + » ; précision en dessous dès que la quantité dépasse 0. */
+.choice {
   border: 1.5px solid var(--fx-line-3);
-  background: transparent;
-  color: var(--fx-text);
-  font-size: 15px;
-  font-weight: 700;
+  border-radius: var(--fx-radius-button);
+  padding: 8px 8px 8px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.optionOn {
+.choiceOn {
   border-color: var(--fx-text);
-  background: var(--fx-text);
-  color: var(--fx-bg);
+}
+
+.choiceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.choiceText {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.choiceLabel {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.choicePrice {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--fx-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.choice .noteInput {
+  margin-right: 6px;
 }
 
 .qtyRow {
@@ -191,6 +219,11 @@
   background: var(--fx-bg);
   border-radius: 24px;
   padding: 2px;
+}
+
+.stepBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 
 .stepBtn {
@@ -247,6 +280,12 @@
   font-size: 17px;
   font-weight: 900;
   font-variant-numeric: tabular-nums;
+}
+
+.addBtn:disabled {
+  background: var(--fx-surface-2);
+  color: var(--fx-text-muted);
+  cursor: default;
 }
 
 .blocked {
