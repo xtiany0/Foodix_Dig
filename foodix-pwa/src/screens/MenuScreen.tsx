@@ -38,6 +38,14 @@ export default function MenuScreen() {
   const desktop = layout === 'desktop';
   const offer = useInstallOffer();
   const onMenu = useRoute() === 'menu';
+  // La bannière Android ne doit jamais faire sauter le menu sous le doigt du client :
+  // elle n'apparaît que si elle est prête pendant l'écran de lancement, ou au retour sur le menu.
+  const [installVisible, setInstallVisible] = useState(false);
+  useEffect(() => {
+    if (offer !== 'android') setInstallVisible(false);
+    else if (!onMenu || document.getElementById('launch')) setInstallVisible(true);
+  }, [offer, onMenu]);
+  const showInstall = offer === 'android' && installVisible;
 
   useOverlayHistory(sheetId !== null, () => setSheetId(null));
 
@@ -208,11 +216,11 @@ export default function MenuScreen() {
             </header>
           )}
 
-          {(!isOpen || !online || offer === 'android') && (
+          {(!isOpen || !online || showInstall) && (
             <div className={styles.banners}>
               {!isOpen && <StatusBanner kind="closed" />}
               {!online && <StatusBanner kind="offline" />}
-              {offer === 'android' && <InstallBanner />}
+              {showInstall && <InstallBanner />}
             </div>
           )}
 

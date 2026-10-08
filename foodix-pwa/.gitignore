@@ -6,3 +6,6 @@ dev-dist/
 
 # Maquette : référence de conception, conservée hors du dépôt
 design/maquette/
+
+# QR code généré (dépend du nom de domaine) : npm run qrcode
+qrcode/

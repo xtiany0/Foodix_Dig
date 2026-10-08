@@ -1,0 +1,37 @@
+# Cloudflare Pages : en-têtes HTTP.
+# Règle d'or : tout ce qui n'a pas de nom versionné doit être revérifié à chaque visite,
+# sinon une ancienne version de l'app ou du menu peut rester bloquée sur les téléphones.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: geolocation=(self), camera=(), microphone=(), payment=()
+
+# Service worker et manifest : jamais gardés en cache, pour que les mises à jour arrivent.
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+/manifest.webmanifest
+  Cache-Control: no-cache
+
+# Page et menu : revérifiés à chaque visite (le service worker garde sa propre copie hors connexion).
+/
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+/truck
+  Cache-Control: no-cache
+/menu.json
+  Cache-Control: no-cache
+
+# Fichiers versionnés par le build (nom avec empreinte) : gardés un an.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/workbox-*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# Logos et icônes : une semaine.
+/brand/*
+  Cache-Control: public, max-age=604800
+/icons/*
+  Cache-Control: public, max-age=604800

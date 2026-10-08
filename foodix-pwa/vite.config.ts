@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import { config } from './src/config';
 
 const MENU_PATH = fileURLToPath(new URL('./data/menu.json', import.meta.url));
 
@@ -32,12 +33,31 @@ function menuJson(): Plugin {
   };
 }
 
+/**
+ * Cloudflare Web Analytics : script ajouté au build seulement si un jeton est fourni
+ * (variable VITE_CF_BEACON_TOKEN dans Cloudflare Pages, ou config.analyticsToken).
+ * Placé en fin de page : il s'exécute après l'app, qui a déjà transformé ?src=truck en /truck.
+ */
+function analytics(): Plugin {
+  return {
+    name: 'foodix-analytics',
+    apply: 'build',
+    transformIndexHtml(html) {
+      const token = (process.env.VITE_CF_BEACON_TOKEN || config.analyticsToken).trim();
+      if (!token) return html;
+      const tag = `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='${JSON.stringify({ token })}'></script>`;
+      return html.replace('</body>', `  ${tag}\n  </body>`);
+    },
+  };
+}
+
 const NIGHT = '#15132D';
 
 export default defineConfig({
   plugins: [
     react(),
     menuJson(),
+    analytics(),
     VitePWA({
       // Nouvelle version : le service worker se met à jour seul, sans bouton.
       registerType: 'autoUpdate',

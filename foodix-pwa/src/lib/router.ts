@@ -43,13 +43,25 @@ function syncDepth() {
 }
 
 /**
+ * Scan du QR code du food truck (?src=truck) : Cloudflare Web Analytics n'enregistre pas
+ * les paramètres d'adresse. L'adresse devient donc /truck (même page, voir public/_redirects),
+ * avant le chargement du script de statistiques : les scans sont comptés sous le chemin /truck.
+ */
+export function analyticsPath(pathname: string, search: string): string {
+  const params = new URLSearchParams(search);
+  if (params.get('src') !== 'truck') return pathname + search;
+  params.delete('src');
+  const rest = params.toString();
+  return '/truck' + (rest ? '?' + rest : '');
+}
+
+/**
  * Au démarrage : si l'app s'ouvre directement sur un écran autre que le menu,
  * on glisse le menu dessous, pour que « retour » y mène au lieu de quitter l'app.
- * Les paramètres de l'adresse (ex. ?src=truck) sont conservés.
  */
 export function initHistory(): void {
   const route = parseHash(location.hash);
-  const base = location.pathname + location.search;
+  const base = analyticsPath(location.pathname, location.search);
   history.replaceState({ d: 0 }, '', base + PATHS.menu);
   depth = 0;
   if (route !== 'menu') {

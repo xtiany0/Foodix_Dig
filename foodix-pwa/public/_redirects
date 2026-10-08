@@ -1,0 +1,3 @@
+# Cloudflare Pages. Le QR code du food truck ouvre /truck : même application,
+# servie telle quelle (pas de redirection), pour que les scans soient comptés sous /truck.
+/truck  /index.html  200
