@@ -20,6 +20,15 @@ loadMenu()
       </StrictMode>,
     );
     void finishLaunch();
+    // Première visite : le service worker n'interceptait pas encore le premier chargement du menu.
+    // On le redemande une fois qu'il est actif, pour que le menu soit consultable hors connexion.
+    if ('serviceWorker' in navigator && !navigator.serviceWorker.controller) {
+      navigator.serviceWorker.addEventListener(
+        'controllerchange',
+        () => void fetch('/menu.json', { cache: 'no-cache' }).catch(() => {}),
+        { once: true },
+      );
+    }
   })
   .catch((err: unknown) => {
     console.error(err);

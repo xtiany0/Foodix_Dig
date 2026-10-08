@@ -35,7 +35,7 @@ export default function ScreenHeader({ title, backLabel, step }: Props) {
         <span aria-hidden="true">{t.back}</span>
       </BackLink>
       <span className={base.logoWrap}>
-        <img src="/brand/foodix-logo-nuit-sans-slogan.png" width={640} height={314} alt="Foodix" className={base.logo} />
+        <img src="/brand/foodix-logo-nuit-sans-slogan.webp" width={640} height={314} alt="Foodix" className={base.logo} />
       </span>
       <span className={base.step}>{step}</span>
     </header>

@@ -164,7 +164,7 @@ export default function CartScreen() {
         </>
       ) : (
         <main className={styles.empty}>
-          <img src="/brand/foodix-toque.png" width={240} height={132} alt="" className={styles.toque} />
+          <img src="/brand/foodix-toque.webp" width={240} height={132} alt="" className={styles.toque} />
           <h2 className={styles.emptyTitle}>{t.cartEmptyTitle}</h2>
           <p className={styles.emptyText}>{t.cartEmptyText}</p>
           <BackLink className={styles.seeMenu}>{t.seeMenu}</BackLink>

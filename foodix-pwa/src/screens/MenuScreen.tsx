@@ -3,12 +3,14 @@ import { config } from '../config';
 import CartPanel from '../components/CartPanel';
 import CartPill from '../components/CartPill';
 import Footer from '../components/Footer';
+import { InstallBanner, IosGuide } from '../components/InstallPrompt';
 import ItemSheet from '../components/ItemSheet';
 import MenuRow from '../components/MenuRow';
 import StatusBanner from '../components/StatusBanner';
 import Toast from '../components/Toast';
 import { PhoneIcon, ReceiptIcon, SearchIcon } from '../components/icons';
-import { href, useOverlayHistory } from '../lib/router';
+import { useInstallOffer } from '../lib/install';
+import { href, useOverlayHistory, useRoute } from '../lib/router';
 import { normalize, searchText } from '../lib/search';
 import { useStore } from '../state/store';
 import type { Category, MenuGroup, MenuItem } from '../types/menu';
@@ -34,6 +36,8 @@ export default function MenuScreen() {
   const tabsRef = useRef<HTMLDivElement>(null);
   const wide = layout !== 'phone';
   const desktop = layout === 'desktop';
+  const offer = useInstallOffer();
+  const onMenu = useRoute() === 'menu';
 
   useOverlayHistory(sheetId !== null, () => setSheetId(null));
 
@@ -146,7 +150,7 @@ export default function MenuScreen() {
     <div className={styles.screen} data-layout={layout}>
       {desktop && (
         <header className={styles.topbar}>
-          <img src="/brand/foodix-logo-nuit-sans-slogan.png" width={640} height={314} alt="Foodix" className={styles.topLogo} />
+          <img src="/brand/foodix-logo-nuit-sans-slogan.webp" width={640} height={314} alt="Foodix" className={styles.topLogo} />
           {status}
           <div className={styles.topSearch}>{search}</div>
           <div className={styles.topActions}>
@@ -185,7 +189,7 @@ export default function MenuScreen() {
           {!desktop && (
             <header className={styles.header}>
               <div className={styles.headRow}>
-                <img src="/brand/foodix-logo-nuit-sans-slogan.png" width={640} height={314} alt="Foodix" className={styles.logo} />
+                <img src="/brand/foodix-logo-nuit-sans-slogan.webp" width={640} height={314} alt="Foodix" className={styles.logo} />
                 <div className={styles.actions}>
                   {langSwitch}
                   <a href={href('commandes')} className={styles.iconLink} aria-label={t.myOrders}>
@@ -204,10 +208,11 @@ export default function MenuScreen() {
             </header>
           )}
 
-          {(!isOpen || !online) && (
+          {(!isOpen || !online || offer === 'android') && (
             <div className={styles.banners}>
               {!isOpen && <StatusBanner kind="closed" />}
               {!online && <StatusBanner kind="offline" />}
+              {offer === 'android' && <InstallBanner />}
             </div>
           )}
 
@@ -276,6 +281,7 @@ export default function MenuScreen() {
 
       <Toast text={toast} />
       {!wide && <CartPill />}
+      {offer === 'ios' && <IosGuide blocked={!onMenu || sheetId !== null} />}
       {sheetId && <ItemSheet itemId={sheetId} onClose={() => setSheetId(null)} onAdded={showToast} />}
     </div>
   );

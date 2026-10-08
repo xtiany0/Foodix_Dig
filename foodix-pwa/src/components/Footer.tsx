@@ -44,7 +44,7 @@ export default function Footer({ wide = false }: { wide?: boolean }) {
 
   return (
     <footer className={styles.footer}>
-      <img src="/brand/foodix-logo-nuit.png" width={720} height={358} alt="Foodix, Manger bon, manger mobile" className={styles.logo} loading="lazy" />
+      <img src="/brand/foodix-logo-nuit.webp" width={720} height={358} alt="Foodix, Manger bon, manger mobile" className={styles.logo} loading="lazy" />
       <p className={styles.thanks}>{t.thanks}</p>
       <div className={styles.socials}>{socialLinks}</div>
       <span className={styles.handle}>{social.handle}</span>

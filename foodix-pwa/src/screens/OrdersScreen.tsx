@@ -96,7 +96,7 @@ export default function OrdersScreen() {
           </button>
         ) : (
           <div className={styles.empty}>
-            <img src="/brand/foodix-toque.png" width={240} height={132} alt="" className={styles.toque} />
+            <img src="/brand/foodix-toque.webp" width={240} height={132} alt="" className={styles.toque} />
             <strong className={styles.emptyTitle}>{t.noOrders}</strong>
             <span className={styles.emptyText}>{t.noOrdersText}</span>
             <BackLink className={styles.seeMenu}>{t.seeMenu}</BackLink>

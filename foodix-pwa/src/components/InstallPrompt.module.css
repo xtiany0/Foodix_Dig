@@ -1,0 +1,186 @@
+/* ---------- Bannière Android ---------- */
+
+.banner {
+  background: var(--fx-surface);
+  border: 1px solid var(--fx-line-2);
+  border-radius: var(--fx-radius-button);
+  padding: 12px 12px 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bannerRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.appIcon {
+  width: 48px;
+  height: 48px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--fx-bg);
+  border: 1px solid var(--fx-line-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.appIcon img {
+  width: 34px;
+  height: auto;
+}
+
+.appIconLarge {
+  width: 52px;
+  height: 52px;
+  border-radius: 13px;
+}
+
+.appIconLarge img {
+  width: 38px;
+}
+
+.bannerText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--fx-text-muted);
+}
+
+.bannerActions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.later,
+.install {
+  height: var(--fx-tap);
+  border-radius: 10px;
+  border: 0;
+  font-size: 15px;
+}
+
+.later {
+  padding: 0 16px;
+  background: transparent;
+  color: var(--fx-text-muted);
+  font-weight: 800;
+}
+
+.install {
+  padding: 0 20px;
+  background: var(--fx-orange);
+  color: var(--fx-bg);
+  font-weight: 900;
+}
+
+/* ---------- Guide iPhone ---------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  background: rgba(10, 9, 26, 0.72);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.sheet {
+  width: 100%;
+  max-width: 560px;
+  background: var(--fx-surface);
+  border-radius: var(--fx-radius-sheet) var(--fx-radius-sheet) 0 0;
+  padding: 8px 20px calc(20px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--fx-line-3);
+  align-self: center;
+}
+
+.iosHead {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.iosTitle {
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  min-height: 56px;
+  border-top: 1px solid var(--fx-line-2);
+}
+
+.step:last-child {
+  border-bottom: 1px solid var(--fx-line-2);
+}
+
+.step svg {
+  flex: none;
+}
+
+.stepNum {
+  width: 22px;
+  flex: none;
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--fx-orange-text);
+}
+
+.stepText {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.stepText strong {
+  font-weight: 900;
+}
+
+.gotIt {
+  height: 52px;
+  border-radius: var(--fx-radius-button);
+  border: 0;
+  background: var(--fx-text);
+  color: var(--fx-bg);
+  font-size: 16px;
+  font-weight: 900;
+}

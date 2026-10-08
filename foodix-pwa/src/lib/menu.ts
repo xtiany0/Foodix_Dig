@@ -138,7 +138,8 @@ export function indexMenu(menu: Menu): Map<string, ItemRef> {
 
 /** Charge /menu.json (mis en cache par le service worker) et le vérifie. */
 export async function loadMenu(): Promise<Menu> {
-  const res = await fetch('/menu.json');
+  // no-cache : le navigateur revérifie auprès du serveur ; hors connexion, le service worker répond.
+  const res = await fetch('/menu.json', { cache: 'no-cache' });
   if (!res.ok) throw new MenuError(`menu.json : réponse ${res.status}`);
   return parseMenu(await res.json());
 }

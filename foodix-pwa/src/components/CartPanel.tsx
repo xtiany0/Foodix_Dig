@@ -84,7 +84,7 @@ export default function CartPanel() {
         ))}
         {lines.length === 0 && (
           <div className={styles.empty}>
-            <img src="/brand/foodix-toque.png" width={240} height={132} alt="" className={styles.toque} />
+            <img src="/brand/foodix-toque.webp" width={240} height={132} alt="" className={styles.toque} />
             <strong className={styles.emptyTitle}>{t.cartEmptyTitle}</strong>
             <span className={styles.emptyText}>{t.cartEmptyPanel}</span>
           </div>

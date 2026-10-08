@@ -173,6 +173,22 @@ const fr = {
   erase: 'Effacer',
   noOrders: 'Aucune commande pour le moment',
   noOrdersText: 'Vos prochaines commandes apparaîtront ici pour les relancer en un geste.',
+  // Installation
+  installTitle: 'Installer Foodix',
+  installText: 'Le menu sur votre écran d’accueil, rapide même avec un réseau faible.',
+  later: 'Plus tard',
+  install: 'Installer',
+  iosAria: 'Installer Foodix sur iPhone',
+  iosTitle: 'Ajouter Foodix à l’écran d’accueil',
+  iosText: 'Ouvrez le menu comme une application.',
+  ios1a: 'Dans Safari, touchez',
+  ios1b: 'Partager',
+  ios2a: 'Choisissez',
+  ios2b: 'Sur l’écran d’accueil',
+  ios3a: 'Touchez',
+  ios3b: 'Ajouter',
+  ios3c: ', en haut à droite',
+  gotIt: 'J’ai compris',
 };
 
 export type Dict = typeof fr;
@@ -333,6 +349,21 @@ const en: Dict = {
   erase: 'Clear',
   noOrders: 'No orders yet',
   noOrdersText: 'Your next orders will show up here so you can reorder in one tap.',
+  installTitle: 'Install Foodix',
+  installText: 'The menu on your home screen, fast even on a weak network.',
+  later: 'Later',
+  install: 'Install',
+  iosAria: 'Install Foodix on iPhone',
+  iosTitle: 'Add Foodix to your home screen',
+  iosText: 'Open the menu like an app.',
+  ios1a: 'In Safari, tap',
+  ios1b: 'Share',
+  ios2a: 'Choose',
+  ios2b: 'Add to Home Screen',
+  ios3a: 'Tap',
+  ios3b: 'Add',
+  ios3c: ', top right',
+  gotIt: 'Got it',
 };
 
 export const dictionaries: Record<'fr' | 'en', Dict> = { fr, en };
