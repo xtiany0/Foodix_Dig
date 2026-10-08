@@ -147,7 +147,7 @@ src/screens/          Écrans : menu, panier, validation, envoi, confirmation, m
 src/components/       Éléments réutilisés : ligne du menu, fiche, panneau panier…
 src/styles/           Couleurs (tokens.css, reprises de la maquette), polices
 tests/                Tests Vitest
-public/               Fichiers publiés tels quels : logos, icônes, _headers, _redirects
+public/               Fichiers publiés tels quels : logos, icônes, _headers
 scripts/              Génération des icônes et du QR code
 ```
 
@@ -223,7 +223,7 @@ La première fois, `wrangler` demande de se connecter au compte Cloudflare.
   - `sw.js`, `manifest.webmanifest`, la page et `menu.json` sont revérifiés à chaque visite. Sans cela, un ancien service worker ou un ancien menu pourrait rester bloqué sur les téléphones.
   - Les fichiers de `assets/` ont un nom versionné : ils sont gardés un an.
   - Le fichier contient aussi quelques en-têtes de sécurité.
-- **`_redirects`** : sert l'app à l'adresse `/truck` (voir § 8).
+- L'adresse `/truck` (§ 8) n'a besoin d'aucune règle : sans fichier `404.html`, Cloudflare Pages sert l'app pour toute adresse inconnue.
 
 ### Mise à jour sur les téléphones
 

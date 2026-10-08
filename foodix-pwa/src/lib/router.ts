@@ -44,7 +44,8 @@ function syncDepth() {
 
 /**
  * Scan du QR code du food truck (?src=truck) : Cloudflare Web Analytics n'enregistre pas
- * les paramètres d'adresse. L'adresse devient donc /truck (même page, voir public/_redirects),
+ * les paramètres d'adresse. L'adresse devient donc /truck (même page : Cloudflare Pages sert l'app
+ * pour toute adresse inconnue, et le service worker hors connexion),
  * avant le chargement du script de statistiques : les scans sont comptés sous le chemin /truck.
  */
 export function analyticsPath(pathname: string, search: string): string {
