@@ -84,7 +84,7 @@ Mêmes textes, même identité et mêmes parcours partout. Seule la mise en page
 - Chichas : la liste affiche le prix de la pose, la ligne « Changement : 1.000 F » en dessous ; la fiche propose Pose ou Changement (`listPrice: "base"` dans le JSON).
 
 ### Message WhatsApp (format exact)
-Lien : `https://wa.me/2290195945151?text=` + message encodé (`encodeURIComponent`). Numéro de commande court aléatoire (ex. `#A7K2`). Le panier est vidé après l'envoi et la commande enregistrée dans l'historique.
+Lien : `https://wa.me/2290190568989?text=` + message encodé (`encodeURIComponent`). Numéro de commande court aléatoire (ex. `#A7K2`). Le panier est vidé après l'envoi et la commande enregistrée dans l'historique.
 
 ```
 Commande FOODIX #A7K2

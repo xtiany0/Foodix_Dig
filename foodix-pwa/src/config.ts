@@ -28,8 +28,8 @@ export const config = {
   siteUrl: 'https://foodix.pages.dev',
 
   /** Numéro qui reçoit les commandes WhatsApp (format international, sans « + »). */
-  whatsappNumber: '2290195945151',
-  whatsappDisplay: '01 95 94 51 51',
+  whatsappNumber: '2290190568989',
+  whatsappDisplay: '01 90 56 89 89',
 
   /** Numéros affichés et appelables (liens tel:). Le premier sert au bouton « Appeler ». */
   phones: [
