@@ -36,20 +36,56 @@ export function InstallBanner() {
 
 const IOS_DELAY_MS = 3000;
 
-function ShareIcon() {
+/* Dessins des boutons tels qu'ils apparaissent sur l'iPhone (décoratifs : le texte dit la même chose). */
+
+function KeyDots() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 3v12M8 7l4-4 4 4M7 11H5v10h14V11h-2" />
-    </svg>
+    <span className={styles.key} aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="5" cy="12" r="2" />
+        <circle cx="12" cy="12" r="2" />
+        <circle cx="19" cy="12" r="2" />
+      </svg>
+    </span>
   );
 }
 
-function AddIcon() {
+function KeyShare() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="4" y="4" width="16" height="16" rx="3" />
-      <path d="M12 8v8M8 12h8" />
-    </svg>
+    <span className={`${styles.key} ${styles.keySmall}`} aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 3v12M8 7l4-4 4 4M7 11H5v10h14V11h-2" />
+      </svg>
+    </span>
+  );
+}
+
+function KeyMore() {
+  return (
+    <span className={styles.key} aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </span>
+  );
+}
+
+function KeyHome() {
+  return (
+    <span className={styles.key} aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="4" y="4" width="16" height="16" rx="3" />
+        <path d="M12 8v8M8 12h8" />
+      </svg>
+    </span>
+  );
+}
+
+function KeyAdd({ label }: { label: string }) {
+  return (
+    <span className={styles.keyAdd} aria-hidden="true">
+      {label}
+    </span>
   );
 }
 
@@ -72,28 +108,27 @@ function IosSheet({ onClose }: { onClose: () => void }) {
           </div>
         </div>
         <ol className={styles.steps}>
-          <li className={styles.step}>
-            <span className={styles.stepNum}>1</span>
-            <span className={styles.stepText}>
-              {t.ios1a} <strong>{t.ios1b}</strong>
-            </span>
-            <ShareIcon />
-          </li>
-          <li className={styles.step}>
-            <span className={styles.stepNum}>2</span>
-            <span className={styles.stepText}>
-              {t.ios2a} <strong>{t.ios2b}</strong>
-            </span>
-            <AddIcon />
-          </li>
-          <li className={styles.step}>
-            <span className={styles.stepNum}>3</span>
-            <span className={styles.stepText}>
-              {t.ios3a} <strong>{t.ios3b}</strong>
-              {t.ios3c}
-            </span>
-          </li>
+          {[
+            { lead: t.ios1, key: t.ios1Key, end: t.ios1End, icon: <KeyDots /> },
+            { lead: t.ios2, key: t.ios2Key, end: t.ios2End, icon: <KeyMore /> },
+            { lead: t.ios3, key: t.ios3Key, end: t.ios3End, icon: <KeyHome /> },
+            { lead: t.ios4, key: t.ios4Key, end: t.ios4End, icon: <KeyAdd label={t.iosButtonAdd} /> },
+          ].map((step, i) => (
+            <li key={i} className={styles.step}>
+              <span className={styles.stepNum}>{i + 1}</span>
+              <span className={styles.stepText}>
+                {step.lead} <strong>{step.key}</strong> {step.end}
+                {i === 0 && (
+                  <span className={styles.stepAlt}>
+                    <KeyShare /> {t.ios1Alt}
+                  </span>
+                )}
+              </span>
+              {step.icon}
+            </li>
+          ))}
         </ol>
+        <p className={styles.iosDone}>{t.iosDone}</p>
         <button type="button" className={styles.gotIt} onClick={onClose} data-autofocus>
           {t.gotIt}
         </button>

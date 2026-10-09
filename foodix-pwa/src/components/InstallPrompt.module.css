@@ -107,6 +107,9 @@
   max-width: 560px;
   background: var(--fx-surface);
   color: var(--fx-text);
+  max-height: calc(100% - var(--safe-top) - 8px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border-radius: var(--fx-radius-sheet) var(--fx-radius-sheet) 0 0;
   padding: 8px 20px calc(20px + env(safe-area-inset-bottom));
   display: flex;
@@ -143,9 +146,10 @@
 
 .step {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   align-items: center;
-  min-height: 56px;
+  min-height: 64px;
+  padding: 8px 0;
   border-top: 1px solid var(--fx-line-2);
 }
 
@@ -158,16 +162,77 @@
 }
 
 .stepNum {
-  width: 22px;
+  width: 30px;
+  height: 30px;
   flex: none;
+  border-radius: 15px;
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 15px;
   font-weight: 900;
-  color: var(--fx-price);
+}
+
+/* Dessin du bouton à toucher, comme sur l'iPhone (gris clair, rond). */
+.key {
+  width: 48px;
+  height: 48px;
+  flex: none;
+  border-radius: 24px;
+  background: var(--fx-surface-2);
+  border: 1px solid var(--fx-line-3);
+  color: var(--fx-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keySmall {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+/* Bouton bleu « Ajouter » de l'iPhone */
+.keyAdd {
+  flex: none;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 18px;
+  background: #0a7aff;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.stepAlt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fx-text-muted);
+}
+
+.iosDone {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--fx-green);
 }
 
 .stepText {
   flex: 1;
-  font-size: 15px;
+  min-width: 0;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.35;
 }

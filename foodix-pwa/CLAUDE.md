@@ -47,7 +47,7 @@ Parcours principal : Lancement > Menu > fiche article > Ajouter > Panier > Valid
 8. **Envoi** : paiement préféré (Espèces, MTN Mobile Money, Moov Money), aperçu exact du message WhatsApp, gros bouton orange « Commander sur WhatsApp » avec le logo WhatsApp.
 9. **Confirmation** : Commande envoyée, numéro, 3 étapes suivantes, Rouvrir la discussion WhatsApp, Retour au menu, Mes commandes.
 10. **Mes commandes** : historique local, Recommander, suppression d'une commande ou de tout l'historique.
-11. **Installation** : bannière Android (`beforeinstallprompt`, boutons Plus tard / Installer), guide iPhone (Partager > Sur l'écran d'accueil > Ajouter). Après refus : pas de nouvelle proposition pendant 7 jours. Déjà installée : rien.
+11. **Installation** : bannière Android (`beforeinstallprompt`, boutons Plus tard / Installer), guide iPhone illustré en 4 étapes, avec les mots exacts de l'iPhone (••• puis « Partager », « En voir plus », « Sur l'écran d'accueil », « Ajouter »). Après refus : pas de nouvelle proposition pendant 7 jours. Déjà installée : rien.
 12. **États** : food truck fermé (menu consultable, commande bloquée, bandeau + barre « Commandes fermées »), pas de connexion (menu en cache, bandeau), localisation refusée (aide + champ pour coller un lien de position).
 
 ## Style visuel validé : « Plein jour »
