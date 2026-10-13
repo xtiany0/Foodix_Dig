@@ -141,7 +141,7 @@ Pas de mode « sur place », pas de compte client, pas de fidélité, pas de pai
 
 ## Points encore à confirmer avec Foodix
 
-- Horaires d'ouverture (la maquette affiche `[HORAIRES À CONFIRMER]`) et emplacement du food truck.
+- Emplacement du food truck. (Horaires confirmés : lundi–jeudi 10h–23h, vendredi–dimanche 10h–minuit.)
 - Noms des variantes à double prix : shawarma viande de bœuf (1.000 / 1.500 F), donuts (1.500 / 3.500 F), 3x (1.000 / 2.000 F). Provisoirement « Format à 1.000 F », etc.
 - Zones et frais de livraison, nom de domaine, adresses exactes des pages Facebook / TikTok / Instagram (supposées `/foodix`).
 - Dans la maquette, « Pastel » est marqué épuisé et l'historique contient des commandes d'exemple : ce sont des **données de démonstration**, pas des données réelles.

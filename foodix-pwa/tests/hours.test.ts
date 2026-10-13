@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { WeeklyHours } from '../src/config';
+import { config, type WeeklyHours } from '../src/config';
 import { isOpenAt, localTime } from '../src/lib/hours';
 
 const TZ = 'Africa/Porto-Novo'; // UTC+1, sans heure d'été
@@ -40,5 +40,22 @@ describe('Ouvert / Fermé', () => {
     expect(isOpenAt(at('2026-10-09T22:00:00Z'), hours, TZ)).toBe(true); // vendredi 23:00
     expect(isOpenAt(at('2026-10-10T00:30:00Z'), hours, TZ)).toBe(true); // samedi 01:30
     expect(isOpenAt(at('2026-10-10T01:00:00Z'), hours, TZ)).toBe(false); // samedi 02:00
+  });
+
+  it('fermeture à minuit (« 00:00 ») : ouvert jusqu’à 23:59, fermé à 00:00', () => {
+    const late: WeeklyHours = { 5: [{ open: '10:00', close: '00:00' }] };
+    expect(isOpenAt(at('2026-10-09T08:59:00Z'), late, TZ)).toBe(false); // vendredi 09:59
+    expect(isOpenAt(at('2026-10-09T09:00:00Z'), late, TZ)).toBe(true); // vendredi 10:00
+    expect(isOpenAt(at('2026-10-09T22:59:00Z'), late, TZ)).toBe(true); // vendredi 23:59
+    expect(isOpenAt(at('2026-10-09T23:00:00Z'), late, TZ)).toBe(false); // samedi 00:00
+  });
+
+  it('horaires de Foodix : 23h en semaine, minuit le week-end', () => {
+    const h = config.openingHours;
+    expect(isOpenAt(at('2026-10-08T21:59:00Z'), h, TZ)).toBe(true); // jeudi 22:59
+    expect(isOpenAt(at('2026-10-08T22:00:00Z'), h, TZ)).toBe(false); // jeudi 23:00
+    expect(isOpenAt(at('2026-10-11T22:30:00Z'), h, TZ)).toBe(true); // dimanche 23:30
+    expect(isOpenAt(at('2026-10-11T23:00:00Z'), h, TZ)).toBe(false); // lundi 00:00
+    expect(isOpenAt(at('2026-10-12T08:30:00Z'), h, TZ)).toBe(false); // lundi 09:30
   });
 });

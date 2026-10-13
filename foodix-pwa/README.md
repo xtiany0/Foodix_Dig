@@ -113,8 +113,8 @@ Tout ce qui reste **à confirmer avec Foodix** est regroupé dans ce fichier :
 | Réglage | Valeur actuelle |
 |---|---|
 | `siteUrl` | `https://foodix.pages.dev` (provisoire, sert au QR code) |
-| `openingHours` | `null` : horaires inconnus, l'app est toujours « Ouvert » |
-| `openingHoursText` | `[HORAIRES À CONFIRMER]`, affiché dans le bandeau « Foodix est fermé » |
+| `openingHours` | Lundi–jeudi 10h–23h, vendredi–dimanche 10h–minuit (`null` : horaires inconnus, l'app est toujours « Ouvert ») |
+| `openingHoursText` | Texte des horaires, affiché dans le bandeau « Foodix est fermé » |
 | `location` | `[EMPLACEMENT À CONFIRMER]` (pas encore affiché) |
 | `social` | Pages Facebook / TikTok / Instagram supposées `/foodix` |
 | `variantNames` | Noms provisoires « Format à 1.000 F »… pour shawarma bœuf, donuts et 3x |
@@ -245,7 +245,7 @@ Sans jeton, aucun script de statistiques n'est ajouté.
 
 ## 9. Avant la mise en ligne
 
-- [ ] Informations confirmées par Foodix et reportées dans `src/config.ts` : horaires, emplacement, noms des variantes, réseaux sociaux, domaine
+- [ ] Informations confirmées par Foodix et reportées dans `src/config.ts` : emplacement, noms des variantes, réseaux sociaux, domaine
 - [ ] Prix et articles relus avec Foodix dans `data/menu.json`
 - [ ] Test sur un vrai téléphone Android d'entrée de gamme en 3G : chargement, commande complète jusqu'à WhatsApp, position GPS, hors connexion, installation
 - [ ] Test sur iPhone (Safari) : commande et guide d'installation

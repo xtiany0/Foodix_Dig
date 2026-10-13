@@ -55,16 +55,24 @@ export const config = {
   timeZone: 'Africa/Porto-Novo',
 
   /**
-   * À CONFIRMER : horaires d'ouverture.
+   * Horaires d'ouverture : lundi au jeudi 10h–23h, vendredi au dimanche 10h–minuit.
    * null = horaires inconnus : l'application est considérée comme toujours ouverte.
-   * Exemple : { 1: [{ open: '11:00', close: '23:00' }], 5: [{ open: '11:00', close: '02:00' }] }
+   * Fermeture « 00:00 » = minuit.
    */
-  openingHours: null as WeeklyHours | null,
+  openingHours: {
+    1: [{ open: '10:00', close: '23:00' }],
+    2: [{ open: '10:00', close: '23:00' }],
+    3: [{ open: '10:00', close: '23:00' }],
+    4: [{ open: '10:00', close: '23:00' }],
+    5: [{ open: '10:00', close: '00:00' }],
+    6: [{ open: '10:00', close: '00:00' }],
+    0: [{ open: '10:00', close: '00:00' }],
+  } as WeeklyHours | null,
 
-  /** À CONFIRMER : texte des horaires dans le bandeau « Foodix est fermé ». */
+  /** Texte des horaires dans le bandeau « Foodix est fermé ». */
   openingHoursText: {
-    fr: '[HORAIRES À CONFIRMER]',
-    en: '[OPENING HOURS TO CONFIRM]',
+    fr: 'du lundi au jeudi de 10h à 23h, du vendredi au dimanche de 10h à minuit',
+    en: 'Monday to Thursday 10am–11pm, Friday to Sunday 10am–midnight',
   } satisfies Localized,
 
   /** Ville du food truck ; emplacement exact À CONFIRMER (pas encore affiché dans la maquette). */
