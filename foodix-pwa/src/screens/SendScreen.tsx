@@ -13,6 +13,11 @@ import styles from './SendScreen.module.css';
 export default function SendScreen() {
   const { t, lang, draft, updateDraft, pending, confirmSend, lines, canOrder, online } = useStore();
   const sending = useRef(false);
+  // Message figé au clic : confirmSend vide le panier et tire un nouveau numéro. Tant que
+  // l'écran reste affiché (retour depuis WhatsApp), il doit montrer et renvoyer la commande
+  // envoyée, pas un message vide.
+  const sent = useRef<typeof pending | null>(null);
+  const shown = sent.current ?? pending;
 
   // Arrivée sans panier ou sans coordonnées (lien direct, rechargement) : on revient à l'étape utile.
   useEffect(() => {
@@ -23,7 +28,11 @@ export default function SendScreen() {
 
   const send = () => {
     // Le lien s'ouvre (WhatsApp) ; l'app enregistre la commande, vide le panier et passe à la confirmation.
+    // Sur téléphone, le retour d'historique de restartAt n'arrive qu'au retour dans l'app :
+    // un 2e appui ne doit ni enregistrer une 2e commande, ni changer le message (le lien rouvre le même).
+    if (sending.current) return;
     sending.current = true;
+    sent.current = pending;
     confirmSend();
     restartAt('confirmation');
   };
@@ -68,7 +77,7 @@ export default function SendScreen() {
           </p>
           <div className={styles.preview}>
             <div className={styles.msg} lang="fr">
-              {pending.message}
+              {shown.message}
             </div>
           </div>
         </section>
@@ -77,7 +86,7 @@ export default function SendScreen() {
       <div className={base.bar}>
         <div className={base.barInner}>
           {canOrder && online ? (
-            <a href={pending.link} target="_blank" rel="noopener" className={styles.wa} onClick={send}>
+            <a href={shown.link} target="_blank" rel="noopener" className={styles.wa} onClick={send}>
               <WhatsAppIcon size={24} />
               {t.orderWhatsapp}
             </a>
