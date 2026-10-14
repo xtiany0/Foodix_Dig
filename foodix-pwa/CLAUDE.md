@@ -133,7 +133,7 @@ Note : appeler en arrivant
 
 ### Pied de page de l'accueil
 - « Merci de faire route avec nous ! », dans un pied de page bleu nuit : icônes rondes Facebook, TikTok, Instagram (fichiers dans `public/brand/icons/`, en blanc), `@foodix`, numéros 01 95 94 51 51 et 01 90 56 89 89 en liens `tel:`.
-- Tout en bas, séparé par un trait fin, en petit gris : « Conception de l'application : +229 01 41 90 08 35 » (en anglais « App design: »), lien `https://wa.me/2290141900835`. **Ne jamais afficher de nom à cet endroit.**
+- Tout en bas, séparé par un trait fin, en petit gris : « Envie d'une app comme celle-ci ? Écrivez-nous : » suivi du logo WhatsApp (petite sonnerie toutes les 4 s) et de +229 01 41 90 08 35 (en anglais « Want an app like this one? Message us: »), lien `https://wa.me/2290141900835`. **Ne jamais afficher de nom à cet endroit.**
 
 ## Hors périmètre (ne pas construire)
 

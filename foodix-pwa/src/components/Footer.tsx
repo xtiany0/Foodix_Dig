@@ -1,6 +1,6 @@
 import { config } from '../config';
 import { useStore } from '../state/store';
-import { FacebookIcon, InstagramIcon, PhoneIcon, TikTokIcon } from './icons';
+import { FacebookIcon, InstagramIcon, PhoneIcon, TikTokIcon, WhatsAppIcon } from './icons';
 import { InstallButton } from './InstallPrompt';
 import styles from './Footer.module.css';
 
@@ -22,7 +22,12 @@ export default function Footer({ wide = false }: { wide?: boolean }) {
   const credit = (
     <a href={designer.url} className={styles.credit} target="_blank" rel="noopener">
       {t.credit}
-      <span className={styles.creditNum}>{designer.display}</span>
+      <span className={styles.creditNum}>
+        <span className={styles.creditIcon}>
+          <WhatsAppIcon size={15} />
+        </span>
+        {designer.display}
+      </span>
     </a>
   );
 
