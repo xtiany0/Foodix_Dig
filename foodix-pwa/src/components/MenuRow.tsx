@@ -37,7 +37,7 @@ export default function MenuRow({ item, editingKey, onOpen, onToggleNote }: Prop
   };
 
   return (
-    <div className={styles.row}>
+    <div className={styles.row} id={'item-' + item.id}>
       <div className={styles.main}>
         <button type="button" className={styles.open} onClick={() => onOpen(item.id)}>
           <span className={`${styles.name} ${out ? styles.out : ''}`}>{item.name}</span>

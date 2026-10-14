@@ -102,6 +102,15 @@ Copiez un article voisin dans la même catégorie et changez ses valeurs. L'`id`
 
 Un groupe d'articles marqué `"adultsOnly": true` (dans `groups`) affiche « 18+ · Réservé aux majeurs » (cocktails alcoolisés, chichas).
 
+### Pages du menu
+
+Le menu s'affiche en pages, comme la carte papier. Elles sont listées dans `pages`, en tête de `menu.json`, dans l'ordre des onglets :
+
+- la première, `"id": "tout"`, est l'onglet « Tout » : toutes les catégories à la suite, sans photo ;
+- les suivantes sont les pages de la carte : `title` (fr / en), `categories` (identifiants des catégories de la page, dans l'ordre), `image` (photo en tête de page) et `imageRatio` (largeur / hauteur de la photo, ex. `"900 / 551"`).
+
+Chaque catégorie doit être dans une page, sinon l'app refuse le menu avec un message clair. Les photos sont dans `public/images/pages/` : WebP de 900 px de large, 30 à 70 Ko.
+
 > Les champs `whatsapp`, `phones` et `social` en tête de `menu.json` ne sont pas utilisés par l'app : les coordonnées se règlent dans `src/config.ts`.
 
 ---

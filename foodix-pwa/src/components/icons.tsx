@@ -49,6 +49,12 @@ export const BackIcon = (p: P) => (
   </Svg>
 );
 
+export const NextIcon = (p: P) => (
+  <Svg {...p}>
+    <path d="M9 5l7 7-7 7" />
+  </Svg>
+);
+
 export const ReceiptIcon = (p: P) => (
   <Svg {...p}>
     <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z" />

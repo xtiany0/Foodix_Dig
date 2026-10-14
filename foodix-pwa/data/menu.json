@@ -13,6 +13,105 @@
     "tiktok": "https://www.tiktok.com/@foodix",
     "instagram": "https://www.instagram.com/foodix"
   },
+  "pages": [
+    {
+      "id": "tout",
+      "title": {
+        "fr": "Tout",
+        "en": "All"
+      },
+      "categories": [
+        "plats",
+        "bols",
+        "crepes",
+        "boissons",
+        "bubble",
+        "cocktails",
+        "jus",
+        "glaces",
+        "chaudes",
+        "chichas"
+      ],
+      "image": null,
+      "imageRatio": null
+    },
+    {
+      "id": "plats",
+      "title": {
+        "fr": "Plats principaux",
+        "en": "Main dishes"
+      },
+      "categories": [
+        "plats"
+      ],
+      "image": "/images/pages/plats.webp",
+      "imageRatio": "900 / 551"
+    },
+    {
+      "id": "bols-desserts",
+      "title": {
+        "fr": "Bols et desserts",
+        "en": "Bowls & desserts"
+      },
+      "categories": [
+        "bols",
+        "crepes"
+      ],
+      "image": "/images/pages/bols-desserts.webp",
+      "imageRatio": "900 / 604"
+    },
+    {
+      "id": "boissons",
+      "title": {
+        "fr": "Boissons",
+        "en": "Drinks"
+      },
+      "categories": [
+        "boissons"
+      ],
+      "image": "/images/pages/boissons.webp",
+      "imageRatio": "900 / 672"
+    },
+    {
+      "id": "bubble-cocktails",
+      "title": {
+        "fr": "Bubble tea et cocktails",
+        "en": "Bubble tea & cocktails"
+      },
+      "categories": [
+        "bubble",
+        "cocktails"
+      ],
+      "image": "/images/pages/bubble-cocktails.webp",
+      "imageRatio": "900 / 672"
+    },
+    {
+      "id": "jus-lactes",
+      "title": {
+        "fr": "Jus, glaces et lactés",
+        "en": "Juices, ice cream & milk drinks"
+      },
+      "categories": [
+        "jus",
+        "glaces",
+        "chaudes"
+      ],
+      "image": "/images/pages/jus-lactes.webp",
+      "imageRatio": "900 / 672"
+    },
+    {
+      "id": "chichas",
+      "title": {
+        "fr": "Chichas",
+        "en": "Shisha"
+      },
+      "categories": [
+        "chichas"
+      ],
+      "image": "/images/pages/chichas.webp",
+      "imageRatio": "900 / 672"
+    }
+  ],
   "categories": [
     {
       "id": "plats",

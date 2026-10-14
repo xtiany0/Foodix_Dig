@@ -12,6 +12,7 @@ Maquette validée par le client. Le cahier des charges complet est dans `docs/ca
 | `data/menu.json` | **Source de vérité du menu** : 10 catégories, 66 articles, prix, variantes, mentions 18+, traductions FR/EN |
 | `design/maquette/` | Les 28 écrans validés (voir `design/LIRE-LA-MAQUETTE.md`) |
 | `design/tokens.css` | Couleurs, typo, rayons de l'identité |
+| `public/images/pages/` | 6 photos, une par page du menu (WebP légers) |
 | `public/brand/` | Logo Foodix (version fond nuit, sans slogan, toque seule, originaux) et icônes Facebook, TikTok, Instagram, WhatsApp |
 | `docs/` | Cahier des charges, brief de maquette, photos du menu papier |
 
@@ -57,6 +58,7 @@ Parcours principal : Lancement > Menu > fiche article > Ajouter > Panier > Valid
 - L'orange `#F28A22` sert aux bandeaux de catégorie et aux boutons principaux (Ajouter, Valider ma commande, Commander sur WhatsApp), toujours avec du texte bleu nuit dessus.
 - Fiche article : feuille blanche, sélecteur de quantité sur fond crème, champ Précision crème, bouton orange « Ajouter · prix ».
 - Écran de lancement : reste en bleu nuit avec le logo.
+- **Menu en pages, comme la carte papier** : le menu n'est plus une longue liste. Il est découpé en 6 pages (`pages` dans `menu.json`), précédées d'un onglet **« Tout » / « All »** (premier onglet) : Plats principaux ; Bols et desserts (bols et plats chauds + crêpes, gaufres et desserts) ; Boissons ; Bubble tea et cocktails ; Jus, glaces et lactés (jus naturels + desserts glacés + chaudes et lactées) ; Chichas. Les onglets collants (pastilles sur téléphone et tablette, colonne de gauche sur ordinateur) changent de page au lieu de faire défiler. Chaque page commence par **sa photo en entier, en haut**, centrée et sans recadrage (`aspect-ratio` = `imageRatio`, coins 18 px ; sur tablette et ordinateur hauteur limitée à 280 / 300 px avec `object-fit: cover; object-position: center`), puis les catégories de la page avec leur bandeau orange et leur carte d'articles. En bas de page, un bouton « Page suivante : … » mène à la page d'après et remonte en haut. La recherche cherche dans tout le menu : pendant une recherche, la photo et le bouton de page suivante sont masqués et les résultats de toutes les pages s'affichent. Ouvrir une fiche article affiche la page de cet article. L'onglet « Tout » affiche le menu complet dans l'ordre de la carte papier, avec un séparateur au début de chaque page : filet gris clair (2 px, #E4DCCF) de chaque côté, au centre « Page 2 sur 6 » (Nunito 800, 12 px, majuscules, #5C5980) et le nom de la page (Squada One, 28 px téléphone / 32 px tablette et ordinateur, bleu nuit), 34 px d'espace au-dessus (6 px pour la première page), puis la photo de la page, puis ses catégories ; pas de photo en tête ni de bouton « Page suivante » dans « Tout ». La page ouverte par défaut reste « Plats principaux ». Photos dans `public/images/pages/` (WebP 900 px de large, 30 à 70 Ko). Jamais de photo par article.
 - Toutes les valeurs sont dans `design/tokens.css`. La version précédente (fond nuit) n'est plus à suivre.
 
 ## Responsive

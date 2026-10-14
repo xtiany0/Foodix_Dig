@@ -101,6 +101,17 @@ export default defineConfig({
               cacheableResponse: { statuses: [200] },
             },
           },
+          {
+            // Photos des pages : pas dans le précache (trop lourd en 3G au premier passage),
+            // gardées dès qu'elles ont été vues, pour le mode hors connexion.
+            urlPattern: ({ url }) => url.pathname.startsWith('/images/pages/'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'foodix-photos',
+              expiration: { maxEntries: 12, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [200] },
+            },
+          },
         ],
       },
     }),

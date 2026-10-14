@@ -1,5 +1,5 @@
 import { config, type VariantName } from '../config';
-import type { Category, Localized, Menu, MenuGroup, MenuItem, VariantOption, Variants } from '../types/menu';
+import type { Category, Localized, Menu, MenuGroup, MenuItem, MenuPage, VariantOption, Variants } from '../types/menu';
 
 export class MenuError extends Error {}
 
@@ -97,16 +97,51 @@ function category(x: unknown, path: string): Category {
   };
 }
 
+/** Identifiant de l'onglet qui montre tout le menu, page par page. */
+export const ALL_PAGE = 'tout';
+
+function page(x: unknown, path: string, categoryIds: Set<string>): MenuPage {
+  if (!isObj(x) || !isStr(x.id)) fail(path, 'sans « id »');
+  path = `page ${x.id}`;
+  if (!Array.isArray(x.categories) || x.categories.length === 0) fail(path, 'sans « categories »');
+  for (const c of x.categories) if (!isStr(c) || !categoryIds.has(c)) fail(path, `a une catégorie inconnue : ${String(c)}`);
+  const image = x.image ?? null;
+  const imageRatio = x.imageRatio ?? null;
+  if (image !== null && !isStr(image)) fail(path, 'a une « image » invalide');
+  if (imageRatio !== null && !(isStr(imageRatio) && /^\d+ \/ \d+$/.test(imageRatio))) fail(path, 'a un « imageRatio » invalide');
+  if ((image === null) !== (imageRatio === null)) fail(path, 'doit avoir « image » et « imageRatio » ensemble');
+  return { id: x.id, title: localized(x.title, `${path}.title`), categories: x.categories as string[], image, imageRatio };
+}
+
+/** Pages de la carte (sans l'onglet « Tout »). */
+export function realPages(menu: Menu): MenuPage[] {
+  return menu.pages.filter((p) => p.id !== ALL_PAGE);
+}
+
+/** Page de la carte où se trouve une catégorie (jamais « Tout »). */
+export function pageOfCategory(menu: Menu, categoryId: string): MenuPage | undefined {
+  return realPages(menu).find((p) => p.categories.includes(categoryId));
+}
+
 /**
  * Vérifie et normalise le contenu de menu.json.
  * Lève une MenuError avec un message lisible si une donnée est invalide.
  */
 export function parseMenu(raw: unknown): Menu {
   if (!isObj(raw) || !Array.isArray(raw.categories)) fail('', 'doit contenir « categories »');
-  const menu: Menu = {
-    version: typeof raw.version === 'number' ? raw.version : 1,
-    categories: raw.categories.map((c, i) => category(c, `categories[${i}]`)),
-  };
+  const categories = raw.categories.map((c, i) => category(c, `categories[${i}]`));
+  const categoryIds = new Set(categories.map((c) => c.id));
+  // Sans « pages » : une page par catégorie, sans photo.
+  const pages = Array.isArray(raw.pages)
+    ? raw.pages.map((p, i) => page(p, `pages[${i}]`, categoryIds))
+    : categories.map((c) => ({ id: c.id, title: c.title, categories: [c.id], image: null, imageRatio: null }));
+  const menu: Menu = { version: typeof raw.version === 'number' ? raw.version : 1, pages, categories };
+  const pageIds = new Set<string>();
+  for (const p of pages) {
+    if (pageIds.has(p.id)) fail(`page ${p.id}`, 'a un identifiant en double');
+    pageIds.add(p.id);
+  }
+  for (const c of categories) if (!pageOfCategory(menu, c.id)) fail(`catégorie ${c.id}`, 'n’est dans aucune page');
   const seen = new Set<string>();
   for (const it of allItems(menu)) {
     if (seen.has(it.id)) fail(`article ${it.id}`, 'a un identifiant en double');

@@ -55,7 +55,21 @@ export interface Category {
   groups: MenuGroup[];
 }
 
+/** Page du menu, comme sur la carte papier. */
+export interface MenuPage {
+  id: string;
+  title: Localized;
+  /** Identifiants des catégories de la page, dans l'ordre. */
+  categories: string[];
+  /** Photo en tête de page (null pour l'onglet « Tout »). */
+  image: string | null;
+  /** Proportions de la photo pour CSS aspect-ratio, ex. « 900 / 551 ». */
+  imageRatio: string | null;
+}
+
 export interface Menu {
   version: number;
+  /** Onglets du menu : « Tout » (sans photo) puis les pages de la carte. */
+  pages: MenuPage[];
   categories: Category[];
 }
