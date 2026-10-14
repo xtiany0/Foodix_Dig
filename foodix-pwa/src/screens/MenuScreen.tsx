@@ -58,8 +58,8 @@ export default function MenuScreen() {
   const { menu, index, lang, setLang, t, isOpen, online, layout } = useStore();
   const [query, setQuery] = useState('');
   const cardPages = useMemo(() => realPages(menu), [menu]);
-  // Page ouverte par défaut : la première de la carte (Plats principaux), jamais « Tout ».
-  const [pageId, setPageId] = useState(cardPages[0]?.id ?? ALL_PAGE);
+  // Page ouverte au démarrage : le premier onglet, « Tout ».
+  const [pageId, setPageId] = useState(menu.pages[0]?.id ?? ALL_PAGE);
   const [sheetId, setSheetId] = useState<string | null>(null);
   const [editing, setEditing] = useState<string | null>(null);
   const [toast, setToast] = useState('');
