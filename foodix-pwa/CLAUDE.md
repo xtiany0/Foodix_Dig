@@ -3,14 +3,14 @@
 Application de menu et de commande pour **Foodix**, food truck à Parakou (Bénin). Slogan : « Manger bon, manger mobile ».
 Le client scanne un QR code, consulte le menu, compose son panier et envoie sa commande **sur WhatsApp**. Pas de serveur, pas de compte, pas de paiement en ligne.
 
-Maquette validée par le client. Le cahier des charges complet est dans `docs/cahier-des-charges-v2.pdf`, il fait foi en cas de doute.
+Maquette validée par le client. Le cahier des charges complet est dans `docs/cahier-des-charges-v2.pdf` (version précédente : `cahier-des-charges.pdf`), il fait foi en cas de doute. Les décisions prises depuis avec le client, notées ici, priment sur le PDF et sur la maquette.
 
 ## Contenu du dossier
 
 | Chemin | Contenu |
 |---|---|
 | `data/menu.json` | **Source de vérité du menu** : 10 catégories, 66 articles, prix, variantes, mentions 18+, traductions FR/EN |
-| `design/maquette/` | Les 28 écrans validés (voir `design/LIRE-LA-MAQUETTE.md`) |
+| `design/maquette/` | Les écrans validés (voir `design/LIRE-LA-MAQUETTE.md`), hors dépôt git |
 | `design/tokens.css` | Couleurs, typo, rayons de l'identité |
 | `public/images/pages/` | 6 photos, une par page du menu (WebP légers) |
 | `public/brand/` | Logo Foodix (version fond nuit, sans slogan, toque seule, originaux) et icônes Facebook, TikTok, Instagram, WhatsApp |
@@ -19,7 +19,7 @@ Maquette validée par le client. Le cahier des charges complet est dans `docs/ca
 ## Stack
 
 - **Vite + React** (ou HTML/JS léger si plus simple), TypeScript conseillé.
-- **PWA** : manifest + service worker (`vite-plugin-pwa`), menu et images en cache, ouverture en plein écran.
+- **PWA** : manifest + service worker (`vite-plugin-pwa`), menu et logos en cache, photos des pages gardées dès la première vue, ouverture en plein écran.
 - **Hébergement** : Cloudflare Pages (HTTPS obligatoire pour la géolocalisation et la PWA).
 - **Statistiques** : Cloudflare Web Analytics, paramètre `?src=truck` pour les scans du QR code.
 - Aucune base de données : le menu vient de `menu.json`, le panier et l'historique sont dans le `localStorage` du téléphone.
@@ -36,19 +36,19 @@ Maquette validée par le client. Le cahier des charges complet est dans `docs/ca
 Parcours principal : Lancement > Menu > fiche article > Ajouter > Panier > Validation (livraison ou à emporter) > Envoi > Confirmation. Puis Mes commandes > Recommander > Panier.
 
 1. **Lancement** : logo fond nuit, barre de chargement fine.
-2. **Accueil / Menu** (style « Plein jour ») : fond crème. En-tête en bloc bleu nuit aux coins bas arrondis (28 px) avec bouton langue (globe + FR ou EN) à gauche, logo centré, Mes commandes et appel à droite ; dessous, slogan et statut Ouvert / Fermé centrés, puis la barre de recherche blanche dans le bloc. Onglets de catégories collants en pastilles (active : bleu nuit texte blanc ; autres : blanches bordure beige). Pour chaque catégorie : bandeau orange avec le nom (police Squada One), puis une carte blanche arrondie (18 px) qui contient les articles : nom en gras bleu nuit, prix en orange foncé dessous, séparateurs fins beiges.
+2. **Accueil / Menu** (style « Plein jour ») : fond crème. En-tête en bloc bleu nuit aux coins bas arrondis (28 px) avec bouton langue (globe + FR ou EN) à gauche, logo centré, Mes commandes et appel à droite ; dessous, slogan et statut Ouvert / Fermé centrés, puis la barre de recherche blanche dans le bloc. Onglets de pages collants en pastilles (« Tout » puis les 6 pages ; active : bleu nuit texte blanc ; autres : blanches bordure beige), voir « Menu en pages ». Pour chaque catégorie : bandeau orange avec le nom (police Squada One), puis une carte blanche arrondie (18 px) qui contient les articles : nom en gras bleu nuit, prix en orange foncé dessous, séparateurs fins beiges.
 3. **Sur chaque ligne du menu** :
    - pas dans le panier : un bouton rond bleu nuit « + » (36 px visible, 44 px cliquable) ;
    - dans le panier : une deuxième ligne apparaît avec un sélecteur « − n + » à droite (à 0, l'article sort du panier) et, à gauche, « + Ajouter une précision » (ou « Précision : … · Modifier ») qui ouvre un champ texte + OK sous l'article ;
-   - articles à variantes : le premier « + » ouvre la fiche pour choisir, ensuite + et − agissent sur le dernier choix fait.
-4. **Fiche article** (feuille qui monte du bas sur téléphone et tablette, fenêtre centrée sur ordinateur) : catégorie, nom, prix, mention 18+ si besoin, choix de variante, quantité, champ « Précision », bouton « Ajouter · prix ». **Pas de photo** (il n'y en a pas, comme sur le menu papier).
+   - articles à variantes (format, garniture…) : le « + » reste toujours visible et ouvre la fiche ; sous l'article, une sous-ligne par choix dans le panier, « 2 × Format à 1.500 F = 3.000 F », chacune avec son « − n + » et sa précision (ex. 1 shawarma bœuf à 1.000 F et 2 à 1.500 F = deux sous-lignes). Bubble tea : une ligne de menu par parfum, pas de sous-ligne de choix.
+4. **Fiche article** (feuille qui monte du bas sur téléphone et tablette, fenêtre centrée sur ordinateur) : catégorie, nom, prix, mention 18+ si besoin, quantité et champ « Précision » ; pour un article à variantes, chaque choix a sa propre quantité (0 par défaut) et sa précision, on peut prendre plusieurs choix d'un coup ; bouton « Ajouter · prix » (total de tous les choix), inactif tant qu'aucune quantité n'est choisie. **Pas de photo** (il n'y en a pas, comme sur le menu papier).
 5. **Panier** : lignes avec + / −, Retirer, précision modifiable, « Ajouter d'autres articles », total (pas encore de ligne Livraison : le mode n'est choisi qu'à l'étape suivante), bouton « Valider ma commande ». Bouton Vider avec confirmation. **Panier vide** : toque, texte, Voir le menu, lien Recommander une commande passée.
 6. **Validation livraison** : sélecteur Livraison / À emporter, nom, téléphone, quartier, adresse ou repère, position GPS (facultative), note ; récapitulatif Sous-total, Livraison « À confirmer sur WhatsApp », Total hors livraison (en à emporter : Total seul).
 7. **Validation à emporter** : nom, téléphone, heure de retrait (Dès que possible / À une heure précise).
 8. **Envoi** : paiement préféré (Espèces, MTN Mobile Money, Moov Money), aperçu exact du message WhatsApp, gros bouton orange « Commander sur WhatsApp » avec le logo WhatsApp.
 9. **Confirmation** : Commande envoyée, numéro, 3 étapes suivantes, Rouvrir la discussion WhatsApp, Retour au menu, Mes commandes.
 10. **Mes commandes** : historique local, Recommander, suppression d'une commande ou de tout l'historique.
-11. **Installation** : bannière Android (`beforeinstallprompt`, boutons Plus tard / Installer), guide iPhone illustré en 4 étapes, avec les mots exacts de l'iPhone (••• puis « Partager », « En voir plus », « Sur l'écran d'accueil », « Ajouter »). Après refus : pas de nouvelle proposition pendant 7 jours. Déjà installée : rien.
+11. **Installation** : bannière Android (`beforeinstallprompt`, boutons Plus tard / Installer), guide iPhone illustré en 4 étapes, avec les mots exacts de l'iPhone (••• puis « Partager », « En voir plus », « Sur l'écran d'accueil », « Ajouter »). Bannière : après « Plus tard », pas de nouvelle proposition pendant 3 jours (`installSnoozeDays`). Bouton « Installer l'app » permanent dans le pied de page. Après la première commande envoyée : une seule carte d'installation sur la confirmation. Déjà installée : rien.
 12. **États** : food truck fermé (menu consultable, commande bloquée, bandeau + barre « Commandes fermées »), pas de connexion (menu en cache, bandeau), localisation refusée (aide + champ pour coller un lien de position).
 
 ## Style visuel validé : « Plein jour »
@@ -58,7 +58,7 @@ Parcours principal : Lancement > Menu > fiche article > Ajouter > Panier > Valid
 - L'orange `#F28A22` sert aux bandeaux de catégorie et aux boutons principaux (Ajouter, Valider ma commande, Commander sur WhatsApp), toujours avec du texte bleu nuit dessus.
 - Fiche article : feuille blanche, sélecteur de quantité sur fond crème, champ Précision crème, bouton orange « Ajouter · prix ».
 - Écran de lancement : reste en bleu nuit avec le logo.
-- **Menu en pages, comme la carte papier** : le menu n'est plus une longue liste. Il est découpé en 6 pages (`pages` dans `menu.json`), précédées d'un onglet **« Tout » / « All »** (premier onglet) : Plats principaux ; Bols et desserts (bols et plats chauds + crêpes, gaufres et desserts) ; Boissons ; Bubble tea et cocktails ; Jus, glaces et lactés (jus naturels + desserts glacés + chaudes et lactées) ; Chichas. Les onglets collants (pastilles sur téléphone et tablette, colonne de gauche sur ordinateur) changent de page au lieu de faire défiler. Chaque page commence par **sa photo en entier, en haut**, centrée et sans recadrage (`aspect-ratio` = `imageRatio`, coins 18 px ; sur tablette et ordinateur hauteur limitée à 280 / 300 px avec `object-fit: cover; object-position: center`), puis les catégories de la page avec leur bandeau orange et leur carte d'articles. En bas de page, un bouton « Page suivante : … » mène à la page d'après et remonte en haut. La recherche cherche dans tout le menu : pendant une recherche, la photo et le bouton de page suivante sont masqués et les résultats de toutes les pages s'affichent. Ouvrir une fiche article affiche la page de cet article. L'onglet « Tout » affiche le menu complet dans l'ordre de la carte papier, avec un séparateur au début de chaque page : filet gris clair (2 px, #E4DCCF) de chaque côté, au centre « Page 2 sur 6 » (Nunito 800, 12 px, majuscules, #5C5980) et le nom de la page (Squada One, 28 px téléphone / 32 px tablette et ordinateur, bleu nuit), 34 px d'espace au-dessus (6 px pour la première page), puis la photo de la page, puis ses catégories ; pas de photo en tête ni de bouton « Page suivante » dans « Tout ». La page ouverte par défaut reste « Plats principaux ». Photos dans `public/images/pages/` (WebP 900 px de large, 30 à 70 Ko). Jamais de photo par article.
+- **Menu en pages, comme la carte papier** : le menu n'est plus une longue liste. Il est découpé en 6 pages (`pages` dans `menu.json`), précédées d'un onglet **« Tout » / « All »** (premier onglet) : Plats principaux ; Bols et desserts (bols et plats chauds + crêpes, gaufres et desserts) ; Boissons ; Bubble tea et cocktails ; Jus, glaces et lactés (jus naturels + desserts glacés + chaudes et lactées) ; Chichas. Les onglets collants (pastilles sur téléphone et tablette, colonne de gauche sur ordinateur) changent de page au lieu de faire défiler. Chaque page commence par **sa photo en entier, en haut**, centrée et sans recadrage (`aspect-ratio` = `imageRatio`, coins 18 px ; sur tablette et ordinateur hauteur limitée à 280 / 300 px avec `object-fit: cover; object-position: center`), puis les catégories de la page avec leur bandeau orange et leur carte d'articles. En bas de page, un bouton « Page suivante : … » mène à la page d'après et remonte en haut. La recherche cherche dans tout le menu : pendant une recherche, la photo et le bouton de page suivante sont masqués et les résultats de toutes les pages s'affichent. Ouvrir une fiche article affiche la page de cet article, jamais « Tout » (la ligne touchée reste au même endroit de l'écran). L'onglet « Tout » affiche le menu complet dans l'ordre de la carte papier, avec un séparateur au début de chaque page : filet gris clair (2 px, #E4DCCF) de chaque côté, au centre « Page 2 sur 6 » (Nunito 800, 12 px, majuscules, #5C5980) et le nom de la page (Squada One, 28 px téléphone / 32 px tablette et ordinateur, bleu nuit), 34 px d'espace au-dessus (6 px pour la première page), puis la photo de la page, puis ses catégories ; pas de photo en tête ni de bouton « Page suivante » dans « Tout ». La page ouverte par défaut reste « Plats principaux ». Photos dans `public/images/pages/` (WebP 900 px de large, 30 à 70 Ko). Jamais de photo par article.
 - Toutes les valeurs sont dans `design/tokens.css`. La version précédente (fond nuit) n'est plus à suivre.
 
 ## Responsive
@@ -70,7 +70,7 @@ Mêmes textes, même identité et mêmes parcours partout. Seule la mise en page
 | Petit téléphone 360 px | Rien ne déborde, prix et bouton panier toujours visibles |
 | Téléphone 390 px | Panier en barre flottante bleu nuit en bas (pastille orange avec le nombre d'articles, texte et total en blanc), fiche blanche qui monte du bas |
 | Tablette 768 px | Articles en 2 colonnes, panier en panneau fixe à droite (290 px) |
-| Ordinateur 1280 px | Barre du haut bleu nuit (logo, statut, recherche blanche, Mes commandes, téléphone), catégories en colonne à gauche, articles en 2 colonnes au centre, panier fixe à droite (340 px), fiche en fenêtre centrée de 480 px, formulaires limités à 560 px et centrés |
+| Ordinateur 1280 px | Barre du haut bleu nuit (logo, statut, recherche blanche, Mes commandes, téléphone), pages du menu en colonne à gauche, articles en 2 colonnes au centre, panier fixe à droite (340 px), fiche en fenêtre centrée de 480 px, formulaires limités à 560 px et centrés |
 
 ## Règles métier
 
@@ -145,7 +145,8 @@ Pas de mode « sur place », pas de compte client, pas de fidélité, pas de pai
 
 - Emplacement du food truck. (Horaires confirmés : lundi–jeudi 10h–23h, vendredi–dimanche 10h–minuit.)
 - Noms des variantes à double prix : shawarma viande de bœuf (1.000 / 1.500 F), donuts (1.500 / 3.500 F), 3x (1.000 / 2.000 F). Provisoirement « Format à 1.000 F », etc.
-- Zones et frais de livraison, nom de domaine, adresses exactes des pages Facebook / TikTok / Instagram (supposées `/foodix`).
+- Zones et frais de livraison, adresses exactes des pages Facebook / TikTok / Instagram (supposées `/foodix`).
+- Nom de domaine : `foodix.bj` retenu (achat et branchement Cloudflare en cours) ; d'ici là, `foodix.pages.dev`. Une fois actif : `siteUrl` dans `src/config.ts`, README, puis QR code à régénérer.
 - Dans la maquette, « Pastel » est marqué épuisé et l'historique contient des commandes d'exemple : ce sont des **données de démonstration**, pas des données réelles.
 
 ## Ordre de travail conseillé
