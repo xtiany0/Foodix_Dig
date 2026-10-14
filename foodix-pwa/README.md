@@ -138,7 +138,7 @@ openingHours: {
 },
 ```
 
-Un jour absent = fermé. Hors horaires, le menu reste consultable mais l'ajout au panier et l'envoi sont bloqués.
+Un jour absent = fermé. Hors horaires, l'app affiche « Fermé » mais la commande reste possible : un bandeau prévient qu'elle sera traitée à la réouverture. Pour bloquer la commande hors horaires, mettre `orderWhenClosed: false` dans `src/config.ts`.
 
 Autres réglages : numéros de téléphone, numéro WhatsApp des commandes, nombre de commandes gardées dans « Mes commandes » (30), délai entre deux propositions d'installation d'office (3 jours), absence après laquelle le menu et la version sont actualisés au retour dans l'app (10 minutes), durée minimale de l'écran de lancement.
 

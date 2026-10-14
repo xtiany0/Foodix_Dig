@@ -180,7 +180,7 @@ export function StoreProvider({ menu, children }: { menu: Menu; children: ReactN
 
   const now = useNow();
   const isOpen = isOpenAt(now, config.openingHours, config.timeZone);
-  const canOrder = isOpen;
+  const canOrder = isOpen || config.orderWhenClosed;
   const online = useOnline();
   const layout = useLayout();
 

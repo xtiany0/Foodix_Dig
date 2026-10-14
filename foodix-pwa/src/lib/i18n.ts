@@ -14,7 +14,9 @@ const fr = {
   open: 'Ouvert',
   closed: 'Fermé',
   closedTitle: 'Foodix est fermé pour le moment',
-  closedText: `Le menu reste consultable. Vous pourrez commander dès la réouverture : ${config.openingHoursText.fr}.`,
+  closedText: config.orderWhenClosed
+    ? `Vous pouvez commander : votre commande sera traitée à la réouverture (${config.openingHoursText.fr}).`
+    : `Le menu reste consultable. Vous pourrez commander dès la réouverture : ${config.openingHoursText.fr}.`,
   offlineTitle: 'Pas de connexion',
   offlineText:
     'Vous consultez le menu enregistré sur ce téléphone. Vous pourrez envoyer votre commande dès que le réseau revient.',
@@ -220,7 +222,9 @@ const en: Dict = {
   open: 'Open',
   closed: 'Closed',
   closedTitle: 'Foodix is closed right now',
-  closedText: `You can still browse the menu. Ordering opens again at: ${config.openingHoursText.en}.`,
+  closedText: config.orderWhenClosed
+    ? `You can still order: your order will be handled when we reopen (${config.openingHoursText.en}).`
+    : `You can still browse the menu. Ordering opens again at: ${config.openingHoursText.en}.`,
   offlineTitle: 'No connection',
   offlineText: 'You are viewing the menu saved on this phone. You can send your order as soon as the network is back.',
   search: 'Search for a dish or a drink…',

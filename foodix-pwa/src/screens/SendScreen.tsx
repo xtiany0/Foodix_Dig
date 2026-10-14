@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import ScreenHeader, { PageTitle } from '../components/ScreenHeader';
+import StatusBanner from '../components/StatusBanner';
 import { WhatsAppIcon } from '../components/icons';
 import { config } from '../config';
 import { draftErrors } from '../lib/checkout';
@@ -11,7 +12,7 @@ import styles from './SendScreen.module.css';
 
 /** Envoi : paiement préféré, aperçu exact du message, bouton « Commander sur WhatsApp » (étape 2 sur 2). */
 export default function SendScreen() {
-  const { t, lang, draft, updateDraft, pending, confirmSend, lines, canOrder, online } = useStore();
+  const { t, lang, draft, updateDraft, pending, confirmSend, lines, canOrder, isOpen, online } = useStore();
   const sending = useRef(false);
   // Message figé au clic : confirmSend vide le panier et tire un nouveau numéro. Tant que
   // l'écran reste affiché (retour depuis WhatsApp), il doit montrer et renvoyer la commande
@@ -43,6 +44,8 @@ export default function SendScreen() {
 
       <main className={styles.content}>
         <PageTitle>{t.sendTitle}</PageTitle>
+        {/* Commande hors horaires : le client sait qu'elle sera traitée à la réouverture. */}
+        {!isOpen && <StatusBanner kind="closed" />}
         <section className={styles.section}>
           <h2 className={styles.h2} id="pay-title">
             {t.payTitle}

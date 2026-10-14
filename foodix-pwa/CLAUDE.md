@@ -50,7 +50,7 @@ Parcours principal : Lancement > Menu > fiche article > Ajouter > Panier > Valid
 9. **Confirmation** : Commande envoyée, numéro, 3 étapes suivantes, Rouvrir la discussion WhatsApp, Retour au menu, Mes commandes.
 10. **Mes commandes** : historique local, Recommander, suppression d'une commande ou de tout l'historique.
 11. **Installation** : bannière Android (`beforeinstallprompt`, boutons Plus tard / Installer), guide iPhone illustré en 4 étapes, avec les mots exacts de l'iPhone (••• puis « Partager », « En voir plus », « Sur l'écran d'accueil », « Ajouter »). Proposition d'office dès l'arrivée sur le site, au plus une fois tous les 3 jours (`installSnoozeDays`), qu'on réponde ou non : Android, bannière dans la page si elle est prête pendant l'écran de lancement, sinon carte flottante en bas de l'écran (au-dessus de la barre panier sur téléphone, en bas à gauche sur tablette et ordinateur) ; iPhone, guide au bout de 3 s. Bouton « Installer l'app » permanent dans le pied de page. Après la première commande envoyée : une seule carte d'installation sur la confirmation. Déjà installée : rien.
-12. **États** : food truck fermé (menu consultable, commande bloquée, bandeau + barre « Commandes fermées »), pas de connexion (menu en cache, bandeau), localisation refusée (aide + champ pour coller un lien de position).
+12. **États** : food truck fermé (statut Fermé, bandeau, commande possible, traitée à la réouverture), pas de connexion (menu en cache, bandeau), localisation refusée (aide + champ pour coller un lien de position).
 
 ## Style visuel validé : « Plein jour »
 
@@ -125,7 +125,7 @@ Note : appeler en arrivant
 - Nom, téléphone et dernière adresse pré-remplis.
 
 ### Horaires et disponibilité
-- Hors horaires : menu consultable, ajout au panier et envoi bloqués, message explicatif.
+- Hors horaires : statut « Fermé », mais **la commande reste possible** (décision client, `orderWhenClosed` dans `src/config.ts`) ; bandeau sur le menu et sur l'écran Envoi : « Vous pouvez commander : votre commande sera traitée à la réouverture (horaires) ». Avec `orderWhenClosed: false`, ajout au panier et envoi bloqués.
 - Article `available: false` : grisé, mention « Épuisé », pas de bouton +.
 - Cocktails alcoolisés et chichas : mention « 18+ · Réservé aux majeurs ».
 

@@ -69,6 +69,12 @@ export const config = {
     0: [{ open: '10:00', close: '00:00' }],
   } as WeeklyHours | null,
 
+  /**
+   * Commande possible hors horaires : le statut reste « Fermé » et un bandeau prévient
+   * que la commande sera traitée à la réouverture. false : commande bloquée hors horaires.
+   */
+  orderWhenClosed: true,
+
   /** Texte des horaires dans le bandeau « Foodix est fermé ». */
   openingHoursText: {
     fr: 'du lundi au jeudi de 10h à 23h, du vendredi au dimanche de 10h à minuit',
