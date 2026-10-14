@@ -8,7 +8,7 @@ import ItemSheet from '../components/ItemSheet';
 import MenuRow from '../components/MenuRow';
 import StatusBanner from '../components/StatusBanner';
 import Toast from '../components/Toast';
-import { GlobeIcon, NextIcon, PhoneIcon, ReceiptIcon, SearchIcon } from '../components/icons';
+import { BackIcon, GlobeIcon, NextIcon, PhoneIcon, ReceiptIcon, SearchIcon } from '../components/icons';
 import { useInstallOffer } from '../lib/install';
 import { ALL_PAGE, pageOfCategory, realPages } from '../lib/menu';
 import { href, useOverlayHistory, useRoute } from '../lib/router';
@@ -64,6 +64,8 @@ export default function MenuScreen() {
   // Pendant une recherche : tout le menu, sans photo ni page suivante.
   const hero = !q && !isAll && page.image ? page : null;
   const nextPage = !q && !isAll ? menu.pages[menu.pages.indexOf(page) + 1] : undefined;
+  // Page précédente : jamais « Tout » (premier onglet, à part).
+  const prevPage = !q && !isAll ? cardPages[cardPages.indexOf(page) - 1] : undefined;
 
   const sections = useMemo<Section[]>(() => {
     const byId = new Map(menu.categories.map((c) => [c.id, c]));
@@ -146,7 +148,7 @@ export default function MenuScreen() {
 
   const status = (
     <span className={styles.status}>
-      <span className={styles.dot} style={{ background: isOpen ? 'var(--fx-green-on-navy)' : 'var(--fx-red-on-navy)' }} aria-hidden="true" />
+      <span className={`${styles.dot} ${isOpen ? styles.dotOpen : styles.dotClosed}`} aria-hidden="true" />
       {isOpen ? t.open : t.closed}
     </span>
   );
@@ -322,15 +324,27 @@ export default function MenuScreen() {
               </div>
             )}
 
-            {nextPage && (
-              <div className={styles.nextWrap}>
-                <button type="button" className={styles.next} onClick={() => pickPage(nextPage.id)}>
-                  <span>
-                    {t.nextPage} : {nextPage.title[lang]}
-                  </span>
-                  <NextIcon size={20} stroke={2.4} />
-                </button>
-              </div>
+            {(prevPage || nextPage) && (
+              <nav aria-label={t.pagesNavAria} className={styles.pageNav}>
+                {prevPage && (
+                  <button type="button" className={`${styles.pageBtn} ${styles.prev}`} onClick={() => pickPage(prevPage.id)}>
+                    <BackIcon size={20} stroke={2.4} />
+                    <span className={styles.pageBtnText}>
+                      <span className={styles.pageBtnLabel}>{t.prevPage}</span>
+                      <span className={styles.pageBtnName}>{prevPage.title[lang]}</span>
+                    </span>
+                  </button>
+                )}
+                {nextPage && (
+                  <button type="button" className={`${styles.pageBtn} ${styles.next}`} onClick={() => pickPage(nextPage.id)}>
+                    <span className={styles.pageBtnText}>
+                      <span className={styles.pageBtnLabel}>{t.nextPage}</span>
+                      <span className={styles.pageBtnName}>{nextPage.title[lang]}</span>
+                    </span>
+                    <NextIcon size={20} stroke={2.4} />
+                  </button>
+                )}
+              </nav>
             )}
           </main>
 
