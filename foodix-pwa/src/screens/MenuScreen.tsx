@@ -32,6 +32,28 @@ function ratioSize(ratio: string | null): { width: number; height: number } {
   return { width, height };
 }
 
+/**
+ * Photo d'une page, toujours dans ses vraies proportions.
+ * Tablette et ordinateur : hauteur limitée, photo centrée sur un fond flou fait de la même
+ * photo (posé une fois l'image chargée, pour ne rien télécharger en plus).
+ */
+function PagePhoto({ page, lazy = false }: { page: MenuPage; lazy?: boolean }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div className={styles.frame} style={loaded ? ({ '--photo': `url("${page.image}")` } as React.CSSProperties) : undefined}>
+      <img
+        src={page.image!}
+        alt=""
+        {...ratioSize(page.imageRatio)}
+        loading={lazy ? 'lazy' : undefined}
+        decoding="async"
+        className={styles.photo}
+        onLoad={() => setLoaded(true)}
+      />
+    </div>
+  );
+}
+
 export default function MenuScreen() {
   const { menu, index, lang, setLang, t, isOpen, online, layout } = useStore();
   const [query, setQuery] = useState('');
@@ -262,7 +284,7 @@ export default function MenuScreen() {
             <div id="menu-haut" className={styles.top} />
             {hero && (
               <div className={styles.hero}>
-                <img src={hero.image!} alt="" {...ratioSize(hero.imageRatio)} decoding="async" className={styles.photo} />
+                <PagePhoto page={hero} />
               </div>
             )}
 
@@ -280,14 +302,7 @@ export default function MenuScreen() {
                     </div>
                     {pageStart.page.image && (
                       <div className={styles.dividerPhoto}>
-                        <img
-                          src={pageStart.page.image}
-                          alt=""
-                          {...ratioSize(pageStart.page.imageRatio)}
-                          loading="lazy"
-                          decoding="async"
-                          className={styles.photo}
-                        />
+                        <PagePhoto page={pageStart.page} lazy />
                       </div>
                     )}
                   </>
