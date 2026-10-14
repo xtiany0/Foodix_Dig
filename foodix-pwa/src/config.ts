@@ -114,6 +114,9 @@ export const config = {
   /** Nombre de commandes gardées dans « Mes commandes ». */
   historyLimit: 30,
 
+  /** Retour dans l'app après N minutes ailleurs : menu rechargé, nouvelle version cherchée. */
+  refreshAfterMinutes: 10,
+
   /** Proposition d'installation d'office : au plus une fois tous les N jours (affichée ou refusée). */
   installSnoozeDays: 3,
 };

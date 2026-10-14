@@ -373,7 +373,7 @@ export default function MenuScreen() {
       {!wide && <CartPill />}
       {offer === 'ios' && <IosGuide blocked={!onMenu || sheetId !== null} />}
       {offer === 'android' && installMode === 'float' && sheetId === null && <InstallBanner floating />}
-      {sheetId && <ItemSheet itemId={sheetId} onClose={() => setSheetId(null)} onAdded={showToast} />}
+      {sheetId && index.has(sheetId) && <ItemSheet itemId={sheetId} onClose={() => setSheetId(null)} onAdded={showToast} />}
     </div>
   );
 }

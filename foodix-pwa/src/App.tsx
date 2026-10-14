@@ -1,5 +1,6 @@
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useLayout } from './lib/env';
+import { useResumeRefresh, useUpdateReady } from './lib/refresh';
 import { useRoute, type Route } from './lib/router';
 import CartScreen from './screens/CartScreen';
 import CheckoutScreen from './screens/CheckoutScreen';
@@ -32,6 +33,19 @@ function Screens() {
     window.scrollTo(0, route === 'menu' ? menuScroll.current : 0);
   }, [route]);
 
+  // Nouvelle version arrivée : rechargement au premier moment sûr (menu, aucune fenêtre ouverte).
+  // Le panier, l'historique et les coordonnées sont sur le téléphone : rien n'est perdu.
+  const updateReady = useUpdateReady();
+  useEffect(() => {
+    if (!updateReady || route !== 'menu') return;
+    const tryReload = () => {
+      if (!document.querySelector('[role="dialog"]')) location.reload();
+    };
+    tryReload();
+    const id = window.setInterval(tryReload, 2000);
+    return () => clearInterval(id);
+  }, [updateReady, route]);
+
   return (
     <>
       {/* Le menu reste monté (recherche, position) pendant qu'un autre écran est affiché. */}
@@ -47,7 +61,9 @@ function Screens() {
   );
 }
 
-export default function App({ menu }: { menu: Menu }) {
+export default function App({ menu: initial }: { menu: Menu }) {
+  const [menu, setMenu] = useState(initial);
+  useResumeRefresh(menu, setMenu);
   return (
     <StoreProvider menu={menu}>
       <Screens />

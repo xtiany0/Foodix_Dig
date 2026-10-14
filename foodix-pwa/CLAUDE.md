@@ -23,6 +23,7 @@ Maquette validée par le client. Le cahier des charges complet est dans `docs/ca
 - **Hébergement** : Cloudflare Pages (HTTPS obligatoire pour la géolocalisation et la PWA).
 - **Statistiques** : Cloudflare Web Analytics, paramètre `?src=truck` pour les scans du QR code.
 - Aucune base de données : le menu vient de `menu.json`, le panier et l'historique sont dans le `localStorage` du téléphone.
+- **Retour dans l'app** après 10 minutes ailleurs (`refreshAfterMinutes`) : menu rechargé sans bruit (articles épuisés retirés du panier, comme au démarrage), nouvelle version du site cherchée et appliquée par un rechargement au premier moment sûr (sur le menu, aucune fenêtre ouverte). Indispensable sur iPhone : l'app installée n'a ni bouton ni geste pour actualiser.
 
 ## Contraintes d'usage (prioritaires)
 

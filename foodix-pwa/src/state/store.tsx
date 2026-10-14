@@ -4,7 +4,7 @@
  * sont enregistrés sur le téléphone (lib/storage.ts).
  */
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, useState, type ReactNode } from 'react';
 import {
   addLine,
   cartTotals,
@@ -62,7 +62,9 @@ export type CartAction =
   | { type: 'note'; key: string; note: string }
   | { type: 'commitNote'; key: string }
   | { type: 'remove'; key: string }
-  | { type: 'clear' };
+  | { type: 'clear' }
+  /** Menu rechargé : retire les articles disparus ou épuisés, comme au démarrage. */
+  | { type: 'sanitize'; index: Map<string, ItemRef> };
 
 function cartReducer(lines: CartLine[], a: CartAction): CartLine[] {
   switch (a.type) {
@@ -78,6 +80,8 @@ function cartReducer(lines: CartLine[], a: CartAction): CartLine[] {
       return removeLine(lines, a.key);
     case 'clear':
       return [];
+    case 'sanitize':
+      return sanitizeCart(a.index, lines);
   }
 }
 
@@ -124,6 +128,10 @@ export function StoreProvider({ menu, children }: { menu: Menu; children: ReactN
     sanitizeCart(index, readStored(CART_KEY, CART_VERSION, parseCart, [])),
   );
   useEffect(() => writeStored(CART_KEY, CART_VERSION, cart), [cart]);
+  const firstIndex = useRef(index);
+  useEffect(() => {
+    if (index !== firstIndex.current) dispatch({ type: 'sanitize', index });
+  }, [index]);
 
   const [lang, setLangState] = useState<Lang>(() =>
     readStored<Lang>(LANG_KEY, LANG_VERSION, (d) => (d === 'fr' || d === 'en' ? d : null), 'fr'),
