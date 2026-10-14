@@ -41,7 +41,7 @@ describe('message WhatsApp', () => {
         '',
         '2x Shawarma poulet ........... 4.000 F',
         '1x Tacos ..................... 3.500 F',
-        '   > sans piment',
+        '   ↳ sans piment',
         '1x Bubble tea Mangue ......... 1.500 F',
         '',
         'Total : 9.000 F (hors livraison)',
@@ -87,7 +87,7 @@ describe('message WhatsApp', () => {
 
   it('met chaque précision sur sa propre ligne, sous l’article', () => {
     const lines = message(koffi).split('\n');
-    expect(lines[lines.indexOf('1x Tacos ..................... 3.500 F') + 1]).toBe('   > sans piment');
+    expect(lines[lines.indexOf('1x Tacos ..................... 3.500 F') + 1]).toBe('   ↳ sans piment');
   });
 
   it('omet les champs vides ou facultatifs', () => {

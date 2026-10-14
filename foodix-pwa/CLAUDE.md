@@ -92,7 +92,7 @@ Mode : Livraison
 
 2x Shawarma poulet ........... 4.000 F
 1x Tacos ..................... 3.500 F
-   > sans piment
+   ↳ sans piment
 1x Bubble tea Mangue ......... 1.500 F
 
 Total : 9.000 F (hors livraison)
@@ -105,7 +105,7 @@ Position : https://maps.google.com/?q=9.3372,2.6303
 Note : appeler en arrivant
 ```
 - Points de conduite pour aligner les prix sur 30 caractères avant le prix.
-- Précision sur une ligne à part : `   > précision`.
+- Précision sur une ligne à part : `   ↳ précision`.
 - À emporter : `Mode : À emporter`, ligne `Retrait : 13:30` (ou `Dès que possible`) à la place d'Adresse / Position, pas de « (hors livraison) ».
 - Lignes vides ou facultatives (position, note) omises si non remplies.
 - **Le message reste toujours en français**, même si l'interface est en anglais.

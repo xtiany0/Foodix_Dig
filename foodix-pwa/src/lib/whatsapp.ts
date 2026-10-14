@@ -54,7 +54,7 @@ export function buildMessage(m: MessageInput): string {
 
   const blocks: (string | null)[][] = [
     [`Commande FOODIX ${m.number}`, `Mode : ${livraison ? 'Livraison' : 'À emporter'}`],
-    m.lines.flatMap((l) => [itemLine(l.qty, l.name, l.total), clean(l.note) ? `   > ${clean(l.note)}` : null]),
+    m.lines.flatMap((l) => [itemLine(l.qty, l.name, l.total), clean(l.note) ? `   ↳ ${clean(l.note)}` : null]),
     [`Total : ${formatPrice(m.total)}${livraison ? ' (hors livraison)' : ''}`, field('Paiement', m.payment)],
     [
       field('Nom', m.name),
