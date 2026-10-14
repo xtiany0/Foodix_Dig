@@ -10,6 +10,40 @@
   gap: 12px;
 }
 
+/* Carte flottante en bas de l'écran, au-dessus de la barre panier sur téléphone. */
+.float {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(84px + env(safe-area-inset-bottom));
+  z-index: 25;
+  display: flex;
+  justify-content: center;
+}
+
+.floatCard {
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--fx-shadow-soft);
+  animation: floatIn 0.25s ease-out;
+}
+
+@keyframes floatIn {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+}
+
+/* Tablette et ordinateur : pas de barre panier, carte en bas à gauche. */
+@media (min-width: 768px) {
+  .float {
+    right: auto;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    width: min(420px, calc(100vw - 32px));
+  }
+}
+
 .bannerRow {
   display: flex;
   gap: 12px;

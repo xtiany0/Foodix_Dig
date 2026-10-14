@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { acceptInstall, dismissInstall, useInstallMethod } from '../lib/install';
+import { acceptInstall, dismissInstall, markOffered, useInstallMethod } from '../lib/install';
 import { readStored, writeStored } from '../lib/storage';
 import { DownloadIcon } from './icons';
 import { useOverlayHistory } from '../lib/router';
@@ -8,11 +8,16 @@ import { useDialog } from '../lib/useDialog';
 import { useStore } from '../state/store';
 import styles from './InstallPrompt.module.css';
 
-/** Bannière Android « Installer Foodix » (Plus tard / Installer). */
-export function InstallBanner() {
+/**
+ * Bannière Android « Installer Foodix » (Plus tard / Installer).
+ * floating : carte posée en bas de l'écran (proposition arrivée après le lancement :
+ * insérée dans la page, elle ferait sauter le menu sous le doigt).
+ */
+export function InstallBanner({ floating = false }: { floating?: boolean }) {
   const { t } = useStore();
-  return (
-    <div className={styles.banner}>
+  useEffect(markOffered, []);
+  const banner = (
+    <div className={`${styles.banner} ${floating ? styles.floatCard : ''}`} role={floating ? 'region' : undefined} aria-label={floating ? t.installTitle : undefined}>
       <div className={styles.bannerRow}>
         <span className={styles.appIcon}>
           <img src="/brand/foodix-toque.webp" width={240} height={132} alt="" />
@@ -32,6 +37,7 @@ export function InstallBanner() {
       </div>
     </div>
   );
+  return floating ? <div className={styles.float}>{banner}</div> : banner;
 }
 
 const IOS_DELAY_MS = 3000;
@@ -152,7 +158,10 @@ export function IosGuide({ blocked }: { blocked: boolean }) {
 
   useEffect(() => {
     if (blocked || open) return;
-    const id = window.setTimeout(() => setOpen(true), IOS_DELAY_MS);
+    const id = window.setTimeout(() => {
+      setOpen(true);
+      markOffered();
+    }, IOS_DELAY_MS);
     return () => clearTimeout(id);
   }, [blocked, open]);
 

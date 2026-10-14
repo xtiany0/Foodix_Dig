@@ -4,8 +4,9 @@
  * Android (Chrome) : le navigateur envoie « beforeinstallprompt » ; on garde l'événement
  * et on affiche notre bannière (Plus tard / Installer).
  * iPhone (Safari) : pas d'installation automatique, on affiche un petit guide.
- * Après « Plus tard » ou un refus : pas de proposition d'office pendant config.installSnoozeDays jours ;
- * le bouton « Installer l'app » du pied de page et la carte après commande restent disponibles.
+ * Proposition d'office à l'arrivée sur le site, au plus une fois tous les config.installSnoozeDays
+ * jours : la date est notée dès qu'elle s'affiche (même sans réponse) et à chaque refus.
+ * Le bouton « Installer l'app » du pied de page et la carte après commande restent disponibles.
  * Déjà installée (ouverte depuis l'écran d'accueil) : rien.
  */
 
@@ -74,9 +75,13 @@ function currentMethod(): InstallOffer {
   return null;
 }
 
-/** Proposition automatique (bannière, guide iPhone) : seulement hors du délai après un refus. */
+// Proposition déjà affichée pendant cette visite : elle reste jusqu'à une réponse,
+// même si sa date vient d'être notée.
+let shownThisVisit = false;
+
+/** Proposition automatique (bannière, guide iPhone) : au plus une fois tous les N jours. */
 function currentOffer(): InstallOffer {
-  return canOffer(readSnooze(), Date.now()) ? currentMethod() : null;
+  return shownThisVisit || canOffer(readSnooze(), Date.now()) ? currentMethod() : null;
 }
 
 let cached: InstallOffer = null;
@@ -109,8 +114,16 @@ if (typeof window !== 'undefined') {
   listeners.add(snapshot);
 }
 
+/** La proposition vient de s'afficher : pas de nouvelle proposition d'office avant N jours. */
+export function markOffered(): void {
+  if (shownThisVisit) return;
+  shownThisVisit = true;
+  writeStored(SNOOZE_KEY, SNOOZE_VERSION, Date.now());
+}
+
 /** « Plus tard » ou « J'ai compris » : rien pendant quelques jours. */
 export function dismissInstall(): void {
+  shownThisVisit = false;
   snooze();
 }
 
@@ -121,6 +134,7 @@ export async function acceptInstall(): Promise<void> {
   deferred = null;
   await e.prompt();
   const { outcome } = await e.userChoice;
+  shownThisVisit = false;
   if (outcome === 'dismissed') snooze();
   else emit();
 }

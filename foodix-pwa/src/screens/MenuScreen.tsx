@@ -69,14 +69,14 @@ export default function MenuScreen() {
   const desktop = layout === 'desktop';
   const offer = useInstallOffer();
   const onMenu = useRoute() === 'menu';
-  // La bannière Android ne doit jamais faire sauter le menu sous le doigt du client :
-  // elle n'apparaît que si elle est prête pendant l'écran de lancement, ou au retour sur le menu.
-  const [installVisible, setInstallVisible] = useState(false);
+  // Android : la bannière ne doit jamais faire sauter le menu sous le doigt du client.
+  // Prête pendant l'écran de lancement : dans la page. Prête plus tard : carte flottante en bas.
+  const [installMode, setInstallMode] = useState<'inline' | 'float' | null>(null);
   useEffect(() => {
-    if (offer !== 'android') setInstallVisible(false);
-    else if (!onMenu || document.getElementById('launch')) setInstallVisible(true);
-  }, [offer, onMenu]);
-  const showInstall = offer === 'android' && installVisible;
+    if (offer !== 'android') setInstallMode(null);
+    else setInstallMode((m) => m ?? (document.getElementById('launch') ? 'inline' : 'float'));
+  }, [offer]);
+  const showInstall = offer === 'android' && installMode === 'inline';
 
   useOverlayHistory(sheetId !== null, () => setSheetId(null));
 
@@ -372,6 +372,7 @@ export default function MenuScreen() {
       <Toast text={toast} />
       {!wide && <CartPill />}
       {offer === 'ios' && <IosGuide blocked={!onMenu || sheetId !== null} />}
+      {offer === 'android' && installMode === 'float' && sheetId === null && <InstallBanner floating />}
       {sheetId && <ItemSheet itemId={sheetId} onClose={() => setSheetId(null)} onAdded={showToast} />}
     </div>
   );

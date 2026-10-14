@@ -114,6 +114,6 @@ export const config = {
   /** Nombre de commandes gardées dans « Mes commandes ». */
   historyLimit: 30,
 
-  /** Jours sans nouvelle proposition d'installation après « Plus tard ». */
+  /** Proposition d'installation d'office : au plus une fois tous les N jours (affichée ou refusée). */
   installSnoozeDays: 3,
 };
