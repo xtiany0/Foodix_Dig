@@ -45,7 +45,7 @@ Parcours principal : Lancement > Menu > fiche article > Ajouter > Panier > Valid
 4. **Fiche article** (feuille qui monte du bas sur téléphone et tablette, fenêtre centrée sur ordinateur) : catégorie, nom, prix, mention 18+ si besoin, quantité et champ « Précision » ; pour un article à variantes, chaque choix a sa propre quantité (0 par défaut) et sa précision, on peut prendre plusieurs choix d'un coup ; bouton « Ajouter · prix » (total de tous les choix), inactif tant qu'aucune quantité n'est choisie. **Pas de photo** (il n'y en a pas, comme sur le menu papier).
 5. **Panier** : lignes avec + / −, Retirer, précision modifiable, « Ajouter d'autres articles », total (pas encore de ligne Livraison : le mode n'est choisi qu'à l'étape suivante), bouton « Valider ma commande ». Bouton Vider avec confirmation. **Panier vide** : toque, texte, Voir le menu, lien Recommander une commande passée.
 6. **Validation livraison** : sélecteur Livraison / À emporter / Sur place, nom, téléphone, quartier, adresse ou repère, position GPS (facultative), note ; récapitulatif Sous-total, Livraison « À confirmer sur WhatsApp », Total hors livraison (en à emporter : Total seul).
-7. **Validation à emporter** : nom, téléphone, heure de retrait (Dès que possible / À une heure précise). **Sur place** (ajouté à la demande du client) : le client est déjà au food truck, donc **numéro de table** (à la place du nom, obligatoire, jamais mémorisé) et téléphone, avec « Le numéro est indiqué sur votre table. Foodix vous sert dès que votre commande est prête. » ; pas d'heure.
+7. **Validation à emporter** : nom, téléphone, heure de retrait (Dès que possible / À une heure précise). **Sur place** (ajouté à la demande du client) : le client est déjà au food truck, donc **seulement le numéro de table** (obligatoire, jamais mémorisé ; ni nom ni téléphone), avec « Le numéro est indiqué sur votre table. Foodix vous sert dès que votre commande est prête. » ; pas d'heure.
 8. **Envoi** : paiement préféré (Espèces, MTN Mobile Money, Moov Money), aperçu exact du message WhatsApp, gros bouton orange « Commander sur WhatsApp » avec le logo WhatsApp.
 9. **Confirmation** : Commande envoyée, numéro, 3 étapes suivantes, Rouvrir la discussion WhatsApp, Retour au menu, Mes commandes.
 10. **Mes commandes** : historique local, Recommander, suppression d'une commande ou de tout l'historique.
@@ -110,7 +110,7 @@ Note : appeler en arrivant
 - Points de conduite pour aligner les prix sur 30 caractères avant le prix.
 - Précision sur une ligne à part : `   ↳ précision`.
 - À emporter : `Mode : À emporter`, ligne `Retrait : 13:30` (ou `Dès que possible`) à la place d'Adresse / Position, pas de « (hors livraison) ».
-- Sur place : `Mode : Sur place`, ligne `Table : 7` à la place de `Nom`, ni adresse ni heure, pas de « (hors livraison) ».
+- Sur place : `Mode : Sur place`, ligne `Table : 7` à la place de `Nom` et `Tél`, ni adresse ni heure, pas de « (hors livraison) ».
 - Lignes vides ou facultatives (position, note) omises si non remplies.
 - **Le message reste toujours en français**, même si l'interface est en anglais.
 

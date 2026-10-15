@@ -75,15 +75,16 @@ describe('message WhatsApp', () => {
     const msg = message({ ...koffi, mode: 'surplace', table: '5', pickup: 'time', time: '20:15', geo: { lat: 1, lng: 2, accuracy: 5 } });
     expect(msg).toContain('Mode : Sur place');
     expect(msg).not.toContain('hors livraison');
-    expect(msg.endsWith('Table : 5\nTél : 01 97 00 00 00')).toBe(true);
+    expect(msg.endsWith('\n\nTable : 5')).toBe(true);
     expect(msg).not.toContain('Nom');
+    expect(msg).not.toContain('Tél');
     expect(msg).not.toContain('Retrait');
     expect(msg).not.toContain('Adresse');
     expect(msg).not.toContain('Note');
   });
 
-  it('sur place : numéro de table et téléphone demandés, pas le nom', () => {
-    const d: Draft = { ...emptyDraft, mode: 'surplace', name: '', table: '5', phone: '01 97 00 00 00', pickup: 'time', time: '' };
+  it('sur place : seul le numéro de table est demandé (ni nom ni téléphone)', () => {
+    const d: Draft = { ...emptyDraft, mode: 'surplace', name: '', table: '5', phone: '', pickup: 'time', time: '' };
     expect(draftErrors(d)).toEqual([]);
     expect(draftErrors({ ...d, table: ' ' })).toEqual(['table']);
   });

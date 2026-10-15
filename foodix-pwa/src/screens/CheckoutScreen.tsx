@@ -139,19 +139,21 @@ export default function CheckoutScreen() {
             )}
           </Field>
         )}
-        <Field id="f-tel" label={t.phone} error={err('phone')}>
-          {(a) => (
-            <input
-              {...a}
-              type="tel"
-              inputMode="tel"
-              autoComplete="tel"
-              className={`${styles.input} ${styles.num}`}
-              value={draft.phone}
-              onChange={(e) => updateDraft({ phone: e.target.value })}
-            />
-          )}
-        </Field>
+        {!surPlace && (
+          <Field id="f-tel" label={t.phone} error={err('phone')}>
+            {(a) => (
+              <input
+                {...a}
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel"
+                className={`${styles.input} ${styles.num}`}
+                value={draft.phone}
+                onChange={(e) => updateDraft({ phone: e.target.value })}
+              />
+            )}
+          </Field>
+        )}
 
         {livraison ? (
           <>
@@ -319,7 +321,8 @@ export default function CheckoutScreen() {
           </div>
         </div>
 
-        <span className={styles.kept}>{t.keptOnPhone}</span>
+        {/* Sur place : rien n’est demandé à garder (numéro de table seulement). */}
+        {!surPlace && <span className={styles.kept}>{t.keptOnPhone}</span>}
       </main>
 
       <div className={base.bar}>
