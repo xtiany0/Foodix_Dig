@@ -109,7 +109,7 @@ Le menu s'affiche en pages, comme la carte papier. Elles sont listées dans `pag
 - la première, `"id": "tout"`, est l'onglet « Tout » : toutes les catégories à la suite, sans photo ;
 - les suivantes sont les pages de la carte : `title` (fr / en), `categories` (identifiants des catégories de la page, dans l'ordre), `image` (photo en tête de page) et `imageRatio` (largeur / hauteur de la photo, ex. `"900 / 551"`).
 
-Chaque catégorie doit être dans une page, sinon l'app refuse le menu avec un message clair. Les photos sont dans `public/images/pages/` : WebP de 900 px de large, 30 à 70 Ko.
+Chaque catégorie doit être dans une page, sinon l'app refuse le menu avec un message clair. Les photos sont dans `public/images/pages/` : WebP de 900 px de large, 30 à 70 Ko. Pour changer une photo, donnez au nouveau fichier **un nom différent** (ex. `jus-lactes-2.webp`, puis `-3`…) et mettez à jour `image` et `imageRatio` : les téléphones gardent les photos déjà vues pendant 30 jours sous leur nom.
 
 > Les champs `whatsapp`, `phones` et `social` en tête de `menu.json` ne sont pas utilisés par l'app : les coordonnées se règlent dans `src/config.ts`.
 
