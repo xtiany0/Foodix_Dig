@@ -139,7 +139,7 @@ export default function CheckoutScreen() {
             )}
           </Field>
         )}
-        {!surPlace && (
+        {livraison && (
           <Field id="f-tel" label={t.phone} error={err('phone')}>
             {(a) => (
               <input

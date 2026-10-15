@@ -61,7 +61,8 @@ describe('message WhatsApp', () => {
     expect(msg).toContain('Mode : À emporter');
     expect(msg).toContain('Total : 9.000 F\n');
     expect(msg).not.toContain('hors livraison');
-    expect(msg.endsWith('Tél : 01 97 00 00 00\nRetrait : 13:30')).toBe(true);
+    expect(msg.endsWith('Nom : Koffi\nRetrait : 13:30')).toBe(true);
+    expect(msg).not.toContain('Tél');
     expect(msg).not.toContain('Note');
     expect(msg).not.toContain('Adresse');
     expect(msg).not.toContain('Position');
@@ -87,6 +88,12 @@ describe('message WhatsApp', () => {
     const d: Draft = { ...emptyDraft, mode: 'surplace', name: '', table: '5', phone: '', pickup: 'time', time: '' };
     expect(draftErrors(d)).toEqual([]);
     expect(draftErrors({ ...d, table: ' ' })).toEqual(['table']);
+  });
+
+  it('à emporter : seul le nom est demandé, pas le téléphone', () => {
+    const d: Draft = { ...emptyDraft, mode: 'emporter', name: 'Koffi', phone: '', pickup: 'asap' };
+    expect(draftErrors(d)).toEqual([]);
+    expect(draftErrors({ ...d, mode: 'livraison', quartier: 'Zongo' })).toEqual(['phone']);
   });
 
   it('livraison : le numéro de table n’apparaît jamais', () => {

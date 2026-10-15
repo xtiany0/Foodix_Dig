@@ -51,13 +51,12 @@ export type DraftError = 'name' | 'table' | 'phone' | 'address' | 'time';
 /** Champs obligatoires manquants, dans l'ordre de l'écran. */
 export function draftErrors(d: Draft): DraftError[] {
   const errors: DraftError[] = [];
+  // Sur place : le numéro de table suffit. À emporter : le nom suffit (la commande arrive
+  // du WhatsApp du client, Foodix a déjà son numéro). Livraison : nom et téléphone pour le livreur.
   if (d.mode === 'surplace') {
-    // Sur place : le numéro de table suffit (ni nom ni téléphone).
     if (!d.table.trim()) errors.push('table');
-  } else {
-    if (!d.name.trim()) errors.push('name');
-    if (d.phone.replace(/\D/g, '').length < 8) errors.push('phone');
-  }
+  } else if (!d.name.trim()) errors.push('name');
+  if (d.mode === 'livraison' && d.phone.replace(/\D/g, '').length < 8) errors.push('phone');
   if (d.mode === 'livraison' && !d.quartier.trim() && !d.adresse.trim()) errors.push('address');
   if (d.mode === 'emporter' && d.pickup === 'time' && !/^\d{2}:\d{2}$/.test(d.time)) errors.push('time');
   return errors;
@@ -80,7 +79,7 @@ export function draftMessage(number: string, d: Draft, lines: ResolvedLine[], to
     // Sur place : le numéro de table remplace le nom.
     name: d.mode === 'surplace' ? undefined : d.name,
     table: d.mode === 'surplace' ? d.table : undefined,
-    phone: d.mode === 'surplace' ? undefined : d.phone,
+    phone: livraison ? d.phone : undefined,
     address: livraison ? [d.quartier.trim(), d.adresse.trim()].filter(Boolean).join(', ') : undefined,
     position: livraison ? positionOf(d) : undefined,
     // Sur place : le client est déjà là, pas d'heure.
