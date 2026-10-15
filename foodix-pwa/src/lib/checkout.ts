@@ -20,6 +20,8 @@ export interface Draft {
   quartier: string;
   adresse: string;
   note: string;
+  /** Sur place : numéro de table (à la place du nom). */
+  table: string;
   pickup: 'asap' | 'time';
   /** « HH:MM » quand pickup vaut « time ». */
   time: string;
@@ -36,6 +38,7 @@ export const emptyDraft: Draft = {
   quartier: '',
   adresse: '',
   note: '',
+  table: '',
   pickup: 'asap',
   time: '',
   geo: null,
@@ -43,12 +46,14 @@ export const emptyDraft: Draft = {
   payment: 'cash',
 };
 
-export type DraftError = 'name' | 'phone' | 'address' | 'time';
+export type DraftError = 'name' | 'table' | 'phone' | 'address' | 'time';
 
 /** Champs obligatoires manquants, dans l'ordre de l'écran. */
 export function draftErrors(d: Draft): DraftError[] {
   const errors: DraftError[] = [];
-  if (!d.name.trim()) errors.push('name');
+  if (d.mode === 'surplace') {
+    if (!d.table.trim()) errors.push('table');
+  } else if (!d.name.trim()) errors.push('name');
   if (d.phone.replace(/\D/g, '').length < 8) errors.push('phone');
   if (d.mode === 'livraison' && !d.quartier.trim() && !d.adresse.trim()) errors.push('address');
   if (d.mode === 'emporter' && d.pickup === 'time' && !/^\d{2}:\d{2}$/.test(d.time)) errors.push('time');
@@ -69,7 +74,9 @@ export function draftMessage(number: string, d: Draft, lines: ResolvedLine[], to
     lines: lines.map((r) => ({ qty: r.line.qty, name: r.name, total: r.total, note: r.line.note })),
     total,
     payment: PAYMENTS.find((p) => p.id === d.payment)?.fr ?? PAYMENTS[0].fr,
-    name: d.name,
+    // Sur place : le numéro de table remplace le nom.
+    name: d.mode === 'surplace' ? undefined : d.name,
+    table: d.mode === 'surplace' ? d.table : undefined,
     phone: d.phone,
     address: livraison ? [d.quartier.trim(), d.adresse.trim()].filter(Boolean).join(', ') : undefined,
     position: livraison ? positionOf(d) : undefined,

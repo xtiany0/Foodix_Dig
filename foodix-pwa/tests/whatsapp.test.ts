@@ -71,20 +71,25 @@ describe('message WhatsApp', () => {
     expect(message({ ...koffi, mode: 'emporter', pickup: 'asap' })).toContain('Retrait : Dès que possible');
   });
 
-  it('sur place : ni adresse ni heure (le client est déjà là), sans « hors livraison »', () => {
-    const msg = message({ ...koffi, mode: 'surplace', pickup: 'time', time: '20:15', geo: { lat: 1, lng: 2, accuracy: 5 } });
+  it('sur place : numéro de table à la place du nom, ni adresse ni heure, sans « hors livraison »', () => {
+    const msg = message({ ...koffi, mode: 'surplace', table: '5', pickup: 'time', time: '20:15', geo: { lat: 1, lng: 2, accuracy: 5 } });
     expect(msg).toContain('Mode : Sur place');
     expect(msg).not.toContain('hors livraison');
-    expect(msg.endsWith('Tél : 01 97 00 00 00')).toBe(true);
+    expect(msg.endsWith('Table : 5\nTél : 01 97 00 00 00')).toBe(true);
+    expect(msg).not.toContain('Nom');
     expect(msg).not.toContain('Retrait');
     expect(msg).not.toContain('Adresse');
     expect(msg).not.toContain('Note');
   });
 
-  it('sur place : seuls le nom et le téléphone sont demandés', () => {
-    const d: Draft = { ...emptyDraft, mode: 'surplace', name: 'Koffi', phone: '01 97 00 00 00', pickup: 'time', time: '' };
+  it('sur place : numéro de table et téléphone demandés, pas le nom', () => {
+    const d: Draft = { ...emptyDraft, mode: 'surplace', name: '', table: '5', phone: '01 97 00 00 00', pickup: 'time', time: '' };
     expect(draftErrors(d)).toEqual([]);
-    expect(draftErrors({ ...d, name: '' })).toEqual(['name']);
+    expect(draftErrors({ ...d, table: ' ' })).toEqual(['table']);
+  });
+
+  it('livraison : le numéro de table n’apparaît jamais', () => {
+    expect(message({ ...koffi, mode: 'livraison', table: '5' })).not.toContain('Table');
   });
 
   it('aligne les prix : 30 caractères avant le prix', () => {

@@ -33,6 +33,8 @@ export interface MessageInput {
   /** Libellé français du paiement, ex. « MTN Mobile Money ». */
   payment: string;
   name?: string;
+  /** Sur place : numéro de table. */
+  table?: string;
   phone?: string;
   /** Livraison : quartier et adresse ou repère. */
   address?: string;
@@ -62,6 +64,7 @@ export function buildMessage(m: MessageInput): string {
     m.lines.flatMap((l) => [itemLine(l.qty, l.name, l.total), clean(l.note) ? `   ↳ ${clean(l.note)}` : null]),
     [`Total : ${formatPrice(m.total)}${livraison ? ' (hors livraison)' : ''}`, field('Paiement', m.payment)],
     [
+      field('Table', m.table),
       field('Nom', m.name),
       field('Tél', m.phone),
       ...(livraison ? [field('Adresse', m.address), field('Position', m.position)] : [field('Retrait', m.pickup)]),

@@ -10,7 +10,7 @@ import styles from './CheckoutScreen.module.css';
 
 type GeoStatus = 'idle' | 'loading' | 'refused' | 'failed';
 
-const FIELD_ID: Record<DraftError, string> = { name: 'f-nom', phone: 'f-tel', address: 'f-quartier', time: 'f-heure' };
+const FIELD_ID: Record<DraftError, string> = { name: 'f-nom', table: 'f-table', phone: 'f-tel', address: 'f-quartier', time: 'f-heure' };
 
 interface FieldProps {
   id: string;
@@ -52,6 +52,7 @@ export default function CheckoutScreen() {
   const surPlace = draft.mode === 'surplace';
   const errorText: Record<DraftError, string> = {
     name: t.errName,
+    table: t.errTable,
     phone: t.errPhone,
     address: t.errAddress,
     time: t.errTime,
@@ -116,11 +117,28 @@ export default function CheckoutScreen() {
           </button>
         </div>
 
-        <Field id="f-nom" label={t.name} error={err('name')}>
-          {(a) => (
-            <input {...a} type="text" autoComplete="name" className={styles.input} value={draft.name} onChange={(e) => updateDraft({ name: e.target.value })} />
-          )}
-        </Field>
+        {surPlace ? (
+          // Sur place : le numéro de table remplace le nom.
+          <Field id="f-table" label={t.table} error={err('table')}>
+            {(a) => (
+              <input
+                {...a}
+                type="text"
+                autoComplete="off"
+                maxLength={10}
+                className={`${styles.input} ${styles.num}`}
+                value={draft.table}
+                onChange={(e) => updateDraft({ table: e.target.value })}
+              />
+            )}
+          </Field>
+        ) : (
+          <Field id="f-nom" label={t.name} error={err('name')}>
+            {(a) => (
+              <input {...a} type="text" autoComplete="name" className={styles.input} value={draft.name} onChange={(e) => updateDraft({ name: e.target.value })} />
+            )}
+          </Field>
+        )}
         <Field id="f-tel" label={t.phone} error={err('phone')}>
           {(a) => (
             <input
