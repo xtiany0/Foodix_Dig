@@ -1,0 +1,532 @@
+/* Guide d'installation iPhone, pas à pas, avec dessins simplifiés de l'écran. */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  background: var(--fx-overlay);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.sheet {
+  width: 100%;
+  max-width: 480px;
+  background: var(--fx-surface);
+  color: var(--fx-text);
+  max-height: calc(100% - var(--safe-top) - 8px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: var(--fx-radius-sheet) var(--fx-radius-sheet) 0 0;
+  padding: 8px 20px calc(18px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--fx-line-3);
+  align-self: center;
+}
+
+.head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.headIcon {
+  width: 48px;
+  height: 48px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--fx-bg);
+  border: 1px solid var(--fx-line-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headIcon img {
+  width: 34px;
+  height: auto;
+}
+
+.headText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.progress {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--fx-price);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.dot,
+.dotOn {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--fx-line-3);
+}
+
+.dotOn {
+  width: 22px;
+  background: var(--fx-navy);
+}
+
+.stepText {
+  margin: 0;
+  min-height: 2.7em;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.tip {
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--fx-bg);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--fx-text-muted);
+}
+
+.tipIcon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  background: var(--ios-white);
+  color: var(--ios-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copyBtn {
+  height: 52px;
+  border-radius: var(--fx-radius-button);
+  border: 0;
+  background: var(--fx-orange);
+  color: var(--fx-navy);
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+}
+
+.prev,
+.next {
+  flex: 1;
+  height: 52px;
+  border-radius: var(--fx-radius-button);
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.prev {
+  flex: 0 0 auto;
+  padding: 0 18px;
+  border: 1px solid var(--fx-line-3);
+  background: transparent;
+  color: var(--fx-text);
+}
+
+.next {
+  border: 0;
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
+}
+
+/* ---------- Dessins : un écran d'iPhone simplifié ---------- */
+
+.picWrap {
+  --ios-blue: #0a7aff;
+  --ios-gray: #d7d7dc;
+  --ios-light: #f2f2f7;
+  --ios-white: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.tipIcon {
+  --ios-blue: #0a7aff;
+  --ios-white: #ffffff;
+}
+
+.screen {
+  position: relative;
+  width: 230px;
+  height: 170px;
+  border-radius: 22px;
+  border: 3px solid var(--fx-navy);
+  background: var(--ios-light);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1c1c1e;
+}
+
+/* Écran dont les barres sont en bas (Safari) */
+.bottom {
+  justify-content: flex-end;
+}
+
+.page {
+  position: absolute;
+  inset: 10px 10px auto;
+  height: 46px;
+  border-radius: 8px;
+  background: var(--fx-navy);
+  opacity: 0.9;
+}
+
+.address {
+  align-self: stretch;
+  flex: 1;
+  height: 28px;
+  min-width: 0;
+  border-radius: 14px;
+  background: var(--ios-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #3a3a3c;
+}
+
+.bottom > .address {
+  flex: none;
+}
+
+.addressFocus {
+  justify-content: flex-start;
+  padding-left: 12px;
+  color: var(--ios-blue);
+  outline: 2px solid var(--ios-blue);
+}
+
+.toolbar,
+.compact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  color: var(--ios-blue);
+}
+
+.tool {
+  width: 28px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--ios-blue);
+}
+
+/* Bouton à toucher : entouré d'orange, halo qui pulse */
+.hit {
+  position: relative;
+  flex: none;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 6px;
+  border-radius: 17px;
+  background: var(--ios-white);
+  color: var(--ios-blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: 0 0 0 3px var(--fx-orange);
+}
+
+.hit::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  box-shadow: 0 0 0 3px var(--fx-orange);
+  animation: pulse 1.4s ease-out infinite;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+.hitRow {
+  width: 100%;
+  justify-content: flex-start;
+  border-radius: 9px;
+  padding: 0 10px;
+  color: #1c1c1e;
+}
+
+.hitRow svg {
+  color: var(--ios-blue);
+}
+
+.hitBlue {
+  color: var(--ios-white);
+  background: var(--ios-blue);
+  padding: 0 12px;
+}
+
+.hitDark {
+  background: #1c1c1e;
+  color: var(--ios-white);
+  padding: 0 12px;
+  border-radius: 8px;
+}
+
+/* Menu ••• et listes d'actions */
+.menu,
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 14px;
+  background: var(--ios-white);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.menu {
+  position: relative;
+  align-self: flex-end;
+  width: 75%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 14px;
+}
+
+.rowIcon {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--ios-gray);
+}
+
+.rowBar {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--ios-gray);
+}
+
+/* Feuille de partage */
+.sheetPic {
+  justify-content: flex-start;
+}
+
+.sheetHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.miniIcon {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 7px;
+  background: var(--fx-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.miniIcon img {
+  width: 20px;
+  height: auto;
+}
+
+.apps {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+}
+
+.apps span {
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  background: var(--ios-gray);
+}
+
+.chev,
+.plus {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.6px solid currentColor;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  line-height: 1;
+  color: #1c1c1e;
+}
+
+.chev {
+  border: 0;
+  font-size: 16px;
+}
+
+/* Fenêtre « Sur l'écran d'accueil » */
+.addBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.blue {
+  color: var(--ios-blue);
+}
+
+.addCard {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--ios-white);
+}
+
+.addName {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* Écran d'accueil */
+.homePic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px 10px;
+  padding: 16px 14px;
+  align-content: start;
+  background: linear-gradient(160deg, #3b3a6b, #15132d);
+}
+
+.app {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.25);
+  justify-self: center;
+}
+
+.appCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.hitApp {
+  min-width: 0;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 10px;
+  overflow: visible;
+}
+
+.foodixApp,
+.safariApp {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.foodixApp {
+  background: var(--fx-navy);
+}
+
+.foodixApp img {
+  width: 30px;
+  height: auto;
+}
+
+.safariApp {
+  background: var(--ios-white);
+  color: var(--ios-blue);
+}
+
+.appLabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Bulle « Coller » au-dessus de la barre d'adresse */
+.bubble {
+  align-self: center;
+}
+
+/* Lien à copier */
+.copyPic {
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--ios-white);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ios-blue);
+}

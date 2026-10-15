@@ -32,6 +32,11 @@ export function isStandalone(): boolean {
   return matchMedia('(display-mode: standalone)').matches || (navigator as { standalone?: boolean }).standalone === true;
 }
 
+/** iPhone ou iPad, quel que soit le navigateur. */
+export function isIos(ua = navigator.userAgent, touchPoints = navigator.maxTouchPoints): boolean {
+  return /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && touchPoints > 1);
+}
+
 /** iPhone ou iPad sous Safari (seul navigateur iOS qui propose « Sur l'écran d'accueil » partout). */
 export function isIosSafari(ua = navigator.userAgent, touchPoints = navigator.maxTouchPoints): boolean {
   const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && touchPoints > 1);
@@ -47,9 +52,12 @@ export function safariVersion(ua = navigator.userAgent): number | null {
 /**
  * Parcours d'installation de ce Safari :
  * - « share » (iOS 18 et avant) : bouton Partager toujours visible, puis « Sur l'écran d'accueil » ;
- * - « menu » (iOS 26 et après, ou version inconnue) : « ••• » > Partager > En voir plus > Sur l'écran d'accueil.
+ * - « menu » (iOS 26 et après, ou version inconnue) : « ••• » > Partager > En voir plus > Sur l'écran d'accueil ;
+ * - « other » (autre navigateur que Safari) : copier le lien et l'ouvrir dans Safari.
  */
-export function iosGuideKind(ua = navigator.userAgent): 'share' | 'menu' {
+export function iosGuideKind(ua = navigator.userAgent, touchPoints = navigator.maxTouchPoints): 'share' | 'menu' | 'other' {
+  // Chrome, Instagram, Facebook… : il faut d'abord ouvrir le lien dans Safari.
+  if (!isIosSafari(ua, touchPoints)) return 'other';
   const v = safariVersion(ua);
   return v !== null && v < 26 ? 'share' : 'menu';
 }
@@ -92,7 +100,8 @@ export type InstallOffer = 'android' | 'ios' | null;
 function currentMethod(): InstallOffer {
   if (installed || isStandalone()) return null;
   if (deferred) return 'android';
-  if (isIosSafari()) return 'ios';
+  // Tout navigateur iPhone : le guide explique, si besoin, comment passer dans Safari.
+  if (isIos()) return 'ios';
   return null;
 }
 

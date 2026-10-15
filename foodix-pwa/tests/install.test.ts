@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { canOffer, iosGuideKind, isIosSafari, safariVersion } from '../src/lib/install';
+import { canOffer, iosGuideKind, isIos, isIosSafari, safariVersion } from '../src/lib/install';
 
 const DAY = 86_400_000;
 
@@ -61,5 +61,23 @@ describe('guide iPhone selon la version de Safari', () => {
     expect(iosGuideKind(ios18)).toBe('share');
     expect(iosGuideKind(ios26)).toBe('menu');
     expect(iosGuideKind('Mozilla/5.0 (iPhone) Safari/604.1')).toBe('menu');
+  });
+});
+
+describe('guide iPhone hors de Safari', () => {
+  const chrome =
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/138.0 Mobile/15E148 Safari/604.1';
+  const instagram =
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 380.0';
+
+  it('Chrome, Instagram : guide « ouvrir dans Safari »', () => {
+    expect(iosGuideKind(chrome, 5)).toBe('other');
+    expect(iosGuideKind(instagram, 5)).toBe('other');
+  });
+
+  it('proposé sur tout iPhone, pas sur Android', () => {
+    expect(isIos(chrome, 5)).toBe(true);
+    expect(isIos(instagram, 5)).toBe(true);
+    expect(isIos('Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 Chrome/129.0 Mobile Safari/537.36', 5)).toBe(false);
   });
 });
