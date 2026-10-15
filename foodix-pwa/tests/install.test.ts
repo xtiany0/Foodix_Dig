@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { canOffer, isIosSafari } from '../src/lib/install';
+import { canOffer, iosGuideKind, isIosSafari, safariVersion } from '../src/lib/install';
 
 const DAY = 86_400_000;
 
@@ -41,5 +41,25 @@ describe('détection iPhone Safari', () => {
     const ipad = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15';
     expect(isIosSafari(ipad, 5)).toBe(true);
     expect(isIosSafari(ipad, 0)).toBe(false);
+  });
+});
+
+describe('guide iPhone selon la version de Safari', () => {
+  const ios18 =
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1';
+  // iOS 26 garde « OS 18_6 » dans l'identifiant : seule la version de Safari change.
+  const ios26 =
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Mobile/15E148 Safari/604.1';
+
+  it('lit la version de Safari', () => {
+    expect(safariVersion(ios18)).toBe(18);
+    expect(safariVersion(ios26)).toBe(26);
+    expect(safariVersion('Mozilla/5.0 (iPhone) Safari/604.1')).toBeNull();
+  });
+
+  it('iOS 18 : Partager directement ; iOS 26 ou inconnu : par « ••• »', () => {
+    expect(iosGuideKind(ios18)).toBe('share');
+    expect(iosGuideKind(ios26)).toBe('menu');
+    expect(iosGuideKind('Mozilla/5.0 (iPhone) Safari/604.1')).toBe('menu');
   });
 });

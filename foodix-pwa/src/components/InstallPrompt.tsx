@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { acceptInstall, dismissInstall, markOffered, useInstallMethod } from '../lib/install';
+import { acceptInstall, dismissInstall, iosGuideKind, isIpad, markOffered, useInstallMethod } from '../lib/install';
 import { readStored, writeStored } from '../lib/storage';
 import { DownloadIcon } from './icons';
 import { useOverlayHistory } from '../lib/router';
@@ -56,9 +56,9 @@ function KeyDots() {
   );
 }
 
-function KeyShare() {
+function KeyShare({ small = false }: { small?: boolean }) {
   return (
-    <span className={`${styles.key} ${styles.keySmall}`} aria-hidden="true">
+    <span className={`${styles.key} ${small ? styles.keySmall : ''}`} aria-hidden="true">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 3v12M8 7l4-4 4 4M7 11H5v10h14V11h-2" />
       </svg>
@@ -98,6 +98,22 @@ function KeyAdd({ label }: { label: string }) {
 function IosSheet({ onClose }: { onClose: () => void }) {
   const { t } = useStore();
   const ref = useDialog<HTMLDivElement>(true, onClose);
+  // Safari d'iOS 18 et avant : Partager est toujours visible. iOS 26 : il passe par « ••• ».
+  const kind = iosGuideKind();
+  const add = { lead: t.ios4, key: t.ios4Key, end: t.ios4End, icon: <KeyAdd label={t.iosButtonAdd} /> };
+  const steps =
+    kind === 'share'
+      ? [
+          { lead: t.iosShare, key: t.iosShareKey, end: t.iosShareEnd(isIpad() ? t.iosTopRight : t.iosBottom), icon: <KeyShare /> },
+          { lead: t.iosHome, key: t.ios3Key, end: '', icon: <KeyHome /> },
+          add,
+        ]
+      : [
+          { lead: t.ios1, key: t.ios1Key, end: t.ios1End, icon: <KeyDots /> },
+          { lead: t.ios2, key: t.ios2Key, end: t.ios2End, icon: <KeyMore /> },
+          { lead: t.ios3, key: t.ios3Key, end: t.ios3End, icon: <KeyHome /> },
+          add,
+        ];
   // Rendu à la racine de la page : ouvert depuis le pied de page bleu nuit, le guide
   // n'hérite pas de son texte blanc (sinon titre et étapes blancs sur fond blanc).
   return createPortal(
@@ -110,23 +126,18 @@ function IosSheet({ onClose }: { onClose: () => void }) {
           </span>
           <div className={styles.bannerText}>
             <strong className={styles.iosTitle}>{t.iosTitle}</strong>
-            <span className={styles.text}>{t.iosText}</span>
+            <span className={styles.text}>{t.iosText(steps.length)}</span>
           </div>
         </div>
         <ol className={styles.steps}>
-          {[
-            { lead: t.ios1, key: t.ios1Key, end: t.ios1End, icon: <KeyDots /> },
-            { lead: t.ios2, key: t.ios2Key, end: t.ios2End, icon: <KeyMore /> },
-            { lead: t.ios3, key: t.ios3Key, end: t.ios3End, icon: <KeyHome /> },
-            { lead: t.ios4, key: t.ios4Key, end: t.ios4End, icon: <KeyAdd label={t.iosButtonAdd} /> },
-          ].map((step, i) => (
+          {steps.map((step, i) => (
             <li key={i} className={styles.step}>
               <span className={styles.stepNum}>{i + 1}</span>
               <span className={styles.stepText}>
                 {step.lead} <strong>{step.key}</strong> {step.end}
-                {i === 0 && (
+                {i === 0 && kind === 'menu' && (
                   <span className={styles.stepAlt}>
-                    <KeyShare /> {t.ios1Alt}
+                    <KeyShare small /> {t.ios1Alt}
                   </span>
                 )}
               </span>

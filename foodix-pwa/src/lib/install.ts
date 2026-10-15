@@ -38,6 +38,27 @@ export function isIosSafari(ua = navigator.userAgent, touchPoints = navigator.ma
   return ios && /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA|FBAN|FBAV|Instagram/.test(ua);
 }
 
+/** Version de Safari (« Version/18.6 » → 18), null si absente. */
+export function safariVersion(ua = navigator.userAgent): number | null {
+  const m = /Version\/(\d+)/.exec(ua);
+  return m ? Number(m[1]) : null;
+}
+
+/**
+ * Parcours d'installation de ce Safari :
+ * - « share » (iOS 18 et avant) : bouton Partager toujours visible, puis « Sur l'écran d'accueil » ;
+ * - « menu » (iOS 26 et après, ou version inconnue) : « ••• » > Partager > En voir plus > Sur l'écran d'accueil.
+ */
+export function iosGuideKind(ua = navigator.userAgent): 'share' | 'menu' {
+  const v = safariVersion(ua);
+  return v !== null && v < 26 ? 'share' : 'menu';
+}
+
+/** iPad (ou iPad qui se présente comme un Mac) : le bouton Partager est en haut à droite. */
+export function isIpad(ua = navigator.userAgent, touchPoints = navigator.maxTouchPoints): boolean {
+  return /iPad/.test(ua) || (/Macintosh/.test(ua) && touchPoints > 1);
+}
+
 let deferred: BeforeInstallPromptEvent | null = null;
 let installed = false;
 const listeners = new Set<() => void>();
