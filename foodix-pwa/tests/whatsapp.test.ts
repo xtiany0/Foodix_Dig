@@ -68,6 +68,10 @@ describe('message WhatsApp', () => {
     expect(msg).not.toContain('Position');
   });
 
+  it('à emporter demain matin (Foodix fermé pour le reste de la journée)', () => {
+    expect(message({ ...koffi, mode: 'emporter', pickup: 'time', time: '10:15', timeNextDay: true })).toContain('Retrait : Demain 10:15');
+  });
+
   it('à emporter dès que possible', () => {
     expect(message({ ...koffi, mode: 'emporter', pickup: 'asap' })).toContain('Retrait : Dès que possible');
   });

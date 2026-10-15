@@ -25,6 +25,8 @@ export interface Draft {
   pickup: 'asap' | 'time';
   /** « HH:MM » quand pickup vaut « time ». */
   time: string;
+  /** Le créneau choisi est demain (Foodix fermé pour le reste de la journée). */
+  timeNextDay: boolean;
   geo: Geo | null;
   /** Lien de position collé quand le GPS est refusé. */
   geoLink: string;
@@ -41,6 +43,7 @@ export const emptyDraft: Draft = {
   table: '',
   pickup: 'asap',
   time: '',
+  timeNextDay: false,
   geo: null,
   geoLink: '',
   payment: 'cash',
@@ -83,7 +86,7 @@ export function draftMessage(number: string, d: Draft, lines: ResolvedLine[], to
     address: livraison ? [d.quartier.trim(), d.adresse.trim()].filter(Boolean).join(', ') : undefined,
     position: livraison ? positionOf(d) : undefined,
     // Sur place : le client est déjà là, pas d'heure.
-    pickup: d.mode !== 'emporter' ? undefined : d.pickup === 'asap' ? 'Dès que possible' : d.time,
+    pickup: d.mode !== 'emporter' ? undefined : d.pickup === 'asap' ? 'Dès que possible' : `${d.timeNextDay ? 'Demain ' : ''}${d.time}`,
     // « À emporter » et « Sur place » n'ont pas de champ Note : une note saisie en livraison n'est pas envoyée.
     note: livraison ? d.note : undefined,
   });

@@ -174,7 +174,7 @@ export function StoreProvider({ menu, children }: { menu: Menu; children: ReactN
     saveProfile();
     // Nouvelle commande : nouveau numéro, mêmes coordonnées ; note, heure et position repartent à zéro.
     setPendingNumber(orderNumber([order.id, ...history.map((o) => o.id)]));
-    setDraft((d) => ({ ...d, note: '', table: '', pickup: 'asap', time: '', geo: null, geoLink: '' }));
+    setDraft((d) => ({ ...d, note: '', table: '', pickup: 'asap', time: '', timeNextDay: false, geo: null, geoLink: '' }));
     return order;
   };
 

@@ -50,3 +50,35 @@ export function isOpenAt(date: Date, hours: WeeklyHours | null, timeZone: string
   }
   return false;
 }
+
+/** Créneau de retrait proposé : « HH:MM » à l'heure du Bénin, aujourd'hui ou demain. */
+export interface Slot {
+  time: string;
+  nextDay: boolean;
+}
+
+const pad = (n: number) => String(n).padStart(2, '0');
+
+/**
+ * Heures de retrait proposées : toutes les `step` minutes, au plus tôt dans `lead` minutes,
+ * seulement pendant les horaires d'ouverture, aujourd'hui ou demain (au plus `count` créneaux).
+ * Remplace le sélecteur d'heure du téléphone, coupé ou peu lisible sur certains Android.
+ */
+export function pickupSlots(
+  now: Date,
+  hours: WeeklyHours | null,
+  timeZone: string,
+  { step = 15, lead = 15, count = 24 } = {},
+): Slot[] {
+  const { minutes } = localTime(now, timeZone);
+  const first = Math.ceil((minutes + lead) / step) * step;
+  // Instant du premier créneau : début de la minute locale en cours, plus l'écart.
+  const base = now.getTime() - now.getUTCSeconds() * 1000 - now.getUTCMilliseconds() + (first - minutes) * 60_000;
+  const slots: Slot[] = [];
+  for (let m = first; m < 2 * 1440 && slots.length < count; m += step) {
+    if (!isOpenAt(new Date(base + (m - first) * 60_000), hours, timeZone)) continue;
+    const day = m % 1440;
+    slots.push({ time: `${pad(Math.floor(day / 60))}:${pad(day % 60)}`, nextDay: m >= 1440 });
+  }
+  return slots;
+}

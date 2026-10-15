@@ -1,7 +1,10 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import ScreenHeader, { PageTitle } from '../components/ScreenHeader';
 import { CheckIcon, CloseIcon, PinIcon, RefreshIcon, WarningIcon } from '../components/icons';
+import { config } from '../config';
 import { draftErrors, type DraftError } from '../lib/checkout';
+import { useNow } from '../lib/env';
+import { pickupSlots } from '../lib/hours';
 import { formatPrice } from '../lib/price';
 import { navigate } from '../lib/router';
 import { useStore } from '../state/store';
@@ -9,6 +12,9 @@ import base from './Screen.module.css';
 import styles from './CheckoutScreen.module.css';
 
 type GeoStatus = 'idle' | 'loading' | 'refused' | 'failed';
+
+/** Valeur d'un créneau dans la liste : « 13:30|0 » (aujourd'hui) ou « 10:15|1 » (demain). */
+const slotValue = (time: string, nextDay: boolean) => (time ? `${time}|${nextDay ? 1 : 0}` : '');
 
 const FIELD_ID: Record<DraftError, string> = { name: 'f-nom', table: 'f-table', phone: 'f-tel', address: 'f-quartier', time: 'f-heure' };
 
@@ -38,6 +44,15 @@ function Field({ id, label, error, children }: FieldProps) {
 /** Validation de la commande : livraison, à emporter ou sur place (étape 1 sur 2). */
 export default function CheckoutScreen() {
   const { t, draft, updateDraft, saveProfile, lines, count, total, canOrder } = useStore();
+  const now = useNow();
+  const slots = useMemo(() => {
+    const list = pickupSlots(now, config.openingHours, config.timeZone);
+    // Créneau déjà choisi devenu trop proche : on le garde dans la liste plutôt que de l'effacer.
+    if (draft.time && !list.some((s) => s.time === draft.time && s.nextDay === draft.timeNextDay)) {
+      list.unshift({ time: draft.time, nextDay: draft.timeNextDay });
+    }
+    return list;
+  }, [now, draft.time, draft.timeNextDay]);
   const [submitted, setSubmitted] = useState(false);
   const [geoStatus, setGeoStatus] = useState<GeoStatus>(draft.geoLink ? 'refused' : 'idle');
   const geoRef = useRef<HTMLDivElement>(null);
@@ -261,14 +276,26 @@ export default function CheckoutScreen() {
                 <label htmlFor="f-heure" className={styles.timeLabel}>
                   {t.pickupAt}
                 </label>
-                <input
+                {/* Liste de créneaux plutôt que le sélecteur d'heure du téléphone (coupé sur certains Android). */}
+                <select
                   id="f-heure"
-                  type="time"
                   className={styles.time}
-                  value={draft.time}
+                  value={slotValue(draft.time, draft.timeNextDay)}
                   {...(err('time') ? { 'aria-invalid': true, 'aria-describedby': 'f-heure-err' } : {})}
-                  onChange={(e) => updateDraft({ time: e.target.value })}
-                />
+                  onChange={(e) => {
+                    const [time, day] = e.target.value.split('|');
+                    updateDraft({ time: time ?? '', timeNextDay: day === '1' });
+                  }}
+                >
+                  <option value="" disabled>
+                    {t.chooseTime}
+                  </option>
+                  {slots.map((s) => (
+                    <option key={slotValue(s.time, s.nextDay)} value={slotValue(s.time, s.nextDay)}>
+                      {s.nextDay ? `${t.tomorrow} ${s.time}` : s.time}
+                    </option>
+                  ))}
+                </select>
               </div>
             )}
             {err('time') && (

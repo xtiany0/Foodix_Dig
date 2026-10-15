@@ -247,15 +247,20 @@
 }
 
 .time {
-  width: 140px;
+  min-width: 160px;
   height: 50px;
   border-radius: var(--fx-radius-field);
   border: 1px solid var(--fx-line-2);
-  background: var(--fx-surface);
+  /* Flèche de liste dessinée : le menu natif garde le même aspect partout. */
+  background: var(--fx-surface)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2315132D' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")
+    no-repeat right 14px center;
+  appearance: none;
+  -webkit-appearance: none;
   color: var(--fx-text);
   font-size: 18px;
   font-weight: 800;
-  padding: 0 14px;
+  padding: 0 40px 0 14px;
   color-scheme: light;
   font-variant-numeric: tabular-nums;
 }
