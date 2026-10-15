@@ -130,8 +130,7 @@ const fr = {
   asap: 'Dès que possible',
   atTime: 'À une heure précise',
   pickupAt: 'Je passe à',
-  arrival: 'Heure d’arrivée',
-  arriveAt: 'J’arrive à',
+  surPlaceHelp: 'Vous êtes au food truck : Foodix vous appelle dès que votre commande est prête.',
   pickupHelp: 'Foodix vous confirme l’heure sur WhatsApp.',
   keptOnPhone: 'Nom, téléphone et dernière adresse sont gardés sur ce téléphone pour la prochaine commande.',
   continue: 'Continuer',
@@ -139,7 +138,6 @@ const fr = {
   errPhone: 'Indiquez un numéro de téléphone valide.',
   errAddress: 'Indiquez votre quartier ou un repère.',
   errTime: 'Choisissez une heure de retrait.',
-  errTimeArrival: 'Choisissez une heure d’arrivée.',
 
   // Envoi (étape 2 sur 2)
   send: 'Envoi',
@@ -161,7 +159,7 @@ const fr = {
   next1: 'Foodix confirme votre commande sur WhatsApp.',
   next2Livraison: 'On vous indique le délai et les frais de livraison.',
   next2Emporter: 'On vous confirme l’heure de retrait.',
-  next2SurPlace: 'On vous confirme l’heure : votre commande vous attend sur place.',
+  next2SurPlace: 'On vous appelle dès que votre commande est prête.',
   next3: (mode: OrderMode, pay: string) =>
     `Vous payez ${mode === 'livraison' ? 'à la livraison' : mode === 'surplace' ? 'sur place' : 'au retrait'}, ${pay}.`,
   payIn: { cash: 'en espèces', mtn: 'en MTN Mobile Money', moov: 'en Moov Money' } as Record<string, string>,
@@ -343,8 +341,7 @@ const en: Dict = {
   asap: 'As soon as possible',
   atTime: 'At a set time',
   pickupAt: 'I’ll come at',
-  arrival: 'Arrival time',
-  arriveAt: 'I’ll arrive at',
+  surPlaceHelp: 'You’re at the food truck: Foodix calls you as soon as your order is ready.',
   pickupHelp: 'Foodix confirms the time on WhatsApp.',
   keptOnPhone: 'Name, phone and last address are kept on this phone for your next order.',
   continue: 'Continue',
@@ -352,7 +349,6 @@ const en: Dict = {
   errPhone: 'Enter a valid phone number.',
   errAddress: 'Enter your neighbourhood or a landmark.',
   errTime: 'Choose a pickup time.',
-  errTimeArrival: 'Choose an arrival time.',
 
   send: 'Send',
   sendTitle: 'Send your order',
@@ -372,7 +368,7 @@ const en: Dict = {
   next1: 'Foodix confirms your order on WhatsApp.',
   next2Livraison: 'We tell you the delivery time and fee.',
   next2Emporter: 'We confirm your pickup time.',
-  next2SurPlace: 'We confirm the time: your order will be ready when you arrive.',
+  next2SurPlace: 'We call you as soon as your order is ready.',
   next3: (mode: OrderMode, pay: string) =>
     `You pay ${mode === 'livraison' ? 'on delivery' : mode === 'surplace' ? 'on site' : 'at pickup'}, ${pay}.`,
   payIn: { cash: 'in cash', mtn: 'with MTN Mobile Money', moov: 'with Moov Money' } as Record<string, string>,

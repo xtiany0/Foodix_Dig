@@ -54,7 +54,7 @@ export default function CheckoutScreen() {
     name: t.errName,
     phone: t.errPhone,
     address: t.errAddress,
-    time: surPlace ? t.errTimeArrival : t.errTime,
+    time: t.errTime,
   };
   const err = (k: DraftError) => (errors.includes(k) ? errorText[k] : undefined);
 
@@ -222,9 +222,12 @@ export default function CheckoutScreen() {
               )}
             </div>
           </>
+        ) : surPlace ? (
+          // Le client est déjà au food truck : pas d'heure à donner.
+          <p className={styles.help}>{t.surPlaceHelp}</p>
         ) : (
           <fieldset className={styles.pickup}>
-            <legend className={styles.legend}>{surPlace ? t.arrival : t.pickup}</legend>
+            <legend className={styles.legend}>{t.pickup}</legend>
             <div className={styles.segment}>
               <button type="button" aria-pressed={draft.pickup === 'asap'} className={`${segment(draft.pickup === 'asap')} ${styles.segSmall}`} onClick={() => updateDraft({ pickup: 'asap' })}>
                 {t.asap}
@@ -236,7 +239,7 @@ export default function CheckoutScreen() {
             {draft.pickup === 'time' && (
               <div className={styles.timeRow}>
                 <label htmlFor="f-heure" className={styles.timeLabel}>
-                  {surPlace ? t.arriveAt : t.pickupAt}
+                  {t.pickupAt}
                 </label>
                 <input
                   id="f-heure"

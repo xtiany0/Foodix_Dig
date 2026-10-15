@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { addLine, resolveCart, cartTotals, type CartLine } from '../src/lib/cart';
-import { draftMessage, emptyDraft, type Draft } from '../src/lib/checkout';
+import { draftErrors, draftMessage, emptyDraft, type Draft } from '../src/lib/checkout';
 import { dictionaries } from '../src/lib/i18n';
 import { indexMenu } from '../src/lib/menu';
 import { buildMessage, itemLine, LINE_WIDTH, orderNumber, whatsappLink } from '../src/lib/whatsapp';
@@ -71,14 +71,20 @@ describe('message WhatsApp', () => {
     expect(message({ ...koffi, mode: 'emporter', pickup: 'asap' })).toContain('Retrait : Dès que possible');
   });
 
-  it('sur place : heure d’arrivée à la place de l’adresse, sans « hors livraison »', () => {
+  it('sur place : ni adresse ni heure (le client est déjà là), sans « hors livraison »', () => {
     const msg = message({ ...koffi, mode: 'surplace', pickup: 'time', time: '20:15', geo: { lat: 1, lng: 2, accuracy: 5 } });
     expect(msg).toContain('Mode : Sur place');
     expect(msg).not.toContain('hors livraison');
-    expect(msg.endsWith('Tél : 01 97 00 00 00\nArrivée : 20:15')).toBe(true);
+    expect(msg.endsWith('Tél : 01 97 00 00 00')).toBe(true);
+    expect(msg).not.toContain('Retrait');
     expect(msg).not.toContain('Adresse');
     expect(msg).not.toContain('Note');
-    expect(message({ ...koffi, mode: 'surplace', pickup: 'asap' })).toContain('Arrivée : Dès que possible');
+  });
+
+  it('sur place : seuls le nom et le téléphone sont demandés', () => {
+    const d: Draft = { ...emptyDraft, mode: 'surplace', name: 'Koffi', phone: '01 97 00 00 00', pickup: 'time', time: '' };
+    expect(draftErrors(d)).toEqual([]);
+    expect(draftErrors({ ...d, name: '' })).toEqual(['name']);
   });
 
   it('aligne les prix : 30 caractères avant le prix', () => {

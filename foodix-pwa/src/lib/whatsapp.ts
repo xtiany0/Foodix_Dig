@@ -38,7 +38,7 @@ export interface MessageInput {
   address?: string;
   /** Livraison : lien Google Maps ou lien collé. */
   position?: string;
-  /** À emporter (heure de retrait) ou sur place (heure d'arrivée) : « Dès que possible » ou « 13:30 ». */
+  /** À emporter : « Dès que possible » ou « 13:30 ». */
   pickup?: string;
   note?: string;
 }
@@ -64,9 +64,7 @@ export function buildMessage(m: MessageInput): string {
     [
       field('Nom', m.name),
       field('Tél', m.phone),
-      ...(livraison
-        ? [field('Adresse', m.address), field('Position', m.position)]
-        : [field(m.mode === 'surplace' ? 'Arrivée' : 'Retrait', m.pickup)]),
+      ...(livraison ? [field('Adresse', m.address), field('Position', m.position)] : [field('Retrait', m.pickup)]),
       field('Note', m.note),
     ],
   ];
