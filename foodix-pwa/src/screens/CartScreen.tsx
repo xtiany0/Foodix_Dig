@@ -133,7 +133,7 @@ export default function CartScreen() {
               {t.addMore}
             </BackLink>
 
-            {/* Livraison ou à emporter n'est choisi qu'à l'étape suivante : pas encore de ligne Livraison. */}
+            {/* Le mode (livraison, à emporter, sur place) n'est choisi qu'à l'étape suivante : pas encore de ligne Livraison. */}
             <div className={styles.summary}>
               <div className={styles.totalRow}>
                 <span className={styles.totalLabel}>{t.total}</span>

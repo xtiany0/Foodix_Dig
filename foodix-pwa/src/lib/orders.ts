@@ -5,7 +5,7 @@
 
 import { resolveLine, type NewLine } from './cart';
 import type { ItemRef } from './menu';
-import type { OrderMode } from './whatsapp';
+import { ORDER_MODES, type OrderMode } from './whatsapp';
 
 export type PaymentId = 'cash' | 'mtn' | 'moov';
 
@@ -99,11 +99,11 @@ function parseOrder(x: unknown): Order | null {
   if (typeof x !== 'object' || x === null) return null;
   const o = x as Record<string, unknown>;
   if (!isStr(o.id) || !isStr(o.at) || Number.isNaN(Date.parse(o.at))) return null;
-  if (o.mode !== 'livraison' && o.mode !== 'emporter') return null;
+  if (!ORDER_MODES.includes(o.mode as OrderMode)) return null;
   if (!PAYMENTS.some((p) => p.id === o.payment) || !isInt(o.total) || !Array.isArray(o.lines)) return null;
   const lines = o.lines.map(parseLine);
   if (lines.some((l) => l === null)) return null;
-  return { id: o.id, at: o.at, mode: o.mode, payment: o.payment as PaymentId, total: o.total, lines: lines as OrderLine[] };
+  return { id: o.id, at: o.at, mode: o.mode as OrderMode, payment: o.payment as PaymentId, total: o.total, lines: lines as OrderLine[] };
 }
 
 /** Valide un historique enregistré. Une commande abîmée est ignorée, les autres sont gardées. */

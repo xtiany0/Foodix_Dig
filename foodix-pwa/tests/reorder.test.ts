@@ -73,4 +73,9 @@ describe('historique', () => {
     expect(parseHistory('x')).toBeNull();
     expect(parseHistory([order, { ...order, mode: 'sur place' }, { id: 1 }])).toEqual([order]);
   });
+
+  it('garde une commande « sur place »', () => {
+    const dineIn: Order = { ...order, id: '#SP12', mode: 'surplace' };
+    expect(parseHistory([dineIn])).toEqual([dineIn]);
+  });
 });

@@ -9,7 +9,12 @@ import { formatPrice } from './price';
 export const LINE_WIDTH = 30;
 const MIN_DOTS = 3;
 
-export type OrderMode = 'livraison' | 'emporter';
+export type OrderMode = 'livraison' | 'emporter' | 'surplace';
+
+export const ORDER_MODES: OrderMode[] = ['livraison', 'emporter', 'surplace'];
+
+/** Libellé de la ligne « Mode » du message. */
+const MODE_LABEL: Record<OrderMode, string> = { livraison: 'Livraison', emporter: 'À emporter', surplace: 'Sur place' };
 
 export interface MessageLine {
   qty: number;
@@ -33,7 +38,7 @@ export interface MessageInput {
   address?: string;
   /** Livraison : lien Google Maps ou lien collé. */
   position?: string;
-  /** À emporter : « Dès que possible » ou « 13:30 ». */
+  /** À emporter (heure de retrait) ou sur place (heure d'arrivée) : « Dès que possible » ou « 13:30 ». */
   pickup?: string;
   note?: string;
 }
@@ -53,13 +58,15 @@ export function buildMessage(m: MessageInput): string {
   const field = (label: string, value: string | undefined) => (clean(value) ? `${label} : ${clean(value)}` : null);
 
   const blocks: (string | null)[][] = [
-    [`Commande FOODIX ${m.number}`, `Mode : ${livraison ? 'Livraison' : 'À emporter'}`],
+    [`Commande FOODIX ${m.number}`, `Mode : ${MODE_LABEL[m.mode]}`],
     m.lines.flatMap((l) => [itemLine(l.qty, l.name, l.total), clean(l.note) ? `   ↳ ${clean(l.note)}` : null]),
     [`Total : ${formatPrice(m.total)}${livraison ? ' (hors livraison)' : ''}`, field('Paiement', m.payment)],
     [
       field('Nom', m.name),
       field('Tél', m.phone),
-      ...(livraison ? [field('Adresse', m.address), field('Position', m.position)] : [field('Retrait', m.pickup)]),
+      ...(livraison
+        ? [field('Adresse', m.address), field('Position', m.position)]
+        : [field(m.mode === 'surplace' ? 'Arrivée' : 'Retrait', m.pickup)]),
       field('Note', m.note),
     ],
   ];

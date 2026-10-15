@@ -56,7 +56,7 @@ export default function ConfirmationScreen() {
             </li>
             <li className={styles.stepItem}>
               <span className={styles.stepNum}>2</span>
-              <span className={styles.stepText}>{livraison ? t.next2Livraison : t.next2Emporter}</span>
+              <span className={styles.stepText}>{livraison ? t.next2Livraison : order.mode === 'surplace' ? t.next2SurPlace : t.next2Emporter}</span>
             </li>
             <li className={styles.stepItem}>
               <span className={styles.stepNum}>3</span>

@@ -38,7 +38,7 @@ export default function OrdersScreen() {
               <div className={styles.cardHead}>
                 <div className={styles.cardId}>
                   <span className={styles.num}>{order.id}</span>
-                  <span className={styles.mode}>{order.mode === 'livraison' ? t.modeLivraison : t.modeEmporter}</span>
+                  <span className={styles.mode}>{order.mode === 'livraison' ? t.modeLivraison : order.mode === 'surplace' ? t.modeSurPlace : t.modeEmporter}</span>
                 </div>
                 <span className={styles.date}>{formatOrderDate(order.at, lang, t)}</span>
               </div>

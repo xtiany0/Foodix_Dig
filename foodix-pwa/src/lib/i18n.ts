@@ -4,6 +4,7 @@
  */
 
 import { config } from '../config';
+import type { OrderMode } from './whatsapp';
 
 const fr = {
   // Accueil / menu
@@ -101,6 +102,7 @@ const fr = {
   modeGroup: 'Mode de récupération',
   modeLivraison: 'Livraison',
   modeEmporter: 'À emporter',
+  modeSurPlace: 'Sur place',
   name: 'Nom',
   phone: 'Téléphone',
   quartier: 'Quartier',
@@ -128,6 +130,8 @@ const fr = {
   asap: 'Dès que possible',
   atTime: 'À une heure précise',
   pickupAt: 'Je passe à',
+  arrival: 'Heure d’arrivée',
+  arriveAt: 'J’arrive à',
   pickupHelp: 'Foodix vous confirme l’heure sur WhatsApp.',
   keptOnPhone: 'Nom, téléphone et dernière adresse sont gardés sur ce téléphone pour la prochaine commande.',
   continue: 'Continuer',
@@ -135,13 +139,14 @@ const fr = {
   errPhone: 'Indiquez un numéro de téléphone valide.',
   errAddress: 'Indiquez votre quartier ou un repère.',
   errTime: 'Choisissez une heure de retrait.',
+  errTimeArrival: 'Choisissez une heure d’arrivée.',
 
   // Envoi (étape 2 sur 2)
   send: 'Envoi',
   sendTitle: 'Envoi de la commande',
   back: 'Retour',
   payTitle: 'Paiement préféré',
-  payText: 'Vous payez à la livraison ou au retrait, directement à Foodix.',
+  payText: 'Vous payez à la livraison, au retrait ou sur place, directement à Foodix.',
   msgTitle: 'Votre message',
   msgText: (phone: string) => `Envoyé sur WhatsApp au ${phone}. Frais de livraison à confirmer avec Foodix.`,
   msgTextPickup: (phone: string) => `Envoyé sur WhatsApp au ${phone}.`,
@@ -156,8 +161,9 @@ const fr = {
   next1: 'Foodix confirme votre commande sur WhatsApp.',
   next2Livraison: 'On vous indique le délai et les frais de livraison.',
   next2Emporter: 'On vous confirme l’heure de retrait.',
-  next3: (mode: 'livraison' | 'emporter', pay: string) =>
-    `Vous payez ${mode === 'livraison' ? 'à la livraison' : 'au retrait'}, ${pay}.`,
+  next2SurPlace: 'On vous confirme l’heure : votre commande vous attend sur place.',
+  next3: (mode: OrderMode, pay: string) =>
+    `Vous payez ${mode === 'livraison' ? 'à la livraison' : mode === 'surplace' ? 'sur place' : 'au retrait'}, ${pay}.`,
   payIn: { cash: 'en espèces', mtn: 'en MTN Mobile Money', moov: 'en Moov Money' } as Record<string, string>,
   reopenWa: 'Rouvrir la discussion WhatsApp',
   notSentYet: 'Pas encore envoyé ? Votre message vous attend dans WhatsApp.',
@@ -309,6 +315,7 @@ const en: Dict = {
   modeGroup: 'How to get your order',
   modeLivraison: 'Delivery',
   modeEmporter: 'Takeaway',
+  modeSurPlace: 'Dine-in',
   name: 'Name',
   phone: 'Phone',
   quartier: 'Neighbourhood',
@@ -336,6 +343,8 @@ const en: Dict = {
   asap: 'As soon as possible',
   atTime: 'At a set time',
   pickupAt: 'I’ll come at',
+  arrival: 'Arrival time',
+  arriveAt: 'I’ll arrive at',
   pickupHelp: 'Foodix confirms the time on WhatsApp.',
   keptOnPhone: 'Name, phone and last address are kept on this phone for your next order.',
   continue: 'Continue',
@@ -343,12 +352,13 @@ const en: Dict = {
   errPhone: 'Enter a valid phone number.',
   errAddress: 'Enter your neighbourhood or a landmark.',
   errTime: 'Choose a pickup time.',
+  errTimeArrival: 'Choose an arrival time.',
 
   send: 'Send',
   sendTitle: 'Send your order',
   back: 'Back',
   payTitle: 'Preferred payment',
-  payText: 'You pay on delivery or at pickup, directly to Foodix.',
+  payText: 'You pay on delivery, at pickup or on site, directly to Foodix.',
   msgTitle: 'Your message',
   msgText: (phone: string) => `Sent on WhatsApp to ${phone}. Delivery fee confirmed with Foodix.`,
   msgTextPickup: (phone: string) => `Sent on WhatsApp to ${phone}.`,
@@ -362,7 +372,9 @@ const en: Dict = {
   next1: 'Foodix confirms your order on WhatsApp.',
   next2Livraison: 'We tell you the delivery time and fee.',
   next2Emporter: 'We confirm your pickup time.',
-  next3: (mode: 'livraison' | 'emporter', pay: string) => `You pay ${mode === 'livraison' ? 'on delivery' : 'at pickup'}, ${pay}.`,
+  next2SurPlace: 'We confirm the time: your order will be ready when you arrive.',
+  next3: (mode: OrderMode, pay: string) =>
+    `You pay ${mode === 'livraison' ? 'on delivery' : mode === 'surplace' ? 'on site' : 'at pickup'}, ${pay}.`,
   payIn: { cash: 'in cash', mtn: 'with MTN Mobile Money', moov: 'with Moov Money' } as Record<string, string>,
   reopenWa: 'Reopen the WhatsApp chat',
   notSentYet: 'Not sent yet? Your message is waiting in WhatsApp.',

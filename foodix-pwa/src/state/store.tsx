@@ -47,7 +47,7 @@ function parseProfile(d: unknown): Profile | null {
   const p = d as Record<string, unknown>;
   const str = (k: string) => (typeof p[k] === 'string' ? (p[k] as string) : '');
   return {
-    mode: p.mode === 'emporter' ? 'emporter' : 'livraison',
+    mode: p.mode === 'emporter' || p.mode === 'surplace' ? p.mode : 'livraison',
     name: str('name'),
     phone: str('phone'),
     quartier: str('quartier'),
@@ -96,7 +96,7 @@ interface Store {
   count: number;
   total: number;
   dispatch: (a: CartAction) => void;
-  /** Formulaire de commande en cours (livraison / à emporter, paiement). */
+  /** Formulaire de commande en cours (livraison / à emporter / sur place, paiement). */
   draft: Draft;
   updateDraft: (patch: Partial<Draft>) => void;
   /** Mémorise nom, téléphone, adresse, mode et paiement pour la prochaine fois. */

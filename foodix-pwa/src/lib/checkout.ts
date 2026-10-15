@@ -1,5 +1,5 @@
 /**
- * Validation de la commande (livraison ou à emporter) et passage au message WhatsApp.
+ * Validation de la commande (livraison, à emporter ou sur place) et passage au message WhatsApp.
  */
 
 import type { ResolvedLine } from './cart';
@@ -51,7 +51,7 @@ export function draftErrors(d: Draft): DraftError[] {
   if (!d.name.trim()) errors.push('name');
   if (d.phone.replace(/\D/g, '').length < 8) errors.push('phone');
   if (d.mode === 'livraison' && !d.quartier.trim() && !d.adresse.trim()) errors.push('address');
-  if (d.mode === 'emporter' && d.pickup === 'time' && !/^\d{2}:\d{2}$/.test(d.time)) errors.push('time');
+  if (d.mode !== 'livraison' && d.pickup === 'time' && !/^\d{2}:\d{2}$/.test(d.time)) errors.push('time');
   return errors;
 }
 
@@ -74,7 +74,7 @@ export function draftMessage(number: string, d: Draft, lines: ResolvedLine[], to
     address: livraison ? [d.quartier.trim(), d.adresse.trim()].filter(Boolean).join(', ') : undefined,
     position: livraison ? positionOf(d) : undefined,
     pickup: livraison ? undefined : d.pickup === 'asap' ? 'Dès que possible' : d.time,
-    // L'écran « à emporter » n'a pas de champ Note : une note saisie en livraison n'est pas envoyée.
+    // « À emporter » et « Sur place » n'ont pas de champ Note : une note saisie en livraison n'est pas envoyée.
     note: livraison ? d.note : undefined,
   });
 }

@@ -34,7 +34,7 @@ Maquette validée par le client. Le cahier des charges complet est dans `docs/ca
 
 ## Écrans et parcours
 
-Parcours principal : Lancement > Menu > fiche article > Ajouter > Panier > Validation (livraison ou à emporter) > Envoi > Confirmation. Puis Mes commandes > Recommander > Panier.
+Parcours principal : Lancement > Menu > fiche article > Ajouter > Panier > Validation (livraison, à emporter ou sur place) > Envoi > Confirmation. Puis Mes commandes > Recommander > Panier.
 
 1. **Lancement** : logo fond nuit, barre de chargement fine.
 2. **Accueil / Menu** (style « Plein jour ») : fond crème. En-tête en bloc bleu nuit aux coins bas arrondis (28 px) avec bouton langue (globe + FR ou EN) à gauche, logo centré, Mes commandes et appel à droite ; dessous, slogan et statut Ouvert / Fermé centrés (point vert ou rouge avec un halo qui pulse, plus lent quand c'est fermé ; coupé si « réduire les animations »), puis la barre de recherche blanche dans le bloc. Onglets de pages collants en pastilles (« Tout » puis les 6 pages ; active : bleu nuit texte blanc ; autres : blanches bordure beige), voir « Menu en pages ». Pour chaque catégorie : bandeau orange avec le nom (police Squada One), puis une carte blanche arrondie (18 px) qui contient les articles : nom en gras bleu nuit, prix en orange foncé dessous, séparateurs fins beiges.
@@ -44,8 +44,8 @@ Parcours principal : Lancement > Menu > fiche article > Ajouter > Panier > Valid
    - articles à variantes (format, garniture…) : le « + » reste toujours visible et ouvre la fiche ; sous l'article, une sous-ligne par choix dans le panier, « 2 × Format à 1.500 F = 3.000 F », chacune avec son « − n + » et sa précision (ex. 1 shawarma bœuf à 1.000 F et 2 à 1.500 F = deux sous-lignes). Bubble tea : une ligne de menu par parfum, pas de sous-ligne de choix.
 4. **Fiche article** (feuille qui monte du bas sur téléphone et tablette, fenêtre centrée sur ordinateur) : catégorie, nom, prix, mention 18+ si besoin, quantité et champ « Précision » ; pour un article à variantes, chaque choix a sa propre quantité (0 par défaut) et sa précision, on peut prendre plusieurs choix d'un coup ; bouton « Ajouter · prix » (total de tous les choix), inactif tant qu'aucune quantité n'est choisie. **Pas de photo** (il n'y en a pas, comme sur le menu papier).
 5. **Panier** : lignes avec + / −, Retirer, précision modifiable, « Ajouter d'autres articles », total (pas encore de ligne Livraison : le mode n'est choisi qu'à l'étape suivante), bouton « Valider ma commande ». Bouton Vider avec confirmation. **Panier vide** : toque, texte, Voir le menu, lien Recommander une commande passée.
-6. **Validation livraison** : sélecteur Livraison / À emporter, nom, téléphone, quartier, adresse ou repère, position GPS (facultative), note ; récapitulatif Sous-total, Livraison « À confirmer sur WhatsApp », Total hors livraison (en à emporter : Total seul).
-7. **Validation à emporter** : nom, téléphone, heure de retrait (Dès que possible / À une heure précise).
+6. **Validation livraison** : sélecteur Livraison / À emporter / Sur place, nom, téléphone, quartier, adresse ou repère, position GPS (facultative), note ; récapitulatif Sous-total, Livraison « À confirmer sur WhatsApp », Total hors livraison (en à emporter : Total seul).
+7. **Validation à emporter** : nom, téléphone, heure de retrait (Dès que possible / À une heure précise). **Sur place** (ajouté à la demande du client) : mêmes champs, « Heure d'arrivée » et « J'arrive à » à la place du retrait.
 8. **Envoi** : paiement préféré (Espèces, MTN Mobile Money, Moov Money), aperçu exact du message WhatsApp, gros bouton orange « Commander sur WhatsApp » avec le logo WhatsApp.
 9. **Confirmation** : Commande envoyée, numéro, 3 étapes suivantes, Rouvrir la discussion WhatsApp, Retour au menu, Mes commandes.
 10. **Mes commandes** : historique local, Recommander, suppression d'une commande ou de tout l'historique.
@@ -110,6 +110,7 @@ Note : appeler en arrivant
 - Points de conduite pour aligner les prix sur 30 caractères avant le prix.
 - Précision sur une ligne à part : `   ↳ précision`.
 - À emporter : `Mode : À emporter`, ligne `Retrait : 13:30` (ou `Dès que possible`) à la place d'Adresse / Position, pas de « (hors livraison) ».
+- Sur place : `Mode : Sur place`, ligne `Arrivée : 20:15` (ou `Dès que possible`), pas de « (hors livraison) ».
 - Lignes vides ou facultatives (position, note) omises si non remplies.
 - **Le message reste toujours en français**, même si l'interface est en anglais.
 
@@ -140,7 +141,7 @@ Note : appeler en arrivant
 
 ## Hors périmètre (ne pas construire)
 
-Pas de mode « sur place », pas de compte client, pas de fidélité, pas de paiement en ligne, pas d'espace d'administration, pas d'historique synchronisé, pas de photos de plats. Les mises à jour du menu se font en modifiant `menu.json`.
+Pas de compte client, pas de fidélité, pas de paiement en ligne, pas d'espace d'administration, pas d'historique synchronisé, pas de photos de plats. Les mises à jour du menu se font en modifiant `menu.json`.
 
 ## Points encore à confirmer avec Foodix
 

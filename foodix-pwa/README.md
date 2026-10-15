@@ -262,4 +262,4 @@ Sans jeton, aucun script de statistiques n'est ajouté.
 
 ## Hors périmètre
 
-Pas de mode « sur place », de compte client, de fidélité, de paiement en ligne, d'espace d'administration, d'historique synchronisé ni de photos de plats. Les mises à jour du menu se font dans `data/menu.json`.
+Pas de compte client, de fidélité, de paiement en ligne, d'espace d'administration, d'historique synchronisé ni de photos de plats. Les mises à jour du menu se font dans `data/menu.json`.

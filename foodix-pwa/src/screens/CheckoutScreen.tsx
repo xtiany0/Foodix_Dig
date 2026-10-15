@@ -35,7 +35,7 @@ function Field({ id, label, error, children }: FieldProps) {
   );
 }
 
-/** Validation de la commande : livraison ou à emporter (étape 1 sur 2). */
+/** Validation de la commande : livraison, à emporter ou sur place (étape 1 sur 2). */
 export default function CheckoutScreen() {
   const { t, draft, updateDraft, saveProfile, lines, count, total, canOrder } = useStore();
   const [submitted, setSubmitted] = useState(false);
@@ -49,7 +49,13 @@ export default function CheckoutScreen() {
   }, [lines.length]);
 
   const errors = submitted ? draftErrors(draft) : [];
-  const errorText: Record<DraftError, string> = { name: t.errName, phone: t.errPhone, address: t.errAddress, time: t.errTime };
+  const surPlace = draft.mode === 'surplace';
+  const errorText: Record<DraftError, string> = {
+    name: t.errName,
+    phone: t.errPhone,
+    address: t.errAddress,
+    time: surPlace ? t.errTimeArrival : t.errTime,
+  };
   const err = (k: DraftError) => (errors.includes(k) ? errorText[k] : undefined);
 
   const locate = () => {
@@ -97,8 +103,16 @@ export default function CheckoutScreen() {
           <button type="button" aria-pressed={livraison} className={segment(livraison)} onClick={() => updateDraft({ mode: 'livraison' })}>
             {t.modeLivraison}
           </button>
-          <button type="button" aria-pressed={!livraison} className={segment(!livraison)} onClick={() => updateDraft({ mode: 'emporter' })}>
+          <button
+            type="button"
+            aria-pressed={draft.mode === 'emporter'}
+            className={segment(draft.mode === 'emporter')}
+            onClick={() => updateDraft({ mode: 'emporter' })}
+          >
             {t.modeEmporter}
+          </button>
+          <button type="button" aria-pressed={surPlace} className={segment(surPlace)} onClick={() => updateDraft({ mode: 'surplace' })}>
+            {t.modeSurPlace}
           </button>
         </div>
 
@@ -210,7 +224,7 @@ export default function CheckoutScreen() {
           </>
         ) : (
           <fieldset className={styles.pickup}>
-            <legend className={styles.legend}>{t.pickup}</legend>
+            <legend className={styles.legend}>{surPlace ? t.arrival : t.pickup}</legend>
             <div className={styles.segment}>
               <button type="button" aria-pressed={draft.pickup === 'asap'} className={`${segment(draft.pickup === 'asap')} ${styles.segSmall}`} onClick={() => updateDraft({ pickup: 'asap' })}>
                 {t.asap}
@@ -222,7 +236,7 @@ export default function CheckoutScreen() {
             {draft.pickup === 'time' && (
               <div className={styles.timeRow}>
                 <label htmlFor="f-heure" className={styles.timeLabel}>
-                  {t.pickupAt}
+                  {surPlace ? t.arriveAt : t.pickupAt}
                 </label>
                 <input
                   id="f-heure"

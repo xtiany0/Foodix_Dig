@@ -71,6 +71,16 @@ describe('message WhatsApp', () => {
     expect(message({ ...koffi, mode: 'emporter', pickup: 'asap' })).toContain('Retrait : Dès que possible');
   });
 
+  it('sur place : heure d’arrivée à la place de l’adresse, sans « hors livraison »', () => {
+    const msg = message({ ...koffi, mode: 'surplace', pickup: 'time', time: '20:15', geo: { lat: 1, lng: 2, accuracy: 5 } });
+    expect(msg).toContain('Mode : Sur place');
+    expect(msg).not.toContain('hors livraison');
+    expect(msg.endsWith('Tél : 01 97 00 00 00\nArrivée : 20:15')).toBe(true);
+    expect(msg).not.toContain('Adresse');
+    expect(msg).not.toContain('Note');
+    expect(message({ ...koffi, mode: 'surplace', pickup: 'asap' })).toContain('Arrivée : Dès que possible');
+  });
+
   it('aligne les prix : 30 caractères avant le prix', () => {
     for (const line of message(koffi).split('\n').filter((l) => /^\d+x /.test(l))) {
       expect(line.lastIndexOf(' ', line.length - 3)).toBeGreaterThanOrEqual(LINE_WIDTH);
