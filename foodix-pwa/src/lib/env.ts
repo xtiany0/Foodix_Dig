@@ -36,17 +36,26 @@ export function useOnline(): boolean {
   return useSyncExternalStore(subscribeOnline, () => navigator.onLine);
 }
 
-/** Heure actuelle, rafraîchie toutes les 30 secondes (statut Ouvert / Fermé). */
-export function useNow(intervalMs = 30_000): Date {
+/**
+ * Heure actuelle, rafraîchie au début de chaque minute (statut Ouvert / Fermé à l'heure pile,
+ * ex. 10:00:00) et au retour dans l'app.
+ */
+export function useNow(): Date {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
-    const id = window.setInterval(() => setNow(new Date()), intervalMs);
+    let id = 0;
+    const tick = () => {
+      setNow(new Date());
+      // Prochain réveil juste après le changement de minute.
+      id = window.setTimeout(tick, 60_000 - (Date.now() % 60_000) + 50);
+    };
+    id = window.setTimeout(tick, 60_000 - (Date.now() % 60_000) + 50);
     const onVisible = () => document.visibilityState === 'visible' && setNow(new Date());
     document.addEventListener('visibilitychange', onVisible);
     return () => {
-      clearInterval(id);
+      clearTimeout(id);
       document.removeEventListener('visibilitychange', onVisible);
     };
-  }, [intervalMs]);
+  }, []);
   return now;
 }
