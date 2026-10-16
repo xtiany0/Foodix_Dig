@@ -1,6 +1,6 @@
 .footer {
   margin-top: 32px;
-  padding: 32px 16px calc(112px + env(safe-area-inset-bottom));
+  padding: 32px 16px calc(150px + env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,7 +126,7 @@
 
 .wide {
   margin: 36px var(--pad-x, 20px) 0;
-  padding: 24px 0 32px;
+  padding: 24px 0 calc(88px + env(safe-area-inset-bottom)); /* place pour la bulle « Installer l’app » */
   border-top: 1px solid var(--fx-line);
   display: flex;
   align-items: center;

@@ -94,6 +94,27 @@ export function InstallButton({ onNavy = false }: { onNavy?: boolean }) {
   );
 }
 
+/**
+ * Bulle « Installer l'app » posée en bas à gauche de l'écran du menu : visible sans descendre
+ * jusqu'au pied de page. Au-dessus de la barre panier quand celle-ci prend toute la largeur.
+ */
+export function InstallBubble({ raised = false }: { raised?: boolean }) {
+  const { t } = useStore();
+  const { method, run, sheet } = useInstallAction();
+  if (!method) return null;
+  return (
+    <>
+      <button type="button" className={`${styles.bubble} ${raised ? styles.bubbleRaised : ''}`} onClick={run}>
+        <span className={styles.bubbleIcon}>
+          <DownloadIcon size={16} stroke={2.6} color="var(--fx-navy)" />
+        </span>
+        {t.installApp}
+      </button>
+      {sheet}
+    </>
+  );
+}
+
 const ORDER_CARD_KEY = 'installOrderCard';
 
 /** Après la première commande envoyée : une seule proposition d'installation, sur la confirmation. */

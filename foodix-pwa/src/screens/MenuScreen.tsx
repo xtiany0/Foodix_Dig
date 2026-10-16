@@ -3,7 +3,7 @@ import { config } from '../config';
 import CartPanel from '../components/CartPanel';
 import CartPill from '../components/CartPill';
 import Footer from '../components/Footer';
-import { InstallBanner, IosGuide } from '../components/InstallPrompt';
+import { InstallBanner, InstallBubble, IosGuide } from '../components/InstallPrompt';
 import ItemSheet from '../components/ItemSheet';
 import MenuRow from '../components/MenuRow';
 import StatusBanner from '../components/StatusBanner';
@@ -55,7 +55,7 @@ function PagePhoto({ page, lazy = false }: { page: MenuPage; lazy?: boolean }) {
 }
 
 export default function MenuScreen() {
-  const { menu, index, lang, setLang, t, isOpen, online, layout } = useStore();
+  const { menu, index, lang, setLang, t, isOpen, online, layout, count, canOrder } = useStore();
   const [query, setQuery] = useState('');
   const cardPages = useMemo(() => realPages(menu), [menu]);
   // Page ouverte au démarrage : le premier onglet, « Tout ».
@@ -373,6 +373,8 @@ export default function MenuScreen() {
       {!wide && <CartPill />}
       {offer === 'ios' && <IosGuide blocked={!onMenu || sheetId !== null} />}
       {offer === 'android' && installMode === 'float' && sheetId === null && <InstallBanner floating />}
+      {/* Bulle d'installation toujours à portée (sauf fiche ouverte ou carte d'installation déjà affichée). */}
+      {sheetId === null && !(offer === 'android' && installMode === 'float') && <InstallBubble raised={!wide && (!canOrder || count > 0)} />}
       {sheetId && index.has(sheetId) && <ItemSheet itemId={sheetId} onClose={() => setSheetId(null)} onAdded={showToast} />}
     </div>
   );

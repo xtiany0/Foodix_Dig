@@ -133,3 +133,68 @@
   border-color: var(--fx-navy-line);
   color: var(--fx-on-navy);
 }
+
+/* ---------- Bulle flottante du menu ---------- */
+
+.bubble {
+  position: fixed;
+  left: 16px;
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  z-index: 20;
+  height: var(--fx-tap);
+  padding: 0 14px 0 6px;
+  border-radius: 22px;
+  /* Contour clair : la bulle reste visible au-dessus du pied de page bleu nuit. */
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  background: var(--fx-navy);
+  color: var(--fx-on-navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: var(--fx-shadow-bar);
+  animation: bubbleIn 0.3s ease-out;
+}
+
+/* Barre panier pleine largeur : la bulle passe au-dessus. */
+.bubbleRaised {
+  bottom: calc(82px + env(safe-area-inset-bottom));
+}
+
+.bubbleIcon {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 15px;
+  background: var(--fx-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Petit rebond de la flèche toutes les 4 s pour attirer l'œil (coupé si « réduire les animations »). */
+  animation: nudge 4s ease-in-out 2s infinite;
+}
+
+@keyframes bubbleIn {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
+
+@keyframes nudge {
+  0%,
+  84%,
+  100% {
+    transform: translateY(0);
+  }
+  88% {
+    transform: translateY(3px);
+  }
+  92% {
+    transform: translateY(-2px);
+  }
+  96% {
+    transform: translateY(1px);
+  }
+}
