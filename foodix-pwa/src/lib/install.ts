@@ -6,7 +6,7 @@
  * iPhone (Safari) : pas d'installation automatique, on affiche un petit guide.
  * Proposition d'office à l'arrivée sur le site, au plus une fois tous les config.installSnoozeDays
  * jours : la date est notée dès qu'elle s'affiche (même sans réponse) et à chaque refus.
- * Le bouton « Installer l'app » du pied de page et la carte après commande restent disponibles.
+ * La bulle « Installer l'app » du menu et la carte après commande restent disponibles.
  * Déjà installée (ouverte depuis l'écran d'accueil) : rien.
  */
 
@@ -96,7 +96,7 @@ function snooze() {
 
 export type InstallOffer = 'android' | 'ios' | null;
 
-/** Installation possible maintenant, sans tenir compte du délai après « Plus tard » (bouton permanent). */
+/** Installation possible maintenant, sans tenir compte du délai après « Plus tard » (bulle du menu). */
 function currentMethod(): InstallOffer {
   if (installed || isStandalone()) return null;
   if (deferred) return 'android';

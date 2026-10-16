@@ -76,25 +76,6 @@ function useInstallAction() {
 }
 
 /**
- * Bouton « Installer l'app » du pied de page : toujours là tant que l'app n'est pas installée
- * et que le navigateur le permet, même après « Plus tard ».
- */
-export function InstallButton({ onNavy = false }: { onNavy?: boolean }) {
-  const { t } = useStore();
-  const { method, run, sheet } = useInstallAction();
-  if (!method) return null;
-  return (
-    <>
-      <button type="button" className={`${styles.footerBtn} ${onNavy ? styles.footerBtnNavy : ''}`} onClick={run}>
-        <DownloadIcon size={18} stroke={2.2} color={onNavy ? 'var(--fx-orange-on-navy)' : 'var(--fx-price)'} />
-        {t.installApp}
-      </button>
-      {sheet}
-    </>
-  );
-}
-
-/**
  * Bulle « Installer l'app » posée en bas à gauche de l'écran du menu : visible sans descendre
  * jusqu'au pied de page. Au-dessus de la barre panier quand celle-ci prend toute la largeur.
  */
