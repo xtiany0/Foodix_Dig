@@ -61,22 +61,34 @@ const pad = (n: number) => String(n).padStart(2, '0');
 
 /**
  * Heures de retrait proposées : toutes les `step` minutes, au plus tôt dans `lead` minutes,
- * seulement pendant les horaires d'ouverture, aujourd'hui ou demain (au plus `count` créneaux).
+ * jusqu'à la fermeture (ou, hors horaires, sur toute la prochaine plage d'ouverture). Moins
+ * de `minToday` créneaux avant la fermeture : la plage d'ouverture suivante (demain) est ajoutée.
  * Remplace le sélecteur d'heure du téléphone, coupé ou peu lisible sur certains Android.
  */
 export function pickupSlots(
   now: Date,
   hours: WeeklyHours | null,
   timeZone: string,
-  { step = 15, lead = 15, count = 24 } = {},
+  { step = 15, lead = 15, minToday = 4 } = {},
 ): Slot[] {
   const { minutes } = localTime(now, timeZone);
   const first = Math.ceil((minutes + lead) / step) * step;
   // Instant du premier créneau : début de la minute locale en cours, plus l'écart.
   const base = now.getTime() - now.getUTCSeconds() * 1000 - now.getUTCMilliseconds() + (first - minutes) * 60_000;
   const slots: Slot[] = [];
-  for (let m = first; m < 2 * 1440 && slots.length < count; m += step) {
-    if (!isOpenAt(new Date(base + (m - first) * 60_000), hours, timeZone)) continue;
+  let periods = 0; // plages d'ouverture parcourues
+  let inPeriod = false;
+  for (let m = first; m < 3 * 1440; m += step) {
+    const open = isOpenAt(new Date(base + (m - first) * 60_000), hours, timeZone);
+    if (!open) {
+      if (inPeriod) {
+        inPeriod = false;
+        periods++;
+        if (periods === 2 || slots.length >= minToday) break;
+      }
+      continue;
+    }
+    inPeriod = true;
     const day = m % 1440;
     slots.push({ time: `${pad(Math.floor(day / 60))}:${pad(day % 60)}`, nextDay: m >= 1440 });
   }

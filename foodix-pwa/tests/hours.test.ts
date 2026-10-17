@@ -65,18 +65,27 @@ describe('créneaux de retrait', () => {
 
   it('toutes les 15 min, au plus tôt dans 15 min, arrondi au quart d’heure', () => {
     // Lundi 12 octobre 2026, 13:07 au Bénin
-    const slots = pickupSlots(at('2026-10-12T12:07:30Z'), h, TZ, { count: 3 });
-    expect(slots).toEqual([
+    const slots = pickupSlots(at('2026-10-12T12:07:30Z'), h, TZ);
+    expect(slots.slice(0, 3)).toEqual([
       { time: '13:30', nextDay: false },
       { time: '13:45', nextDay: false },
       { time: '14:00', nextDay: false },
     ]);
   });
 
+  it('propose tous les créneaux jusqu’à la fermeture, sans s’arrêter en route', () => {
+    // Lundi 09:30 : de 10:00 à 22:45, rien de demain
+    const slots = pickupSlots(at('2026-10-12T08:30:00Z'), h, TZ);
+    expect(slots[0]).toEqual({ time: '10:00', nextDay: false });
+    expect(slots.at(-1)).toEqual({ time: '22:45', nextDay: false });
+    expect(slots).toHaveLength(52);
+  });
+
   it('s’arrête à la fermeture et reprend le lendemain à l’ouverture', () => {
     // Lundi 22:20 : fermeture à 23:00
-    const slots = pickupSlots(at('2026-10-12T21:20:00Z'), h, TZ, { count: 4 });
-    expect(slots).toEqual([
+    const slots = pickupSlots(at('2026-10-12T21:20:00Z'), h, TZ);
+    expect(slots.at(-1)).toEqual({ time: '22:45', nextDay: true });
+    expect(slots.slice(0, 4)).toEqual([
       { time: '22:45', nextDay: false },
       { time: '10:00', nextDay: true },
       { time: '10:15', nextDay: true },
@@ -85,14 +94,16 @@ describe('créneaux de retrait', () => {
   });
 
   it('vendredi : jusqu’à 23:45 (fermeture à minuit)', () => {
-    const slots = pickupSlots(at('2026-10-16T22:00:00Z'), h, TZ, { count: 3 });
-    expect(slots.map((s) => s.time)).toEqual(['23:15', '23:30', '23:45']);
+    const slots = pickupSlots(at('2026-10-16T22:00:00Z'), h, TZ);
+    expect(slots.slice(0, 3).map((s) => s.time)).toEqual(['23:15', '23:30', '23:45']);
+    expect(slots[3]).toEqual({ time: '10:00', nextDay: true });
   });
 
   it('en pleine nuit : créneaux du matin, aujourd’hui', () => {
     // Mardi 02:30 : ouverture à 10:00 le jour même
-    const slots = pickupSlots(at('2026-10-13T01:30:00Z'), h, TZ, { count: 2 });
-    expect(slots).toEqual([
+    const slots = pickupSlots(at('2026-10-13T01:30:00Z'), h, TZ);
+    expect(slots.at(-1)).toEqual({ time: '22:45', nextDay: false });
+    expect(slots.slice(0, 2)).toEqual([
       { time: '10:00', nextDay: false },
       { time: '10:15', nextDay: false },
     ]);
