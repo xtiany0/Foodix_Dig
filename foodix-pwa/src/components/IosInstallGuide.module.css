@@ -258,6 +258,46 @@
   color: var(--ios-blue);
 }
 
+/* Barre d'iOS 26 avec ☰ dans l'adresse */
+.or {
+  align-self: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: #6e6e73;
+  line-height: 1;
+}
+
+.addressMenu {
+  justify-content: space-between;
+  gap: 4px;
+  padding: 0 7px 0 3px;
+}
+
+.addressText {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-size: 10px;
+}
+
+.reload {
+  flex: none;
+  color: #3a3a3c;
+  font-size: 13px;
+}
+
+.hitSmall {
+  min-width: 24px;
+  height: 22px;
+  padding: 0 4px;
+  border-radius: 11px;
+  font-size: 13px;
+  color: #1c1c1e;
+}
+
 /* Bouton à toucher : entouré d'orange, halo qui pulse */
 .hit {
   position: relative;

@@ -71,7 +71,8 @@ function Picture({ pic, t }: { pic: Pic; t: ReturnType<typeof useStore>['t'] }) 
         </div>
       );
     case 'safariCompact':
-      // Safari d'iOS 26 : une seule barre, bouton ••• à droite.
+      // Safari d'iOS 26 : une seule barre. Selon le réglage, le menu est sous ••• à droite,
+      // ou sous ☰ dans la barre d'adresse (le bouton des onglets prend alors la droite).
       return (
         <div className={`${styles.screen} ${styles.bottom}`}>
           <span className={styles.page} />
@@ -79,6 +80,16 @@ function Picture({ pic, t }: { pic: Pic; t: ReturnType<typeof useStore>['t'] }) 
             <span className={styles.tool}>‹</span>
             <span className={styles.address}>foodix.pages.dev</span>
             <Hit>•••</Hit>
+          </span>
+          <span className={styles.or}>{g.or}</span>
+          <span className={styles.compact}>
+            <span className={styles.tool}>‹</span>
+            <span className={`${styles.address} ${styles.addressMenu}`}>
+              <Hit className={styles.hitSmall}>☰</Hit>
+              <span className={styles.addressText}>foodix.pages.dev</span>
+              <span className={styles.reload}>↻</span>
+            </span>
+            <span className={styles.tool}>⧉</span>
           </span>
         </div>
       );
