@@ -32,6 +32,9 @@ const Compass = ({ size = 22 }: { size?: number }) => (
   </svg>
 );
 
+/** Adresse dessinée dans la barre de Safari : celle que le client voit vraiment. */
+const host = typeof location === 'undefined' ? 'foodix' : location.host;
+
 const Toque = () => <img src="/brand/foodix-toque.webp" width={240} height={132} alt="" />;
 
 /** Entoure le bouton à toucher, avec un halo qui pulse. */
@@ -58,7 +61,7 @@ function Picture({ pic, t }: { pic: Pic; t: ReturnType<typeof useStore>['t'] }) 
       return (
         <div className={`${styles.screen} ${styles.bottom}`}>
           <span className={styles.page} />
-          <span className={styles.address}>foodix.pages.dev</span>
+          <span className={styles.address}>{host}</span>
           <span className={styles.toolbar}>
             <span className={styles.tool}>‹</span>
             <span className={styles.tool}>›</span>
@@ -78,7 +81,7 @@ function Picture({ pic, t }: { pic: Pic; t: ReturnType<typeof useStore>['t'] }) 
           <span className={styles.page} />
           <span className={styles.compact}>
             <span className={styles.tool}>‹</span>
-            <span className={styles.address}>foodix.pages.dev</span>
+            <span className={styles.address}>{host}</span>
             <Hit>•••</Hit>
           </span>
           <span className={styles.or}>{g.or}</span>
@@ -86,7 +89,7 @@ function Picture({ pic, t }: { pic: Pic; t: ReturnType<typeof useStore>['t'] }) 
             <span className={styles.tool}>‹</span>
             <span className={`${styles.address} ${styles.addressMenu}`}>
               <Hit className={styles.hitSmall}>☰</Hit>
-              <span className={styles.addressText}>foodix.pages.dev</span>
+              <span className={styles.addressText}>{host}</span>
               <span className={styles.reload}>↻</span>
             </span>
             <span className={styles.tool}>⧉</span>

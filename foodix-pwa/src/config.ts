@@ -24,8 +24,8 @@ export interface VariantName {
 }
 
 export const config = {
-  /** À CONFIRMER : nom de domaine définitif. Sert au QR code (?src=truck). */
-  siteUrl: 'https://foodix.pages.dev',
+  /** Adresse du site (domaine définitif). Sert au QR code (?src=truck) et au lien « Copier » du guide iPhone. */
+  siteUrl: 'https://commandefoodix.bj',
 
   /** Numéro qui reçoit les commandes WhatsApp (format international, sans « + »). */
   whatsappNumber: '2290190568989',

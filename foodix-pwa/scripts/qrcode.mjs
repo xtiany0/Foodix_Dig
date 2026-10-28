@@ -2,7 +2,7 @@
  * QR code à coller sur le food truck, vers l'adresse du site avec ?src=truck.
  *
  *   npm run qrcode                       adresse de config.ts (siteUrl)
- *   npm run qrcode -- https://foodix.bj  autre adresse
+ *   npm run qrcode -- https://exemple.bj autre adresse
  *
  * Produit qrcode/foodix-qr.svg (vectoriel, pour l'imprimeur) et qrcode/foodix-qr.png (4096 px).
  * Correction d'erreur maximale (H) : le code reste lisible s'il est un peu sali ou abîmé.

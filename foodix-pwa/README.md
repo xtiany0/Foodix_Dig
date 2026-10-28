@@ -121,7 +121,7 @@ Tout ce qui reste **à confirmer avec Foodix** est regroupé dans ce fichier :
 
 | Réglage | Valeur actuelle |
 |---|---|
-| `siteUrl` | `https://foodix.pages.dev` (provisoire, sert au QR code) |
+| `siteUrl` | `https://commandefoodix.bj` (sert au QR code et au lien « Copier » du guide iPhone ; `https://foodix.pages.dev` reste en service) |
 | `openingHours` | Lundi–jeudi 10h–23h, vendredi–dimanche 10h–minuit (`null` : horaires inconnus, l'app est toujours « Ouvert ») |
 | `openingHoursText` | Texte des horaires, affiché dans le bandeau « Foodix est fermé » |
 | `location` | `[EMPLACEMENT À CONFIRMER]` (pas encore affiché) |
@@ -185,7 +185,7 @@ Le script produit `public/icons/*.png` et les logos `public/brand/*.webp`, plus 
 
 ```bash
 npm run qrcode                         # adresse de config.ts (siteUrl)
-npm run qrcode -- https://foodix.bj    # ou une autre adresse
+npm run qrcode -- https://exemple.bj   # ou une autre adresse
 ```
 
 Le script produit dans `qrcode/` (non commité) :

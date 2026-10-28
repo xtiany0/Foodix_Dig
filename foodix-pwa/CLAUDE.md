@@ -148,7 +148,7 @@ Pas de compte client, pas de fidélité, pas de paiement en ligne, pas d'espace 
 - Emplacement du food truck. (Horaires confirmés : lundi–jeudi 10h–23h, vendredi–dimanche 10h–minuit.)
 - Noms des variantes à double prix : shawarma viande de bœuf (1.000 / 1.500 F), donuts (1.500 / 3.500 F), 3x (1.000 / 2.000 F). Provisoirement « Format à 1.000 F », etc.
 - Zones et frais de livraison, adresses exactes des pages Facebook / TikTok / Instagram (supposées `/foodix`).
-- Nom de domaine : `foodix.bj` retenu (achat et branchement Cloudflare en cours) ; d'ici là, `foodix.pages.dev`. Une fois actif : `siteUrl` dans `src/config.ts`, README, puis QR code à régénérer.
+- Nom de domaine : `commandefoodix.bj` (Afriregister Bénin, enregistré le 28/10/2026, à renouveler avant le 28/10/2027 ; DNS chez Cloudflare, domaines personnalisés du projet Pages foodix, avec `www`). `foodix.bj` n'a pas pu être obtenu (pris par un tiers avant validation). `foodix.pages.dev` reste en service : les apps déjà installées y restent (panier, historique et nom mémorisés sont propres à chaque adresse). `siteUrl` dans `src/config.ts` sert au QR code et au lien du guide iPhone.
 - Dans la maquette, « Pastel » est marqué épuisé et l'historique contient des commandes d'exemple : ce sont des **données de démonstration**, pas des données réelles.
 
 ## Ordre de travail conseillé
