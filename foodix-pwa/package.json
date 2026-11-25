@@ -33,5 +33,10 @@
   },
   "engines": {
     "node": ">=22"
+  },
+  "overrides": {
+    "workbox-build": {
+      "glob": "^14.0.6"
+    }
   }
 }
