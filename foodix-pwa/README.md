@@ -127,7 +127,7 @@ Tout ce qui reste **à confirmer avec Foodix** est regroupé dans ce fichier :
 | `location` | `[EMPLACEMENT À CONFIRMER]` (pas encore affiché) |
 | `social` | Pages Facebook / TikTok / Instagram supposées `/foodix` |
 | `variantNames` | Noms provisoires « Format à 1.000 F »… pour shawarma bœuf, donuts et 3x |
-| `analyticsToken` | Vide (voir § 8) |
+| `analyticsToken` | Jeton Web Analytics du site `commandefoodix.bj` (mode « JS Snippet installation » ; compte aussi les visites sur `foodix.pages.dev`), voir § 8 |
 
 Exemple d'horaires, calculés à l'heure du Bénin quel que soit le réglage du téléphone. Les jours vont de 0 (dimanche) à 6 (samedi). Une fermeture après minuit est acceptée :
 

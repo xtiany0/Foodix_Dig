@@ -109,7 +109,7 @@ export const config = {
   } as Record<string, VariantName[]>,
 
   /** Jeton Cloudflare Web Analytics. Vide = pas de statistiques. Voir aussi VITE_CF_BEACON_TOKEN. */
-  analyticsToken: '',
+  analyticsToken: '7a6189fd0d8147d6b0a8c5fe2a1112e2',
 
   /**
    * Durée minimale de l'écran de lancement, comptée depuis l'ouverture de la page
