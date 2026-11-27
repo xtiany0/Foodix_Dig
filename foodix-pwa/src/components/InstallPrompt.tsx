@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { acceptInstall, dismissInstall, markOffered, useInstallMethod } from '../lib/install';
 import { readStored, writeStored } from '../lib/storage';
 import { DownloadIcon } from './icons';
+import AndroidInstallGuide from './AndroidInstallGuide';
 import IosInstallGuide from './IosInstallGuide';
 import { useOverlayHistory } from '../lib/router';
 import { useStore } from '../state/store';
@@ -65,13 +66,14 @@ export function IosGuide({ blocked }: { blocked: boolean }) {
   return open ? <IosInstallGuide onClose={close} /> : null;
 }
 
-/** Lance l'installation : fenêtre de Chrome (Android) ou guide (iPhone). */
+/** Lance l'installation : fenêtre de Chrome (Android), sinon guide (Android ou iPhone). */
 function useInstallAction() {
   const method = useInstallMethod();
   const [guide, setGuide] = useState(false);
   useOverlayHistory(guide, () => setGuide(false));
   const run = () => (method === 'android' ? void acceptInstall() : setGuide(true));
-  const sheet = guide ? <IosInstallGuide onClose={() => setGuide(false)} /> : null;
+  const close = () => setGuide(false);
+  const sheet = !guide ? null : method === 'android-guide' ? <AndroidInstallGuide onClose={close} /> : <IosInstallGuide onClose={close} />;
   return { method, run, sheet };
 }
 

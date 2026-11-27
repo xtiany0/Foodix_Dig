@@ -62,6 +62,23 @@ export function iosGuideKind(ua = navigator.userAgent, touchPoints = navigator.m
   return v !== null && v < 26 ? 'share' : 'menu';
 }
 
+/** Téléphone ou tablette Android, quel que soit le navigateur. */
+export function isAndroid(ua = navigator.userAgent): boolean {
+  return /Android/i.test(ua);
+}
+
+/**
+ * Guide Android quand le navigateur ne propose pas l'installation automatique
+ * (Chrome qui ne l'a pas encore proposée ou après un refus, Samsung Internet, Firefox,
+ * fenêtre intégrée de WhatsApp, Facebook ou Instagram).
+ */
+export function androidGuideKind(ua = navigator.userAgent): 'chrome' | 'samsung' | 'firefox' | 'inapp' {
+  if (/; wv\)|FBAN|FBAV|Instagram|WhatsApp/.test(ua)) return 'inapp';
+  if (/SamsungBrowser/.test(ua)) return 'samsung';
+  if (/Firefox/.test(ua)) return 'firefox';
+  return 'chrome';
+}
+
 /** iPad (ou iPad qui se présente comme un Mac) : le bouton Partager est en haut à droite. */
 export function isIpad(ua = navigator.userAgent, touchPoints = navigator.maxTouchPoints): boolean {
   return /iPad/.test(ua) || (/Macintosh/.test(ua) && touchPoints > 1);
@@ -94,7 +111,11 @@ function snooze() {
   emit();
 }
 
-export type InstallOffer = 'android' | 'ios' | null;
+/**
+ * android : fenêtre d'installation du navigateur prête ; android-guide : Android sans cette
+ * fenêtre, on explique le menu du navigateur ; ios : guide iPhone.
+ */
+export type InstallOffer = 'android' | 'android-guide' | 'ios' | null;
 
 /** Installation possible maintenant, sans tenir compte du délai après « Plus tard » (bulle du menu). */
 function currentMethod(): InstallOffer {
@@ -102,6 +123,7 @@ function currentMethod(): InstallOffer {
   if (deferred) return 'android';
   // Tout navigateur iPhone : le guide explique, si besoin, comment passer dans Safari.
   if (isIos()) return 'ios';
+  if (isAndroid()) return 'android-guide';
   return null;
 }
 
@@ -111,7 +133,10 @@ let shownThisVisit = false;
 
 /** Proposition automatique (bannière, guide iPhone) : au plus une fois tous les N jours. */
 function currentOffer(): InstallOffer {
-  return shownThisVisit || canOffer(readSnooze(), Date.now()) ? currentMethod() : null;
+  const method = currentMethod();
+  // Le guide Android sans fenêtre du navigateur reste derrière la bulle : pas proposé d'office.
+  if (method === 'android-guide') return null;
+  return shownThisVisit || canOffer(readSnooze(), Date.now()) ? method : null;
 }
 
 let cached: InstallOffer = null;

@@ -104,6 +104,42 @@
   text-align: center;
 }
 
+/* Guide Android : étapes numérotées, sur un seul écran */
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.steps li {
+  counter-increment: step;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.steps li::before {
+  content: counter(step);
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background: var(--fx-orange);
+  color: var(--fx-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 900;
+}
+
 .tip {
   margin: 0;
   display: flex;
